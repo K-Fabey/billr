@@ -29,36 +29,42 @@ total = Company.create!(name: "Total Energies",
 10.times do
     partner = Company.new(
       name: Faker::Company.name,
-      siren: Faker::Number.decimal(l_digits: 9),
-      siret: Faker::Number.decimal(l_digits: 14),
-      address: Faker::Address.name,
+      siren: Faker::Number.number(digits: 9),
+      siret: Faker::Number.number(digits: 14),
+      address: Faker::Address.street_address,
       city: Faker::Address.city,
       country: Faker::Address.country,
-      phone_number: Faker::Number.decimal(l_digits: 10),
-      vat_number: "FR#{Faker::Number.decimal(l_digits: 11)}",
+      phone_number: Faker::Number.number(digits: 10),
+      vat_number: "FR#{Faker::Number.number(digits: 11)}",
       email: Faker::Internet.email,
-      bank_account: "FR#{Faker::Number.decimal(l_digits: 25)}",
+      bank_account: "FR#{Faker::Number.number(digits: 25)}",
       legal_status: Faker::Company.type,
-      capital: "#{Faker::Number.decimal(l_digits: 6)} €"
+      capital: "#{Faker::Number.number(digits: 6)} €"
     )
     partner.save!
     CompanyPartnership.create!(company: total, partner: partner, client: true)
     3.times do
-      invoice = Invoice.new(
+      total_without_tax = Faker::Number.decimal(l_digits: 4)
+      tax_amount = 0.2 * total_without_tax
+      status = Invoice::SENT_STATUSES.sample
+      payment_date = Faker::Date.between(from: '2022-03-08', to: '2022-03-22') if status == "paid"
+      declined_reasons = ["pas de tva", "pas de total HT", "adresse manquante"]
+      declined_reason = declined_reasons.sample if status == "declined"
+      invoice = Invoice.create!(
         sender: total,
         recipient: partner,
         issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-10'),
         po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
-        vat_rate: "20 %",
-        total_wo_tax: "100€",
-        status: Invoice::SENT_STATUSES.sample,
+        vat_rate: 20,
+        total_wo_tax: total_without_tax,
+        status: status,
         payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
-        payment_date: "",
+        payment_date: payment_date,
         archived: false,
-        decline_reason: "",
+        decline_reason: declined_reason,
         payment_method: "virement SEPA",
-        total_w_tax: "120€",
-        tax_amount: "20€"
+        total_w_tax: tax_amount + total_without_tax,
+        tax_amount: tax_amount
       )
     end
 end
@@ -66,36 +72,42 @@ end
 10.times do
     partner = Company.new(
       name: Faker::Company.name,
-      siren: Faker::Number.decimal(l_digits: 9),
-      siret: Faker::Number.decimal(l_digits: 14),
-      address: Faker::Address.name,
+      siren: Faker::Number.number(digits: 9),
+      siret: Faker::Number.number(digits: 14),
+      address: Faker::Address.street_address,
       city: Faker::Address.city,
       country: Faker::Address.country,
-      phone_number: Faker::Number.decimal(l_digits: 10),
-      vat_number: "FR#{Faker::Number.decimal(l_digits: 11)}",
+      phone_number: Faker::Number.number(digits: 10),
+      vat_number: "FR#{Faker::Number.number(digits: 11)}",
       email: Faker::Internet.email,
-      bank_account: "FR#{Faker::Number.decimal(l_digits: 25)}",
+      bank_account: "FR#{Faker::Number.number(digits: 25)}",
       legal_status: Faker::Company.type,
-      capital: "#{Faker::Number.decimal(l_digits: 6)} €"
+      capital: "#{Faker::Number.number(digits: 6)} €"
     )
     partner.save!
     CompanyPartnership.create!(company: total, partner: partner, supplier: true)
     3.times do
-      invoice = Invoice.new(
+      total_without_tax = Faker::Number.decimal(l_digits: 4)
+      tax_amount = 0.2 * total_without_tax
+      status = Invoice::RECEIVED_STATUSES.sample
+      payment_date = Faker::Date.between(from: '2022-03-08', to: '2022-03-22') if status == "paid"
+      declined_reasons = ["pas de tva", "pas de total HT", "adresse manquante"]
+      declined_reason = declined_reasons.sample if status == "declined"
+      invoice = Invoice.create!(
         sender: partner,
         recipient: total,
         issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
         po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
-        vat_rate: "20 %",
-        total_wo_tax: "100€",
-        status: Invoice::RECEIVED_STATUSES.sample,
+        vat_rate: 20,
+        total_wo_tax: total_without_tax,
+        status: status,
         payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
-        payment_date: "2022-03-10",
+        payment_date: payment_date,
         archived: false,
-        decline_reason: "",
+        decline_reason: declined_reason,
         payment_method: "virement SEPA",
-        total_w_tax: "120€",
-        tax_amount: "20€"
+        total_w_tax: total_without_tax + tax_amount,
+        tax_amount: tax_amount
       )
     end
 end
