@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
-require 'faker'
-puts "Destroying all companies"
+# require 'faker'
+
+puts "Destroying all companies !"
 Company.destroy_all
-puts "creating companies and invoices"
+puts "creating new companies and invoices..."
 
 total = Company.create!(name: "Total Energies",
                         siren: "442 395 448",
@@ -50,7 +51,7 @@ total = Company.create!(name: "Total Energies",
         po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
         vat_rate: "20 %",
         total_wo_tax: "100€",
-        status: "validated",
+        status: Invoice::SENT_STATUSES.sample,
         payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
         payment_date: "",
         archived: false,
@@ -87,7 +88,7 @@ end
         po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
         vat_rate: "20 %",
         total_wo_tax: "100€",
-        status: "paid",
+        status: Invoice::RECEIVED_STATUSES.sample,
         payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
         payment_date: "2022-03-10",
         archived: false,
@@ -101,9 +102,9 @@ end
 
 puts "companies and invoices created !"
 
-puts "destroying all users"
+puts "destroying all users..."
 User.destroy_all
-puts "creating users"
+puts "creating new users..."
 
 file2 = URI.open('https://ca.slack-edge.com/T02NE0241-U02T2GDMEMC-ffb6e06fd496-512')
 user2 = User.create!(company: total, email: 'fabrice@total.com', first_name: 'fabrice', last_name: 'Kana', password: '123456')
@@ -116,3 +117,5 @@ user3.photo.attach(io: file3, filename: 'martin.png', content_type: 'image/png')
 file4 = URI.open('https://ca.slack-edge.com/T02NE0241-U02S4915Q8P-d896b97128d9-512')
 user4 = User.create!(company: total, email: 'celine@total.com', first_name: 'celine', last_name: 'condoris', password: '123456')
 user4.photo.attach(io: file4, filename: 'celine.png', content_type: 'image/png')
+
+puts "users created !"

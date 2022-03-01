@@ -1,4 +1,6 @@
 class Invoice < ApplicationRecord
+  RECEIVED_STATUSES = ["validated", "declined", "payment in process", "paid", "received"]
+  SENT_STATUSES = ["paid", "sent", "created"]
   belongs_to :recipient, class_name: "Company"
   belongs_to :sender, class_name: "Company"
   validates :issue_date, presence: true
@@ -9,7 +11,7 @@ class Invoice < ApplicationRecord
   validates :tax_amount, presence: true
   validates :country, presence: true
   validates :total_w_tax, presence: true
-  validates :status, presence: true, inclusion: { in: ["validated", "declined", "payment in process", "paid", "sent", "received", "created"]}
+  validates :status, presence: true, inclusion: { in: (RECEIVED_STATUSES + SENT_STATUSES).uniq }
   validates :payment_deadline, presence: true
   validates :payment_date, presence: true
 end
