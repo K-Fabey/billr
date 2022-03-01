@@ -1,5 +1,8 @@
 class Company < ApplicationRecord
-  has_many :users
+  has_many :users, dependent: :destroy
+  has_many :received_invoices, class_name: "Invoice", foreign_key: :recipient_id, dependent: :destroy
+  has_many :sent_invoices, class_name: "Invoice", foreign_key: :sender_id, dependent: :destroy
+  has_many :company_partnerships, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :siren, presence: true, uniqueness: true
   validates :siret, presence: true, uniqueness: true
