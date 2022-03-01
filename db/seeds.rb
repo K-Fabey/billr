@@ -8,10 +8,23 @@
 
 require 'open-uri'
 require 'faker'
-
+puts "Destroying all companies"
 Company.destroy_all
+puts "creating companies and invoices"
 
-total = Company.create!()
+total = Company.create!(name: "Total Energies",
+                        siren: "442 395 448",
+                        siret: "442 395 448 00057",
+                        address: "2 BIS RUE LOUIS ARMAND",
+                        city: "Paris",
+                        country: "France",
+                        phone_number: "+33 01 23 45 67 89",
+                        vat_number: "FR55442395448",
+                        email: "contact@total.fr",
+                        bank_account: "FR12 1234 5678 1234 5678 1234 567",
+                        legal_status: "SA",
+                        capital: "5 164 558 €")
+
 10.times do
     partner = Company.new(
       name: Faker::Company.name,
@@ -33,7 +46,18 @@ total = Company.create!()
       invoice = Invoice.new(
         sender: total,
         recipient: partner,
-
+        issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-10'),
+        po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
+        vat_rate: "20 %",
+        total_wo_tax: "100€",
+        status: "validated",
+        payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
+        payment_date: "",
+        archived: false,
+        decline_reason: "",
+        payment_method: "virement SEPA",
+        total_w_tax: "120€",
+        tax_amount: "20€"
       )
     end
 end
@@ -59,14 +83,27 @@ end
       invoice = Invoice.new(
         sender: partner,
         recipient: total,
-
+        issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
+        po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
+        vat_rate: "20 %",
+        total_wo_tax: "100€",
+        status: "paid",
+        payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
+        payment_date: "2022-03-10",
+        archived: false,
+        decline_reason: "",
+        payment_method: "virement SEPA",
+        total_w_tax: "120€",
+        tax_amount: "20€"
       )
     end
 end
 
+puts "companies and invoices created !"
 
-
+puts "destroying all users"
 User.destroy_all
+puts "creating users"
 
 file2 = URI.open('https://ca.slack-edge.com/T02NE0241-U02T2GDMEMC-ffb6e06fd496-512')
 user2 = User.create!(company: total, email: 'fabrice@total.com', first_name: 'fabrice', last_name: 'Kana', password: '123456')
