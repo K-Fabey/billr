@@ -22,10 +22,20 @@ class InvoicesController < ApplicationController
   end
 
   def received
+    # raise
+    current_company = current_user.company
+    @received_invoices = Invoice.where( recipient: current_company)
+    @invoices = @received_invoices
+
     render :index
   end
 
   def sent
+    current_company = current_user.company
+    @sent_invoices = Invoice.where( sender: current_company)
+    @invoices = @sent_invoices
+
+    # raise
     render :index
   end
 
