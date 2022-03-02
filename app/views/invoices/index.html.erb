@@ -1,22 +1,28 @@
 <h1>Ta liste de factures</h1>
 
-<ul>
-<% @invoices.each do |invoice| %>
-  <% if policy(invoice).index? %>
-    <li>issue_date :<%= invoice.issue_date %></li>
-    <li>status :<%= invoice.status %></li>
-    <li>payment_deadline :<%= invoice.payment_deadline %></li>
-    <li>archived :<%= invoice.archived %></li>
-    <li>decline_reason :<%= invoice.decline_reason %></li>
-    <li>sender_id :<%= invoice.sender_id %></li>
-    <li>payment_date :<%= invoice.payment_date %></li>
-    <li>recipient_id :<%= invoice.recipient_id %></li>
-    <li>payment_method :<%= invoice.payment_method %></li>
-    <li>total_wo_tax :<%= invoice.total_wo_tax %></li>
-    <li>vat_rate :<%= invoice.vat_rate %></li>
-    <li>total_w_tax :<%= invoice.total_w_tax %></li>
-    <li>tax_amount :<%= invoice.tax_amount %></li>
-    <%= link_to "Details", invoice_path(invoice) %>
-  <% end %>
-<% end %>
-</ul>
+
+<%# Barre latterale de rech %>
+
+
+
+<%# liste de toutes les factures %>
+
+<div>
+  <ul>
+    <% @invoices.each do |invoice| %>
+      <% if policy(invoice).index? %>
+      <li>
+        <%# Fournisseur : <%= invoice.sender.name %>
+        <%# <br> %>
+        <%= @company_status %> : <%= invoice.recipient.name %>
+        <br>
+        Statut : <%= invoice.status %>
+        <br>
+        Date : <%= invoice.issue_date %>
+        <br>
+        Montant : <%= invoice.total_w_tax.round(2) %>€
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
