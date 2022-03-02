@@ -1,7 +1,15 @@
-<h1>Ta facture N° <%= @invoice.po_number  %></h1>
+<div class="container">
+  <div class="progress-container">
+    <div class="progress" id="progress"> </div>
+    <div class="circle active">received</div>
+    <div class="circle">payment in process</div>
+    <div class="circle">validated</div>
+    <div class="circle">paid</div>
+  </div>
 
 <ul>
   <% if policy(@invoice).show? %>
+    <li>Facture N° <%= @invoice.po_number  %></li>
     <li>issue_date :<%= @invoice.issue_date %></li>
     <li>status :<%= @invoice.status %></li>
     <li>payment_deadline :<%= @invoice.payment_deadline %></li>
@@ -15,8 +23,11 @@
     <li>vat_rate :<%= @invoice.vat_rate %></li>
     <li>total_w_tax :<%= @invoice.total_w_tax %></li>
     <li>tax_amount :<%= @invoice.tax_amount %></li>
+    <% if @invoice.received?(current_user) %>
     <%= link_to "Retour aux factures reçues", received_invoices_path %>
+    <% else %>
     <%= link_to "Retour aux factures envoyées", sent_invoices_path %>
-
+    <% end %>
   <% end %>
 </ul>
+</div>

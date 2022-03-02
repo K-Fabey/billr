@@ -13,4 +13,10 @@ class Invoice < ApplicationRecord
   validates :total_w_tax, presence: true
   validates :status, presence: true, inclusion: { in: (RECEIVED_STATUSES + SENT_STATUSES).uniq }
   validates :payment_deadline, presence: true
+
+
+  def received?(user)
+    recipient == user.company
+  end
+
 end
