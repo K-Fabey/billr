@@ -67,7 +67,7 @@ total = Company.create!(name: "Total Energies",
         tax_amount: tax_amount
       )
       file2 = URI.open('https://templates.invoicehome.com/modele-facture-fr-dexter-750px.png')
-      invoice.photo.attach(io: file2, filename: 'invoice.png', content_type: 'image/png')
+      invoice.invoice_file.attach(io: file2, filename: 'invoice.png', content_type: 'image/png')
     end
 end
 
@@ -112,7 +112,7 @@ end
         tax_amount: tax_amount
       )
       file2 = URI.open('https://templates.invoicehome.com/modele-facture-fr-dexter-750px.png')
-      invoice.photo.attach(io: file2, filename: 'invoice.png', content_type: 'image/png')
+      invoice.invoice_file.attach(io: file2, filename: 'invoice.png', content_type: 'image/png')
     end
 end
 
