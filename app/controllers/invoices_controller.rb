@@ -22,11 +22,24 @@ class InvoicesController < ApplicationController
     authorize @invoice
   end
 
+  def index
+    @user = current_user
+    # @invoices = policy_scope(Invoice)
+    @invoices = Invoice.all
+  end
+
   def received
+    @user = current_user
+    #@invoices = policy_scope(Invoice)
+    @invoices = Invoice.all
+    authorize @invoices
     render :index
   end
 
   def sent
+    @user = current_user
+    # @invoices = policy_scope(Invoice)
+    @invoices = Invoice.all
     render :index
   end
 

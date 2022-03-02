@@ -10,6 +10,14 @@ class InvoicePolicy < ApplicationPolicy
     true
   end
 
+  def received?
+    true
+  end
+
+  def sent?
+    true
+  end
+
   def show?
     true
   end

@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       patch :follow_up
       patch :pay
       patch :mark_as_paid
-
     end
   end
 end
