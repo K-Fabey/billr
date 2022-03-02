@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   def new
     @invoice = Invoice.new
     authorize @invoice
-    
+
     if params[:type] == "received"
       @invoice.recipient = current_user.company
       @companies = current_user.company.suppliers.order(:name)
@@ -33,7 +33,7 @@ class InvoicesController < ApplicationController
     @invoice.total_w_tax = 120
 
     if @invoice.save
-      redirect_to_invoice_path(@invoice)
+      redirect_to invoice_path(@invoice)
     else
       render :new
     end
