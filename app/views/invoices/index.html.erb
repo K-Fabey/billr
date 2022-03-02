@@ -1,1 +1,21 @@
 <h1>Ta liste de factures</h1>
+
+<%# <%= @invoices.first %>
+
+<ul>
+  <% @invoices.each do |invoice| %>
+  <li>
+    Fournisseur : <%= invoice.sender.name %>
+    <br>
+    Client : <%= invoice.recipient.name %>
+    <br>
+    Statut : <%= invoice.status %>
+    <br>
+    Date : <%= invoice.issue_date %>
+    <br>
+    Date : <%= invoice.issue_date %>
+  </li>
+
+  <% end %>
+
+</ul>
