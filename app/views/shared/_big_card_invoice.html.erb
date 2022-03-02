@@ -1,0 +1,17 @@
+
+
+<div>
+  <ul>
+    <li>
+      <%# Fournisseur : <%= invoice.sender.name %>
+      <%# <br> %>
+      client : <%= invoice.recipient.name %>
+      <br>
+      Statut : <%= invoice.status %>
+      <br>
+      Date : <%= invoice.issue_date %>
+      <br>
+      Montant : <%= invoice.total_w_tax.round(2) %>€
+    </li>
+  </ul>
+</div>
