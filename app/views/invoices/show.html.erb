@@ -18,7 +18,3 @@
     <%= link_to "Retour aux factures", invoices_path %>
   <% end %>
 </ul>
-
-    <% if policy(@invoice).update? %>
-    <%= link_to "Modifier cette facture", edit_invoice_path(@invoice) %>
-    <% end %>
