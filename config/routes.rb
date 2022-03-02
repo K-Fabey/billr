@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     collection do
       get :received
       get :sent
-
     end
 
     member do
