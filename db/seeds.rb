@@ -13,7 +13,7 @@ puts "Destroying all companies !"
 Company.destroy_all
 puts "creating new companies and invoices..."
 
-total = Company.create!(name: "Total Energies",
+total = Company.create!(name: "Office Depot",
                         siren: "442 395 448",
                         siret: "442 395 448 00057",
                         address: "2 BIS RUE LOUIS ARMAND",
@@ -21,7 +21,7 @@ total = Company.create!(name: "Total Energies",
                         country: "France",
                         phone_number: "+33 01 23 45 67 89",
                         vat_number: "FR55442395448",
-                        email: "contact@total.fr",
+                        email: "magasin-paris11@officedepot.com",
                         bank_account: "FR12 1234 5678 1234 5678 1234 567",
                         legal_status: "SA",
                         capital: "5 164 558 €")
