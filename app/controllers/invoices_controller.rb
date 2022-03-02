@@ -1,12 +1,8 @@
 class InvoicesController < ApplicationController
-
-  def show
-    @invoice = Invoice.find(params[:id])
-  end
-
   def new
     @invoice = Invoice.new
-
+    authorize @invoice
+    
     if params[:type] == "received"
       @invoice.recipient = current_user.company
       @companies = current_user.company.suppliers.order(:name)
@@ -18,7 +14,7 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
-
+    authorize @invoice
     if current_user.company_id == @invoice.recipient_id
       @invoice.status = "received"
     else
@@ -43,50 +39,61 @@ class InvoicesController < ApplicationController
     end
   end
 
-  def received
-    # raise
-    current_company = current_user.company
-    @received_invoices = Invoice.where( recipient: current_company)
-    @invoices = @received_invoices
+  def show
+    set_invoice
+    authorize @invoice
+  end
 
+  def index
+    @user = current_user
+    # @invoices = policy_scope(Invoice)
+    @invoices = Invoice.all
+  end
+
+  def received
+    @user = current_user
+    current_company = current_user.company
+    @received_invoices = current_company.received_invoices
+    @invoices = @received_invoices
+    authorize @invoices
     render :index
   end
 
   def sent
+    @user = current_user
     current_company = current_user.company
-    @sent_invoices = Invoice.where( sender: current_company)
+    @sent_invoices = current_company.sent_invoices
     @invoices = @sent_invoices
-
-    # raise
+    authorize @invoices
     render :index
   end
 
   def validate
-
+    render :show
   end
 
   def decline
-
+    render :show
   end
 
   def pay
-
+    render :show
   end
 
   def mark_as_pay
-
+    render :show
   end
 
   def send_to_partner
-
+    render :show
   end
 
   def follow_up
-
+    render :show
   end
 
   def mark_as_paid
-
+    render :show
   end
 
   private
@@ -95,4 +102,7 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:sender_id, :recipient_id, :invoice_file)
   end
 
+  def set_invoice
+    @invoice = Invoice.find(params[:id])
+  end
 end

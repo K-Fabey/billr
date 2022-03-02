@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     collection do
       get :received
       get :sent
-
     end
 
     member do
@@ -20,7 +19,6 @@ Rails.application.routes.draw do
       patch :follow_up
       patch :pay
       patch :mark_as_paid
-
     end
   end
 end
