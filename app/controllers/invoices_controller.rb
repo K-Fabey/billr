@@ -1,11 +1,11 @@
 class InvoicesController < ApplicationController
 
   def show
-
+    @invoice = Invoice.find(params[:id])
   end
 
   def new
-
+    @invoice = Invoice.new()
   end
 
   def create
@@ -19,6 +19,42 @@ class InvoicesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def received
+    render :index
+  end
+
+  def sent
+    render :index
+  end
+
+  def validate
+
+  end
+
+  def decline
+
+  end
+
+  def pay
+
+  end
+
+  def mark_as_pay
+
+  end
+
+  def send_to_partner
+
+  end
+
+  def follow_up
+
+  end
+
+  def mark_as_paid
+
   end
 
   private
