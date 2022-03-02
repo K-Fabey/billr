@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
-  RECEIVED_STATUSES = ["validated", "declined", "payment in process", "paid", "received"]
-  SENT_STATUSES = ["paid", "sent", "created"]
+  RECEIVED_STATUSES = ["received", "payment in process", "validated", "declined", "paid"]
+  SENT_STATUSES = ["created", "sent", "paid"]
+  has_one_attached :invoice_file
   belongs_to :recipient, class_name: "Company"
   belongs_to :sender, class_name: "Company"
   validates :issue_date, presence: true
