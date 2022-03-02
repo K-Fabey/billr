@@ -15,4 +15,14 @@ class Company < ApplicationRecord
   validates :bank_account, presence: true, uniqueness: true
   validates :legal_status, presence: true
   validates :capital, presence: true
+
+  def clients
+    company_ids = company_partnerships.where(client: true).pluck(:partner_id)
+    Company.where(id: company_ids)
+  end
+
+  def suppliers
+    company_ids = company_partnerships.where(supplier: true).pluck(:partner_id)
+    Company.where(id: company_ids)
+  end
 end
