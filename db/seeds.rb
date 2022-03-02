@@ -13,7 +13,7 @@ puts "Destroying all companies !"
 Company.destroy_all
 puts "creating new companies and invoices..."
 
-total = Company.create!(name: "Total Energies",
+total = Company.create!(name: "Office Depot",
                         siren: "442 395 448",
                         siret: "442 395 448 00057",
                         address: "2 BIS RUE LOUIS ARMAND",
@@ -21,7 +21,7 @@ total = Company.create!(name: "Total Energies",
                         country: "France",
                         phone_number: "+33 01 23 45 67 89",
                         vat_number: "FR55442395448",
-                        email: "contact@total.fr",
+                        email: "magasin-paris11@officedepot.com",
                         bank_account: "FR12 1234 5678 1234 5678 1234 567",
                         legal_status: "SA",
                         capital: "5 164 558 €")
@@ -66,6 +66,8 @@ total = Company.create!(name: "Total Energies",
         total_w_tax: tax_amount + total_without_tax,
         tax_amount: tax_amount
       )
+      file2 = URI.open('https://templates.invoicehome.com/modele-facture-fr-dexter-750px.png')
+      invoice.invoice_file.attach(io: file2, filename: 'invoice.png', content_type: 'image/png')
     end
 end
 
@@ -109,6 +111,8 @@ end
         total_w_tax: total_without_tax + tax_amount,
         tax_amount: tax_amount
       )
+      file2 = URI.open('https://templates.invoicehome.com/modele-facture-fr-dexter-750px.png')
+      invoice.invoice_file.attach(io: file2, filename: 'invoice.png', content_type: 'image/png')
     end
 end
 
@@ -119,15 +123,15 @@ User.destroy_all
 puts "creating new users..."
 
 file2 = URI.open('https://ca.slack-edge.com/T02NE0241-U02T2GDMEMC-ffb6e06fd496-512')
-user2 = User.create!(company: total, email: 'fabrice@total.com', first_name: 'fabrice', last_name: 'Kana', password: '123456')
+user2 = User.create!(company: total, email: 'fabrice@lewagon.com', first_name: 'fabrice', last_name: 'Kana', password: '123456')
 user2.photo.attach(io: file2, filename: 'fabrice.png', content_type: 'image/png')
 
 file3 = URI.open('https://ca.slack-edge.com/T02NE0241-U02T1432ZNV-1f5224b774b8-512')
-user3 = User.create!(company: total, email: 'martin@total.com', first_name: 'martin', last_name: 'Dubois', password: '123456')
+user3 = User.create!(company: total, email: 'martin@lewagon.com', first_name: 'martin', last_name: 'Dubois', password: '123456')
 user3.photo.attach(io: file3, filename: 'martin.png', content_type: 'image/png')
 
 file4 = URI.open('https://ca.slack-edge.com/T02NE0241-U02S4915Q8P-d896b97128d9-512')
-user4 = User.create!(company: total, email: 'celine@total.com', first_name: 'celine', last_name: 'condoris', password: '123456')
+user4 = User.create!(company: total, email: 'celine@wagon.com', first_name: 'celine', last_name: 'condoris', password: '123456')
 user4.photo.attach(io: file4, filename: 'celine.png', content_type: 'image/png')
 
 puts "users created !"
