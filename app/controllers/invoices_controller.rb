@@ -31,15 +31,19 @@ class InvoicesController < ApplicationController
   def received
     @user = current_user
     #@invoices = policy_scope(Invoice)
-    @invoices = Invoice.all
     authorize @invoices
+    current_company = current_user.company
+    @received_invoices = Invoice.where( recipient: current_company)
+    @invoices = @received_invoices
     render :index
   end
 
   def sent
     @user = current_user
     # @invoices = policy_scope(Invoice)
-    @invoices = Invoice.all
+    current_company = current_user.company
+    @sent_invoices = Invoice.where( sender: current_company)
+    @invoices = @sent_invoices
     render :index
   end
 
