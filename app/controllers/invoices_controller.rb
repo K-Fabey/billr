@@ -26,6 +26,7 @@ class InvoicesController < ApplicationController
     current_company = current_user.company
     @received_invoices = Invoice.where( recipient: current_company)
     @invoices = @received_invoices
+    @company_status = "Fournisseur"
 
     render :index
   end
@@ -34,6 +35,7 @@ class InvoicesController < ApplicationController
     current_company = current_user.company
     @sent_invoices = Invoice.where( sender: current_company)
     @invoices = @sent_invoices
+    @company_status = "Client"
 
     # raise
     render :index

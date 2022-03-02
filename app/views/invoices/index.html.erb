@@ -1,21 +1,26 @@
 <h1>Ta liste de factures</h1>
 
-<%# <%= @invoices.first %>
 
-<ul>
-  <% @invoices.each do |invoice| %>
-  <li>
-    Fournisseur : <%= invoice.sender.name %>
-    <br>
-    Client : <%= invoice.recipient.name %>
-    <br>
-    Statut : <%= invoice.status %>
-    <br>
-    Date : <%= invoice.issue_date %>
-    <br>
-    Date : <%= invoice.issue_date %>
-  </li>
+<%# Barre latteral de rech %>
 
-  <% end %>
 
-</ul>
+
+<%# liste de toutes les factures %>
+
+<div>
+  <ul>
+    <% @invoices.each do |invoice| %>
+      <li>
+        <%# Fournisseur : <%= invoice.sender.name %>
+        <%# <br> %>
+        <%= @company_status %> : <%= invoice.recipient.name %>
+        <br>
+        Statut : <%= invoice.status %>
+        <br>
+        Date : <%= invoice.issue_date %>
+        <br>
+        Montant : <%= invoice.total_w_tax.round(2) %>€
+      </li>
+    <% end %>
+  </ul>
+</div>
