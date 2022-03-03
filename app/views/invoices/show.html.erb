@@ -1,32 +1,33 @@
-<div class="container">
-  <div class="progress-container">
-    <div class="progress" id="progress"> </div>
-    <div class="circle active">received</div>
-    <div class="circle">payment in process</div>
-    <div class="circle">validated</div>
-    <div class="circle">paid</div>
+<div class="d-flex">
+  <div>
+    <ul>
+    <% if policy(@invoice).show? %>
+      <li>Facture N° <%= @invoice.po_number  %></li>
+      <li>issue_date :<%= @invoice.issue_date %></li>
+      <li>status :<%= @invoice.status %></li>
+      <li>payment_deadline :<%= @invoice.payment_deadline %></li>
+      <li>archived :<%= @invoice.archived %></li>
+      <li>decline_reason :<%= @invoice.decline_reason %></li>
+      <li>sender_id :<%= @invoice.sender_id %></li>
+      <li>payment_date :<%= @invoice.payment_date %></li>
+      <li>recipient_id :<%= @invoice.recipient_id %></li>
+      <li>payment_method :<%= @invoice.payment_method %></li>
+      <li>total_wo_tax :<%= @invoice.total_wo_tax %></li>
+      <li>vat_rate :<%= @invoice.vat_rate %></li>
+      <li>total_w_tax :<%= @invoice.total_w_tax %></li>
+      <li>tax_amount :<%= @invoice.tax_amount %></li>
+      <% if @invoice.received?(current_user) %>
+      <%= link_to "Retour aux factures reçues", received_invoices_path, class: "btn btn-gradient" %>
+      <% else %>
+      <%= link_to "Retour aux factures envoyées", sent_invoices_path, class: "btn btn-gradient" %>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <%= link_to "Valider", "#", class: "btn btn-flat" %>
+    <%= link_to "rejeter", "#", class: "btn btn-flat" %>
+    <%= link_to "mettre en paiement", "#", class: "btn btn-flat" %>
+    <%= link_to "generer ecritures comptable", "#", class: "btn btn-flat" %>
   </div>
 </div>
-<ul>
-  <% if policy(@invoice).show? %>
-    <li>Facture N° <%= @invoice.po_number  %></li>
-    <li>issue_date :<%= @invoice.issue_date %></li>
-    <li>status :<%= @invoice.status %></li>
-    <li>payment_deadline :<%= @invoice.payment_deadline %></li>
-    <li>archived :<%= @invoice.archived %></li>
-    <li>decline_reason :<%= @invoice.decline_reason %></li>
-    <li>sender_id :<%= @invoice.sender_id %></li>
-    <li>payment_date :<%= @invoice.payment_date %></li>
-    <li>recipient_id :<%= @invoice.recipient_id %></li>
-    <li>payment_method :<%= @invoice.payment_method %></li>
-    <li>total_wo_tax :<%= @invoice.total_wo_tax %></li>
-    <li>vat_rate :<%= @invoice.vat_rate %></li>
-    <li>total_w_tax :<%= @invoice.total_w_tax %></li>
-    <li>tax_amount :<%= @invoice.tax_amount %></li>
-    <% if @invoice.received?(current_user) %>
-    <%= link_to "Retour aux factures reçues", received_invoices_path %>
-    <% else %>
-    <%= link_to "Retour aux factures envoyées", sent_invoices_path %>
-    <% end %>
-  <% end %>
-</ul>
