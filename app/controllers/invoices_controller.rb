@@ -50,6 +50,7 @@ class InvoicesController < ApplicationController
   end
 
   def received
+    @type = "reçues"
     @user = current_user
     current_company = current_user.company
     @received_invoices = current_company.received_invoices
@@ -59,6 +60,7 @@ class InvoicesController < ApplicationController
   end
 
   def sent
+    @type = "émises"
     @user = current_user
     current_company = current_user.company
     @sent_invoices = current_company.sent_invoices
@@ -68,6 +70,7 @@ class InvoicesController < ApplicationController
   end
 
   def validate
+    puts "validated !"
     render :show
   end
 
@@ -79,7 +82,7 @@ class InvoicesController < ApplicationController
     render :show
   end
 
-  def mark_as_pay
+  def mark_as_paid
     render :show
   end
 
@@ -88,10 +91,6 @@ class InvoicesController < ApplicationController
   end
 
   def follow_up
-    render :show
-  end
-
-  def mark_as_paid
     render :show
   end
 

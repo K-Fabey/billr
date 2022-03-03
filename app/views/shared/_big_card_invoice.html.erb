@@ -1,19 +1,14 @@
 
+<div class="card-container">
 
-<div>
-  <ul>
-    <li>
-      <%# Fournisseur : <%= invoice.sender.name %>
-      <%# <br> %>
-      client : <%= invoice.recipient.name %>
-      <br>
-      Statut : <%= invoice.status %>
-      <br>
-      Date : <%= invoice.issue_date %>
-      <br>
-      Montant : <%= invoice.total_w_tax.round(2) %>€
-      <br>
-      <%= link_to "Detail de la facture", invoice_path(invoice), class: "btn btn-gradient" %>
-    </li>
-  </ul>
-</div>
+  <div class="invoice-card">
+    <div class="invoice-card-infos">
+      <h2> Client : <%= invoice.recipient.name %> </h2>
+      <p><strong>Statut : <%= invoice.status %> </strong></p>
+      <p>Date : <%= invoice.issue_date %></p>
+    </div>
+
+    <div class="invoice-card-price">
+      <h3> <%= invoice.total_w_tax.round(2) %>€ </p>
+    </div>
+  </div>
