@@ -11,5 +11,12 @@
       <%= f.association :sender, as: :hidden %>
       <%= f.association :recipient, collection: @companies, prompt: "Clients" %>
     <% end %>
-    <%= f.submit %>
+    <%= f.submit "Valider" %>
   <% end %>
+
+  <div class="btn">
+    <%= link_to "Retour", invoices_path, :class => "btn" %>
+  </div>
+
+</div>
+
