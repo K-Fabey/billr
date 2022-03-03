@@ -1,32 +1,36 @@
-<div class="d-flex">
-  <div class="m-4 p-4">
+<%= render 'shared/side_bar.html.erb' %>
 
-    <% if policy(@invoice).show? %>
-        <% if @invoice.invoice_file.attached? %>
-          <%= cl_image_tag(@invoice.invoice_file.key, format: :png, width:'600px') %>
-        <% else %>
-          <object data="<%= image_path "lewagon.pdf" %>" style="width:600px ; height:900px"></object>
-        <% end %>
-    <% end %>
+<div class="content-wrapper">
+  <div class="d-flex">
+    <div class="m-4 p-4">
 
-  </div>
-  <div class="m-4 p-4 button-box">
-    <% if @invoice.received?(current_user) %>
-    <%= link_to "Valider", validate_invoice_path, class: "btn btn-flat", method: :validate %>
-    <%= link_to "Rejeter", decline_reason_invoice_path, class: "btn btn-flat", method: :decline_reason %>
-    <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :mark_as_paid %>
-    <%= link_to "Mettre en paiement", pay_invoice_path, class: "btn btn-flat", method: :pay_invoice %>
-    <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
-    <% else %>
-    <%= link_to "Envoyer", send_to_partner_invoice_path, class: "btn btn-flat", method: :send_to_partner %>
-    <%= link_to "Relancer",  follow_up_invoice_path, class: "btn btn-flat", method: :follow_up %>
-    <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :mark_as_paid %>
-    <% end %>
+      <% if policy(@invoice).show? %>
+          <% if @invoice.invoice_file.attached? %>
+            <%= cl_image_tag(@invoice.invoice_file.key, format: :png, width:'600px') %>
+          <% else %>
+            <object data="<%= image_path "lewagon.pdf" %>" style="width:600px ; height:900px"></object>
+          <% end %>
+      <% end %>
 
-    <% if @invoice.received?(current_user) %>
-    <%= link_to "Retour aux factures reçues", received_invoices_path, class: "btn btn-gradient" %>
-    <% else %>
-    <%= link_to "Retour aux factures envoyées", sent_invoices_path, class: "btn btn-gradient" %>
-    <% end %>
+    </div>
+    <div class="m-4 p-4 button-box">
+      <% if @invoice.received?(current_user) %>
+      <%= link_to "Valider", validate_invoice_path, class: "btn btn-flat", method: :validate %>
+      <%= link_to "Rejeter", decline_reason_invoice_path, class: "btn btn-flat", method: :decline_reason %>
+      <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :mark_as_paid %>
+      <%= link_to "Mettre en paiement", pay_invoice_path, class: "btn btn-flat", method: :pay_invoice %>
+      <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
+      <% else %>
+      <%= link_to "Envoyer", send_to_partner_invoice_path, class: "btn btn-flat", method: :send_to_partner %>
+      <%= link_to "Relancer",  follow_up_invoice_path, class: "btn btn-flat", method: :follow_up %>
+      <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :mark_as_paid %>
+      <% end %>
+
+      <% if @invoice.received?(current_user) %>
+      <%= link_to "Retour aux factures reçues", received_invoices_path, class: "btn btn-gradient" %>
+      <% else %>
+      <%= link_to "Retour aux factures envoyées", sent_invoices_path, class: "btn btn-gradient" %>
+      <% end %>
+    </div>
   </div>
 </div>
