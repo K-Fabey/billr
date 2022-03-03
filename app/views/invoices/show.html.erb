@@ -11,9 +11,10 @@
 
   </div>
   <div class="m-4 p-4 button-box">
-    <%= link_to "Valider", "#", class: "btn btn-flat" %>
-    <%= link_to "Rejeter", "#", class: "btn btn-flat" %>
-    <%= link_to "Mettre en paiement", "#", class: "btn btn-flat" %>
+    <%= link_to "Valider", validate_invoice_path, class: "btn btn-flat", method: :validate %>
+    <%= link_to "Rejeter", decline_reason_invoice_path, class: "btn btn-flat" %>
+    <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat" %>
+    <%= link_to "Mettre en paiement", pay_invoice_path, class: "btn btn-flat" %>
     <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
     <% if @invoice.received?(current_user) %>
     <%= link_to "Retour aux factures reçues", received_invoices_path, class: "btn btn-gradient" %>
