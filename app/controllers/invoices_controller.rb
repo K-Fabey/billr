@@ -73,6 +73,9 @@ class InvoicesController < ApplicationController
     @sent_invoices = current_company.sent_invoices
     @invoices = @sent_invoices
     @status = params[:status]
+    if params[:status].present?
+      @invoices = @invoices.where(status: params[:status])
+    end
     authorize @invoices
     render :index
   end
