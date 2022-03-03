@@ -3,13 +3,24 @@
   .invoice-card {
     overflow: hidden;
     height: 120px;
-    background: green;
+    background: white;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 1
 
     h2 {
       font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 12px;
       font-weight: bold;
       margin: 0;
     }
@@ -22,6 +33,10 @@
     }
     .invoice-card-infos {
       padding: 16px;
+    }
+    .invoice-card-price{
+      text-align: right ;
+      margin-right: 1rem;
     }
   }
 
