@@ -1,6 +1,5 @@
 <div class="d-flex">
   <div class="m-4 p-4">
-
     <% if policy(@invoice).show? %>
         <% if @invoice.invoice_file.attached? %>
           <%= cl_image_tag(@invoice.invoice_file.key, format: :png, width:'600px') %>
@@ -11,37 +10,35 @@
   </div>
   <div class="m-4 p-4 button-box">
     <% if @invoice.received?(current_user) %>
-    <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Rejeter
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Motif du rejet</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <%= simple_form_for @invoice, url: decline_reason_invoice_path, method: :patch  do |f| %>
-            <%= f.input :decline_reason, label:'Details du rejet' %>
-            <%= f.submit "Rejeter", class: "btn btn-warning" %>
-            <% end %>
+      <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Rejeter
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Motif du rejet</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for @invoice, url: decline_reason_invoice_path, method: :patch  do |f| %>
+              <%= f.input :decline_reason, label:'Details du rejet' %>
+              <%= f.submit "Rejeter", class: "btn btn-warning" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-
-    <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :patch %>
-    <%= link_to "Mettre en paiement", pay_invoice_path, class: "btn btn-flat", method: :patch %>
-    <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
+      <%= link_to "Mettre en paiement", pay_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+      <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+      <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
     <% else %>
-    <%= link_to "Envoyer", send_to_partner_invoice_path, class: "btn btn-flat", method: :send_to_partner %>
-    <%= link_to "Relancer",  follow_up_invoice_path, class: "btn btn-flat", method: :follow_up %>
-    <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :mark_as_paid %>
+      <%= link_to "Envoyer", send_to_partner_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+      <%= link_to "Relancer",  follow_up_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+      <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
     <% end %>
 
     <% if @invoice.received?(current_user) %>

@@ -74,7 +74,7 @@ class InvoicesController < ApplicationController
     @invoice.update(status: 'validated')
     authorize @invoice
     redirect_to invoice_path(@invoice)
-    flash[:notice] = "Facture validée"
+    flash[:notice] = "Facture validée !"
   end
 
   def decline_reason
@@ -87,19 +87,35 @@ class InvoicesController < ApplicationController
   end
 
   def pay
-    render :show
+    set_invoice
+    @invoice.update(status: 'payment in process')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture mise en paiement !"
   end
 
   def mark_as_paid
-    render :show
+    set_invoice
+    @invoice.update(status: 'paid')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture payée !"
   end
 
   def send_to_partner
-    render :show
+    set_invoice
+    @invoice.update(status: 'sent')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture envoyée !"
   end
 
   def follow_up
-    render :show
+    set_invoice
+    @invoice.update(status: 'follow_uped')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture relancée !"
   end
 
   private

@@ -38,6 +38,21 @@ class InvoicePolicy < ApplicationPolicy
     true
   end
 
+  def pay?
+    true
+  end
+
+  def mark_as_paid?
+    true
+  end
+
+  def send_to_partner?
+    true
+  end
+
+  def follow_up?
+    true
+  end
 
   def update?
     record.user == user
