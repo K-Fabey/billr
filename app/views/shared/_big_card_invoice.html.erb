@@ -12,6 +12,8 @@
       Date : <%= invoice.issue_date %>
       <br>
       Montant : <%= invoice.total_w_tax.round(2) %>€
+      <br>
+      <%= link_to "Detail de la facture", invoice_path(invoice), class: "btn btn-gradient" %>
     </li>
   </ul>
 </div>
