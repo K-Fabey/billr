@@ -30,6 +30,15 @@ class InvoicePolicy < ApplicationPolicy
     create?
   end
 
+  def validate?
+    true
+  end
+
+  def decline_reason?
+    true
+  end
+
+
   def update?
     record.user == user
   end

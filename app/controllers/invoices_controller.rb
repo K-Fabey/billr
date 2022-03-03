@@ -70,12 +70,20 @@ class InvoicesController < ApplicationController
   end
 
   def validate
-
-    render :show
+    set_invoice
+    @invoice.update(status: 'validated')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture validée"
   end
 
-  def decline
-    render :show
+  def decline_reason
+    set_invoice
+    @invoice.update(invoice_params)
+    @invoice.update(status: 'declined')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:alert] = "Facture rejetée : #{@invoice.decline_reason}"
   end
 
   def pay
@@ -97,7 +105,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:sender_id, :recipient_id, :invoice_file)
+    params.require(:invoice).permit(:sender_id, :recipient_id, :invoice_file, :decline_reason)
   end
 
   def set_invoice
