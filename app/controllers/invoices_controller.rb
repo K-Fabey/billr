@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_action :set_invoice, only: [:show, :validate, :decline_reason, :pay, :mark_as_paid, :follow_up, :send_to_partner]
   def new
     @invoice = Invoice.new
     @type = params[:type]
@@ -43,7 +44,6 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    set_invoice
     authorize @invoice
   end
 
@@ -78,34 +78,52 @@ class InvoicesController < ApplicationController
   end
 
   def validate
-    puts "validated !"
-    render :show
+    @invoice.update(status: 'validated')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture validée !"
   end
 
-  def decline
-    render :show
+  def decline_reason
+    @invoice.update(invoice_params)
+    @invoice.update(status: 'declined')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:alert] = "Facture rejetée : #{@invoice.decline_reason}"
   end
 
   def pay
-    render :show
+    @invoice.update(status: 'payment in process')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture mise en paiement !"
   end
 
   def mark_as_paid
-    render :show
+    @invoice.update(status: 'paid')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture payée !"
   end
 
   def send_to_partner
-    render :show
+    @invoice.update(status: 'sent')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture envoyée !"
   end
 
   def follow_up
-    render :show
+    @invoice.update(status: 'follow_uped')
+    authorize @invoice
+    redirect_to invoice_path(@invoice)
+    flash[:notice] = "Facture relancée !"
   end
 
   private
 
   def invoice_params
-    params.require(:invoice).permit(:sender_id, :recipient_id, :invoice_file)
+    params.require(:invoice).permit(:sender_id, :recipient_id, :invoice_file, :decline_reason)
   end
 
   def set_invoice

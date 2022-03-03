@@ -1,1 +1,65 @@
 // Specific CSS for your home-page
+// body {
+//   margin: 0;
+// }
+
+.homepage-div-bg-card {
+  display: flex;
+  justify-content: center;
+  margin: 80px;
+  padding: 10px;
+}
+
+.homepage-bg-card {
+  margin: 10px;
+  padding: 20px;
+}
+
+.homepage-second-title {
+  margin: 40px;
+}
+
+.infographics {
+  margin-left: 140px;
+}
+
+.three-cards {
+  text-align: center;
+  color: #17A398;
+  padding: 100px 0px;
+  background-color: $bordeaux;
+}
+
+.d-flex {
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.text-little-card {
+    background: linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.07) 78.65%);
+    color: #17A398;
+    border-radius: 5px;
+    width: 251px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subscription {
+  background-color: bisque;
+  padding: 100px 0px;
+  margin-top: 240px;
+  text-align: center;
+}
+
+.option-card {
+   background: linear-gradient(180deg,rgba(214, 200, 200, 0.697),rgba(179, 133, 133, 0.56) 78.65%);
+    color: #02110f;
+    border-radius: 5px;
+    width: 270px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
