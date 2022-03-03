@@ -81,7 +81,7 @@ class InvoicesController < ApplicationController
     @invoice.update(status: 'declined')
     authorize @invoice
     redirect_to invoice_path(@invoice)
-    flash[:alert] = "Facture rejetée : #{@invoice.decline_reason}"
+    flash[:notice] = "Facture rejetée : #{@invoice.decline_reason}"
   end
 
   def pay
