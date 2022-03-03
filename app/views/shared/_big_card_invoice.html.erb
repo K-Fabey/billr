@@ -6,6 +6,7 @@
       <h2> Client : <%= invoice.recipient.name %> </h2>
       <p><strong>Statut : <%= invoice.status %> </strong></p>
       <p>Date : <%= invoice.issue_date %></p>
+      <%= link_to "Détails", invoice_path(invoice), class: "btn btn-gradient" %>
     </div>
 
     <div class="invoice-card-price">

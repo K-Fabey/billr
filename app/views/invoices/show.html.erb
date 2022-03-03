@@ -12,7 +12,13 @@
   </div>
   <div class="m-4 p-4 button-box">
     <% if @invoice.received?(current_user) %>
-    <%= link_to "Valider", validate_invoice_path, class: "btn btn-flat", method: :validate %>
+      <%= simple_form_for @invoice do |f| %>
+      <% f.input :status,  input_html: { value: 'validated' } %>
+      <%= f.submit "Valider", class: "btn btn-flat", method: :validate %>
+      <% end %>
+
+
+
     <%= link_to "Rejeter", decline_reason_invoice_path, class: "btn btn-flat", method: :decline_reason %>
     <%= link_to "Marquer comme payée", mark_as_paid_invoice_path, class: "btn btn-flat", method: :mark_as_paid %>
     <%= link_to "Mettre en paiement", pay_invoice_path, class: "btn btn-flat", method: :pay_invoice %>

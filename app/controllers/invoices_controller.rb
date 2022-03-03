@@ -70,7 +70,7 @@ class InvoicesController < ApplicationController
   end
 
   def validate
-    puts "validated !"
+
     render :show
   end
 
