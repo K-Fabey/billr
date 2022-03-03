@@ -1,0 +1,47 @@
+
+.side-bar{
+  background-color: #5C0F1C;
+  width: 300px;
+  padding-left: 20px;
+  padding-top: 50px;
+
+  h3{
+    color: white;
+
+  }
+
+  p{
+    color: white;
+    margin-bottom: 0;
+  }
+
+  i{
+    color: white;
+  }
+
+
+  .inv-type{
+    display: flex;
+    align-items: center;
+    // padding-left: 10px;
+    justify-content: start;
+
+    .icon{
+      margin-right: 15px;
+    }
+
+  }
+
+  .small-box{
+    display: flex;
+    padding-left: 30px;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 1rem;
+
+    .icon{
+      margin-right: 10px;
+    }
+  }
+
+}

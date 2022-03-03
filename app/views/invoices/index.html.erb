@@ -1,21 +1,19 @@
-<h1>Ta liste de factures</h1>
 
+<div class="d-flex">
+  <%# Barre latterale de rech %>
+  <%= render 'shared/side_bar.html.erb' %>
 
-<%# Barre latterale de rech %>
+  <%# liste de toutes les factures %>
 
-<%= render 'shared/side_bar.html.erb' %>
-
-<%# liste de toutes les factures %>
-
-<br>
-<br>
-
-<div>
-  <ul>
-    <% @invoices.each do |invoice| %>
-      <% if policy(invoice).index? %>
-        <%= render 'shared/big_card_invoice', {invoice: invoice} %>
+  <div>
+    <h1>Factures <%= @type %></h1>
+    <ul>
+      <% @invoices.each do |invoice| %>
+        <% if policy(invoice).index? %>
+          <%= render 'shared/big_card_invoice', {invoice: invoice} %>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
+
 </div>
