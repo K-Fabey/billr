@@ -17,7 +17,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "nav-link" %>
           </li>
             <% if current_user.photo.key %>
               <%= cl_image_tag current_user.photo.key, class: "avatar" %>
@@ -27,7 +27,7 @@
           <%= image_tag "", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
