@@ -1,9 +1,10 @@
 class InvoicesController < ApplicationController
   def new
     @invoice = Invoice.new
+    @type = params[:type]
     authorize @invoice
 
-    if params[:type] == "received"
+    if @type == "received"
       @invoice.recipient = current_user.company
       @companies = current_user.company.suppliers.order(:name)
     else
@@ -14,6 +15,8 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+    @type = params[:type]
+
     authorize @invoice
     if current_user.company_id == @invoice.recipient_id
       @invoice.status = "received"
@@ -50,21 +53,26 @@ class InvoicesController < ApplicationController
   end
 
   def received
-    @type = "reçues"
+    @type = "received"
     @user = current_user
     current_company = current_user.company
     @received_invoices = current_company.received_invoices
     @invoices = @received_invoices
+    @status = params[:status]
+    if params[:status].present?
+      @invoices = @invoices.where(status: params[:status])
+    end
     authorize @invoices
     render :index
   end
 
   def sent
-    @type = "émises"
+    @type = "sent"
     @user = current_user
     current_company = current_user.company
     @sent_invoices = current_company.sent_invoices
     @invoices = @sent_invoices
+    @status = params[:status]
     authorize @invoices
     render :index
   end

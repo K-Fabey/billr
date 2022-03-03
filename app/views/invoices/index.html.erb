@@ -1,19 +1,28 @@
+<%# Barre latterale de rech %>
+<%= render 'shared/side_bar.html.erb' %>
 
-<div class="d-flex">
-  <%# Barre latterale de rech %>
-  <%= render 'shared/side_bar.html.erb' %>
+<%# liste de toutes les factures %>
+<div class="content-wrapper">
+  <div class="index-invoices">
 
-  <%# liste de toutes les factures %>
+    <div class='index-invoices-title'>
+      <h1>Factures <%= @type %></h1>
+      <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat"%>
+    </div>
 
-  <div>
-    <h1>Factures <%= @type %></h1>
-    <ul>
+    <div class="invoices-title-details">
+      <h3>
+          <%= @invoices.count %> factures <%= @status %>
+      </h3>
+
+    </div>
+
+    <div class="invoice-cards">
       <% @invoices.each do |invoice| %>
         <% if policy(invoice).index? %>
-          <%= render 'shared/big_card_invoice', {invoice: invoice} %>
+          <%= link_to (render 'shared/big_card_invoice', {invoice: invoice}), invoice_path(invoice) %>
         <% end %>
       <% end %>
-    </ul>
+    </div>
   </div>
-
 </div>
