@@ -46,7 +46,6 @@ class InvoicesController < ApplicationController
 
   def index
     @user = current_user
-    # @invoices = policy_scope(Invoice)
     @invoices = Invoice.all
   end
 
