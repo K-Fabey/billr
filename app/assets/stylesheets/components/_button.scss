@@ -48,3 +48,10 @@ a {
 a:hover {
   color: white;
 }
+
+.spaced-buttons {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 10px;
+}

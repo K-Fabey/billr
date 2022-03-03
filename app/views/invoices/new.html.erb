@@ -14,10 +14,10 @@
         <%= f.association :sender, as: :hidden %>
         <%= f.association :recipient, collection: @companies, prompt: "Clients" %>
       <% end %>
-      <div class="inline-block">
+      <div class="spaced-buttons">
         <%= f.submit "Valider", class: "btn btn-flat" %>
     <% end %>
-        <%= link_to "Retour", invoices_path, class: "btn btn-gradient" %>
+        <%= link_to "Annuler", invoices_path, class: "btn btn-gradient" %>
       </div>
   </div>
 </div>
