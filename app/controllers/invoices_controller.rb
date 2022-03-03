@@ -70,6 +70,7 @@ class InvoicesController < ApplicationController
   end
 
   def validate
+    puts "validated !"
     render :show
   end
 
@@ -81,7 +82,7 @@ class InvoicesController < ApplicationController
     render :show
   end
 
-  def mark_as_pay
+  def mark_as_paid
     render :show
   end
 
@@ -90,10 +91,6 @@ class InvoicesController < ApplicationController
   end
 
   def follow_up
-    render :show
-  end
-
-  def mark_as_paid
     render :show
   end
 
