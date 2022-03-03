@@ -16,8 +16,8 @@
               <i class="fas fa-cog"> <% link_to root_path %> </i>
             </div>
           </li>
-          <li class="nav-item btn-flat">
-            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "nav-item" %>
+          <li>
+            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "nav-item btn btn-flat" %>
           </li>
             <% if current_user.photo.key %>
               <%= cl_image_tag current_user.photo.key, class: "avatar" %>
@@ -26,8 +26,8 @@
             <% end %>
           <%= image_tag "", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
-          <li class="nav-item btn-flat">
-            <%= link_to "Connexion", new_user_session_path, class: "nav-item" %>
+          <li>
+            <%= link_to "Connexion", new_user_session_path, class: "nav-item btn btn-flat" %>
           </li>
         <% end %>
       </ul>
