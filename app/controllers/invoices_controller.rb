@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_action :set_invoice, only: [:show, :validate, :decline_reason, :pay, :mark_as_paid, :follow_up, :send_to_partner]
   def new
     @invoice = Invoice.new
     authorize @invoice
@@ -40,7 +41,6 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    set_invoice
     authorize @invoice
   end
 
@@ -70,7 +70,6 @@ class InvoicesController < ApplicationController
   end
 
   def validate
-    set_invoice
     @invoice.update(status: 'validated')
     authorize @invoice
     redirect_to invoice_path(@invoice)
@@ -78,7 +77,6 @@ class InvoicesController < ApplicationController
   end
 
   def decline_reason
-    set_invoice
     @invoice.update(invoice_params)
     @invoice.update(status: 'declined')
     authorize @invoice
@@ -87,7 +85,6 @@ class InvoicesController < ApplicationController
   end
 
   def pay
-    set_invoice
     @invoice.update(status: 'payment in process')
     authorize @invoice
     redirect_to invoice_path(@invoice)
@@ -95,7 +92,6 @@ class InvoicesController < ApplicationController
   end
 
   def mark_as_paid
-    set_invoice
     @invoice.update(status: 'paid')
     authorize @invoice
     redirect_to invoice_path(@invoice)
@@ -103,7 +99,6 @@ class InvoicesController < ApplicationController
   end
 
   def send_to_partner
-    set_invoice
     @invoice.update(status: 'sent')
     authorize @invoice
     redirect_to invoice_path(@invoice)
@@ -111,7 +106,6 @@ class InvoicesController < ApplicationController
   end
 
   def follow_up
-    set_invoice
     @invoice.update(status: 'follow_uped')
     authorize @invoice
     redirect_to invoice_path(@invoice)
