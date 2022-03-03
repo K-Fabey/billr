@@ -4,6 +4,10 @@
   width: 300px;
   padding-left: 20px;
   padding-top: 50px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
 
   h3{
     color: white;
@@ -42,6 +46,16 @@
     .icon{
       margin-right: 10px;
     }
+  }
+
+    a{
+    color: white;
+  }
+
+  a:hover{
+    color: white;
+    font-size: bold;
+    font-weight: bold;
   }
 
 }

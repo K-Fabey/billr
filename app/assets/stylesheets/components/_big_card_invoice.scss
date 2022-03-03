@@ -1,4 +1,5 @@
 .card-container{
+    flex-grow: 1;
 
   .invoice-card {
     overflow: hidden;
@@ -40,4 +41,16 @@
     }
   }
 
+}
+
+.invoice-cards{
+  a{
+    color: black;
+  }
+
+  a:hover{
+    color: black;
+    font-size: bold;
+    font-weight: bold;
+  }
 }

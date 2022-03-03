@@ -17,12 +17,12 @@
       <div class="inline-block">
         <%= f.submit "Valider", class: "btn btn-flat" %>
     <% end %>
-        <% if @invoice.received?(current_user) %>
-        <%= link_to "Retour", received_invoices_path(status: @status), class: "btn btn-gradient" %>
-        <% else %>
-        <%= link_to "Retour", sent_invoices_path(status: @status), class: "btn btn-gradient" %>
-        <% end %>
 
+           <% if @invoice.received?(current_user) %>
+            <%= link_to "Retour", received_invoices_path(status: @status), class: "btn btn-gradient" %>
+          <% else %>
+            <%= link_to "Retour", sent_invoices_path(status: @status), class: "btn btn-gradient" %>
+          <% end %>
       </div>
   </div>
 </div>
