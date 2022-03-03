@@ -1,19 +1,24 @@
 <div class="container">
 
-  <h1>Ajouter une facture</h1>
+  <h1 class="h1-form">Ajouter une facture</h1>
 
   <!-- Formulaire pour upload une facture que je sois client ou fournisseur -->
-  <%= simple_form_for(@invoice) do |f| %>
-    <%= f.input :invoice_file, as: :file %>
+  <div class="invoice-form">
+    <%= simple_form_for(@invoice) do |f| %>
+      <%= f.input :invoice_file, as: :file %>
 
-    <% if current_user.company_id == @invoice.recipient_id  %>
-      <%= f.association :recipient, as: :hidden %>
-      <%= f.association :sender, collection: @companies, prompt: "Fournisseurs" %>
-    <% else %>
-      <%= f.association :sender, as: :hidden %>
-      <%= f.association :recipient, collection: @companies, prompt: "Clients" %>
+      <% if current_user.company_id == @invoice.recipient_id  %>
+        <%= f.association :recipient, as: :hidden %>
+        <%= f.association :sender, collection: @companies, prompt: "Fournisseurs" %>
+      <% else %>
+        <%= f.association :sender, as: :hidden %>
+        <%= f.association :recipient, collection: @companies, prompt: "Clients" %>
+      <% end %>
+      <%= f.submit "Valider" %>
     <% end %>
-    <%= f.submit %>
-  <% end %>
-
+    <div class="btn">
+      <%= link_to "Retour", invoices_path, :class => "btn" %>
+    </div>
+  </div>
 </div>
+
