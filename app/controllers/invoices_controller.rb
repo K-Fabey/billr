@@ -51,6 +51,7 @@ class InvoicesController < ApplicationController
   end
 
   def received
+    @type = "reçues"
     @user = current_user
     current_company = current_user.company
     @received_invoices = current_company.received_invoices
@@ -60,6 +61,7 @@ class InvoicesController < ApplicationController
   end
 
   def sent
+    @type = "émises"
     @user = current_user
     current_company = current_user.company
     @sent_invoices = current_company.sent_invoices
