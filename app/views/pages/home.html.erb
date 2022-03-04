@@ -1,10 +1,14 @@
 <%# banner %>
 <div class="banner" >
-    <div class="container">
-      <h1>Une gestion facilitée de vos factures</h1>
-      <p>Un outil 2-en-1. 100% adapté aux besoins de votre entreprise.</p>
-      <a class="btn btn-flat" href="#">Démonstration</a>
-    </div>
+  <div class="btn-login">
+
+    <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
+  </div>
+  <div class="container">
+    <h1>Une gestion facilitée de vos factures</h1>
+    <p>Un outil 2-en-1. 100% adapté aux besoins de votre entreprise.</p>
+    <a class="btn btn-flat btn-demo" href="#">Démonstration</a>
+  </div>
   </div>
 </div>
 
@@ -32,15 +36,15 @@
 
     <div class="d-flex">
       <div class="text-little-card">
-        <h4>TEXTE</h4>
+        <h4>Optimiser la gestion de votre flux de factures entrantes et sortantes</h4>
       </div>
 
       <div class="text-little-card">
-        <h4>TEXTE</h4>
+        <h4>Accélérer votre pré-comptabilité</h4>
       </div>
 
       <div class="text-little-card">
-        <h4>TEXTE</h4>
+        <h4>Fluidifier vos échanges avec votre expert-comptage et faciliter la cloture de vos comptes</h4>
       </div>
     </div>
   </div>
@@ -50,29 +54,58 @@
 <div class="subscription">
   <h2>Choisissez votre formule</h2>
 
-  <div class="d-flex">
+  <div class="div-option-card">
     <div class="option-card">
-        <h6>Basique</h6>
-        <br>
-        <p>bla bla bla</p>
+        <h4>Basique</h4><br>
 
-        <ul class="list-subscription">
-          <li>bla bla bla</li>
-          <li>bla bla bla</li>
-          <li>bla bla bla</li>
-          <li>bla bla bla</li>
-        </ul>
+        <div class="option-card-details">
+          <p>1 utilisateur (administrateur)</p><br>
+
+          <ul class="list-subscription">
+            <li>Connexion à votre outil d’émission de facture</li>
+            <li>Suivi des factures reçues</li>
+            <li>Connexion à vos boîtes email de reception de factures</li>
+            <li>Suivi des factures émises</li>
+            <li>Export des écritures comptables</li>
+            <li>Connexion avec votre banque pour l’émission automatique des paiement</li>
+            <li>Réconciliation automatisée</li>
+          </ul>
+        </div>
+        <a class="btn btn-flat" href="#">Souscrire</a>
 
       </div>
 
     <div class="option-card">
-        <h6>Essentielle</h6>
-        <p></p>
+        <h4>Essentielle</h4><br>
+
+        <div class="option-card-details">
+          <p>Jusqu'à 5 utilisateurs</p><br>
+          <ul class="list-subscription">
+            <li>Fonctionnalités de la formule initiale</li>
+            <li>Intégration Slack</li>
+            <li>Emission des factures sous format factureX</li>
+            <li>Respect des obligations légales de digitalisation des factures (facturX) et transmission au Portail Public de Facturation (PPF)</li>
+            <li>Archivage légale des factures</li>
+          </ul>
+        </div>
+        <a class="btn btn-flat center-block" href="#">Souscrire</a>
       </div>
 
       <div class="option-card">
-        <h6>Optimale</h6>
-        <p></p>
+        <h4>Optimale</h4><br>
+
+        <div class="option-card-details">
+          <p>Nombre d'utilisateurs illimité</p><br>
+
+          <ul class="list-subscription">
+            <li>Fonctionnalités des formules basique et essentielle</li>
+            <li>Tableau de bord personnalisé</li>
+            <li>Intégration à votre outil de comptabilité</li>
+          </ul>
       </div>
+          <a class="btn btn-flat" href="#">Souscrire</a>
+
+      </div>
+
   </div>
 </div>
