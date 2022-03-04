@@ -1,8 +1,19 @@
 // Specific CSS for your home-page
-.banner{
 
-
+.banner-logo {
+  display: flex;
 }
+
+#logo {
+    text-align: left;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 20px;
+    margin-top: 0px;
+    left: 16px;
+
+  }
+
 .btn-login {
   position: absolute;
   top: 20px;
@@ -35,7 +46,7 @@
 
 .three-cards {
   text-align: center;
-  color: #17A398;
+  color: white;
   padding: 100px 0px;
   background-color: $bordeaux;
 }
@@ -47,13 +58,17 @@
 
 .text-little-card {
     background: linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.07) 78.65%);
-    color: #17A398;
+    color: white;
     border-radius: 5px;
     width: 251px;
     height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    p {
+      font-size: 22px;
+    }
 }
 
 .subscription {
