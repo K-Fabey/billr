@@ -7,18 +7,11 @@
     </div>
 <%# log in button %>
   <div class="btn-login">
-<<<<<<< HEAD
-    <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
-=======
-
-
     <% if current_user %>
       <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat"  %>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
     <% end %>
-
->>>>>>> master
   </div>
   <%# text + demo button %>
   <div class="container">

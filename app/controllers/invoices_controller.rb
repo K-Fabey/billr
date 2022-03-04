@@ -55,8 +55,9 @@ class InvoicesController < ApplicationController
   def received
     @type = "received"
     @user = current_user
-    current_company = current_user.company
-    @received_invoices = current_company.received_invoices
+    @current_company = current_user.company
+    @received_invoices = @current_company.received_invoices
+    @companies = @current_company.partners
     @invoices = @received_invoices
     @status = params[:status]
     if params[:status].present?
@@ -74,9 +75,9 @@ class InvoicesController < ApplicationController
   def sent
     @type = "sent"
     @user = current_user
-    current_company = current_user.company
+    @current_company = current_user.company
     @sent_invoices = current_company.sent_invoices
-    @companies = current_company.partners
+    @companies = @current_company.partners
     @invoices = @sent_invoices
     @status = params[:status]
     if params[:status].present?
