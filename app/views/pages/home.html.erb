@@ -1,8 +1,11 @@
 <%# banner %>
 <div class="banner" >
   <div class="btn-login">
-
-    <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
+    <% if current_user %>
+      <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat"  %>
+    <% else %>
+      <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
+    <% end %>
   </div>
   <div class="container">
     <h1>Une gestion facilitée de vos factures</h1>
