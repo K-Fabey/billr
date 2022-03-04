@@ -1,8 +1,14 @@
 // Specific CSS for your home-page
-// body {
-//   margin: 0;
-// }
+.btn-login {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 
+.btn-demo {
+  background-color: $orange;
+      font-size: 21px;
+}
 .homepage-div-bg-card {
   display: flex;
   justify-content: center;
@@ -47,19 +53,58 @@
 }
 
 .subscription {
-  background-color: bisque;
-  padding: 100px 0px;
+  // display: flex;
+  // flex-direction: row;
+  background-color: #7816264d;
+  padding: 50px 0px;
   margin-top: 240px;
   text-align: center;
 }
 
+.div-option-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 50px;
+  padding: 1em;
+}
+
 .option-card {
-   background: linear-gradient(180deg,rgba(214, 200, 200, 0.697),rgba(179, 133, 133, 0.56) 78.65%);
+
+    background: linear-gradient(180deg,rgba(214, 200, 200, 0.697),rgba(179, 133, 133, 0.56) 78.65%);
     color: #02110f;
     border-radius: 5px;
     width: 270px;
     height: 500px;
+    padding: 25px;
+    text-align: start;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+  h4 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  ul {
+    font-size: 13px;
+  }
+
+  .option-card-details{
+    height: 100%;
+  }
+}
+
+// .btn-subscribe {
+//   display: flex;
+//   align-items: flex-end;
+//   align-content: flex-end;
+// }
+.btn-large {
+
+  margin-left: 55px;
 }
