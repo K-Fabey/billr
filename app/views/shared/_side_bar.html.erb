@@ -127,6 +127,7 @@
           placeholder: "Find a client"
         %>
         <br>
+        <%= select_tag :query_client, options_from_collection_for_select(@companies, "id", "name") %>
 
         <%= text_field_tag :query_status,
           params[:query_status],
@@ -141,7 +142,7 @@
           # data-provide :'datepicker'
         %>
         <br>
-        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+        <%= submit_tag "Rechercher", class: "btn btn-flat" %>
       <% end %>
   </div>
 

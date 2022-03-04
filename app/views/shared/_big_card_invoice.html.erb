@@ -5,7 +5,7 @@
     <div class="invoice-card-infos">
       <h2><%= invoice.recipient.name %> </h2>
       <p><strong><%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
-      <p>Date : <%= localize(invoice.issue_date, format: '%d/%m/%Y') %>  Facture N° <%= invoice.po_number %></p>
+      <p>Date : <%= localize(invoice.issue_date, format: '%d/%m/%Y') %> Facture N° <%= invoice.po_number %></p>
     </div>
 
     <div class="invoice-card-price">
