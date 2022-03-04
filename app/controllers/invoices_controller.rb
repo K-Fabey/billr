@@ -63,8 +63,12 @@ class InvoicesController < ApplicationController
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
-    if params[:query_status].present?
-      @invoices = Invoices.where(status: params[:query_status])
+     if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+      search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
+      # @sent_invoices = @current_company.sent_invoices
+      # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
+      @invoices = Invoice.search_by_company_client_and_date(search_query)
+
     end
 
     # raise
@@ -76,17 +80,20 @@ class InvoicesController < ApplicationController
     @type = "sent"
     @user = current_user
     @current_company = current_user.company
-    @sent_invoices = current_company.sent_invoices
+    @sent_invoices = @current_company.sent_invoices
     @companies = @current_company.partners
     @invoices = @sent_invoices
     @status = params[:status]
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
-    if params[:query_client].present? || params[:query_status].present? || params[:query_date].present?
-      @invoices = Invoice.where(status: params[:query_status], date: params[:query_date] )
-      # @invoices = Invoice.where(company.name: params[:query_client], status: params[:query_status], date: params[:query_date] )
+    if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+      search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
+      # @received_invoices = @current_company.received_invoices
+      # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
+      @invoices = Invoice.search_by_company_client_and_date(search_query)
     end
+    # raise
     authorize @invoices
     render :index
   end
