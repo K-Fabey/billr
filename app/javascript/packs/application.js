@@ -14,5 +14,3 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
-
-= require bootstrap-datepicker
