@@ -1,0 +1,30 @@
+fr:
+  invoice:
+    type:
+      received: "entrantes"
+      sent: "sortantes"
+    status:
+      created:
+        one: "créée"
+        other: "créées"
+      declined:
+        one: "refusée"
+        other: "refusées"
+      follow_uped:
+        one: "relancée"
+        other: "relancées"
+      paid:
+        one: "payée"
+        other: "payées"
+      "payment in process":
+        one: "en attente de paiement"
+        other: "en attente de paiement"
+      received:
+        one: "en attente"
+        other: "en attente"
+      sent:
+        one: "envoyée"
+        other: "envoyées"
+      validated:
+        one: "validée"
+        other: "validées"

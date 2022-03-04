@@ -5,6 +5,8 @@ ruby '3.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
+
+gem 'rails-i18n'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -29,6 +31,7 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
+gem 'devise-i18n'
 gem 'cloudinary', '~> 1.16.0'
 gem 'pundit'
 gem 'faker'
