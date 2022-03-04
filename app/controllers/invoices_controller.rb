@@ -62,6 +62,11 @@ class InvoicesController < ApplicationController
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
+    if params[:query_status].present?
+      @invoices = Invoices.where(status: params[:query_status])
+    end
+
+    # raise
     authorize @invoices
     render :index
   end
@@ -73,6 +78,13 @@ class InvoicesController < ApplicationController
     @sent_invoices = current_company.sent_invoices
     @invoices = @sent_invoices
     @status = params[:status]
+    if params[:status].present?
+      @invoices = @invoices.where(status: params[:status])
+    end
+    if params[:query_client].present? || params[:query_status].present? || params[:query_date].present?
+      @invoices = Invoice.where(status: params[:query_status], date: params[:query_date] )
+      # @invoices = Invoice.where(company.name: params[:query_client], status: params[:query_status], date: params[:query_date] )
+    end
     authorize @invoices
     render :index
   end
