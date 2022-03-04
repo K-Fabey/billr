@@ -1,9 +1,10 @@
 
 <div class='side-bar'>
-  <%= link_to root_path do %>
-    <%= image_tag "logo.png" %>
-
-  <% end %>
+  <div id="logo">
+    <%= link_to root_path do %>
+      <%= image_tag "logo.png" %>
+    <% end %>
+  </div>
 
   <%= link_to received_invoices_path do %>
     <div class="inv-type">
@@ -62,15 +63,9 @@
         <p>Payées</p>
       </div>
     <% end %>
-
-
   </div>
 
-  <br>
-  <br>
-
   <div>
-
     <%= link_to sent_invoices_path do %>
       <div class="inv-type">
         <div class="icon">
@@ -116,24 +111,37 @@
       </div>
     <% end %>
 
-
   </div>
 
 
-  <br>
-  <br>
 
-  <div class="search-bar">
+
     <h3> Recherche </h3>
 
-    <p>Client/fournisseur</p>
+      <div class="search-bar">
+      <%= form_tag sent_invoices_path, method: :get do %>
+        <%= text_field_tag :query_client,
+          params[:query_client],
+          class: "form-control",
+          placeholder: "Find a client"
+        %>
+        <br>
 
-
-    <p>Statut de la facture</p>
-
-    <p>Date</p>
-
-
+        <%= text_field_tag :query_status,
+          params[:query_status],
+          class: "form-control",
+          placeholder: "Status"
+        %>
+        <br>
+        <%= text_field_tag :query_date,
+          params[:query_date],
+          class: "form-control",
+          placeholder: "Date"
+          # data-provide :'datepicker'
+        %>
+        <br>
+        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+      <% end %>
   </div>
 
 </div>
