@@ -15,36 +15,50 @@
       <% end %>
     </div>
     <div class="m-4 p-4 button-box">
+      <p><strong>Statut : <%= translate(@invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
       <% if @invoice.received?(current_user) %>
-        <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Refuser
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Motif du rejet</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <%= simple_form_for @invoice, url: decline_reason_invoice_path, method: :patch  do |f| %>
-                <%= f.input :decline_reason, label:'Details du rejet' %>
-                <%= f.submit "Rejeter", class: "btn btn-warning" %>
-                <% end %>
+      <!--c'est une facture recue -->
+            <% unless @invoice.status == 'validated' || @invoice.status == 'declined' || @invoice.status == 'paid' || @invoice.status == 'mark_as_paid' %>
+            <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Refuser</button>
+            <!-- debut de la modale -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Motif du rejet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= simple_form_for @invoice, url: decline_reason_invoice_path, method: :patch  do |f| %>
+                    <%= f.input :decline_reason, label:'Details du rejet' %>
+                    <%= f.submit "Rejeter", class: "btn btn-warning" %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <%= link_to "Mettre en paiement", pay_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
-        <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
-        <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
+
+         <!-- fin de la modale -->
+            <% else %>
+            <% unless @invoice.status == 'declined' %>
+              <% unless @invoice.status == 'paid' %>
+              <%= link_to "Mettre en paiement", pay_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+              <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+              <% end %>
+              <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat" %>
+              <% end %>
+            <% end %>
       <% else %>
-        <%= link_to "Envoyer", send_to_partner_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
-        <%= link_to "Relancer",  follow_up_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
-        <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+            <!--c est une facture emise -->
+            <% if @invoice.status =='created' %>
+            <%= link_to "Envoyer", send_to_partner_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+            <% else %>
+              <% unless @invoice.status == 'paid' %>
+              <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+              <%= link_to "Relancer",  follow_up_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+              <% end %>
+            <% end %>
       <% end %>
 
       <% if @invoice.received?(current_user) %>
