@@ -19,7 +19,7 @@
         <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Rejeter
+          Refuser
         </button>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,9 +48,9 @@
       <% end %>
 
       <% if @invoice.received?(current_user) %>
-      <%= link_to "Retour aux factures reçues", received_invoices_path, class: "btn btn-gradient" %>
+      <%= link_to "Retour", received_invoices_path, class: "btn btn-gradient" %>
       <% else %>
-      <%= link_to "Retour aux factures envoyées", sent_invoices_path, class: "btn btn-gradient" %>
+      <%= link_to "Retour", sent_invoices_path, class: "btn btn-gradient" %>
       <% end %>
     </div>
   </div>

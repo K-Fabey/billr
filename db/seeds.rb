@@ -69,7 +69,7 @@ total = Company.create!(name: "Office Depot",
   end
 end
 file2 = File.open('app/assets/images/INV-004863-Orange.pdf')
-Invoice.last.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
+Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
 
 10.times do
   partner = Company.new(

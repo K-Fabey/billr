@@ -16,15 +16,24 @@
               <i class="fas fa-cog"> <% link_to root_path %> </i>
             </div>
           </li>
-          <li>
-            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "nav-item btn btn-flat" %>
+          <li class="nav-item dropdown">
+            <div class="nav-link" >
+              <i class="fas fa-caret-down" id="navbarDropdown"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Profil", "#" , class: "dropdown-item" %>
+                <%= link_to "Tableau de bord", dashboard_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
           </li>
+
             <% if current_user.photo.key %>
               <%= cl_image_tag current_user.photo.key, class: "avatar" %>
             <% else %>
             <%= image_tag "https://images.pexels.com/photos/10724233/pexels-photo-10724233.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500", class: "avatar"%>
             <% end %>
-          <%= image_tag "", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
           <li>
             <%= link_to "Connexion", new_user_session_path, class: "nav-item btn btn-flat" %>
