@@ -16,6 +16,9 @@
     </div>
     <div class="m-4 p-4 button-box">
       <p><strong>Statut : <%= translate(@invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
+      <% if @invoice.status == 'declined' %>
+      <p>Motif du rejet : <%= @invoice.decline_reason%></p>
+      <% end %>
       <% if @invoice.received?(current_user) %>
       <!--c'est une facture recue -->
             <% unless @invoice.status == 'validated' || @invoice.status == 'declined' || @invoice.status == 'paid' || @invoice.status == 'mark_as_paid' %>
