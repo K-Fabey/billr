@@ -1,19 +1,16 @@
-<%# Barre latterale de rech %>
-<%= render 'shared/side_bar.html.erb' %>
 
-<%# liste de toutes les factures %>
-<div class="content-wrapper">
+
+<div class='side-bar'>
+  <div id="logo">
+    <%= link_to root_path do %>
+      <%= image_tag "logo.png" %>
+    <% end %>
+  </div>
+
   <div class="index-invoices">
 
     <div class='index-invoices-title'>
       <h2>Factures <%= @type %></h2>
-      <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat"%>
-    </div>
-
-    <div class="invoices-title-details">
-      <h4>
-          <%= @invoices.count %> factures <%= @status %>
-      </h4>
     </div>
 
     <div class="invoice-cards">

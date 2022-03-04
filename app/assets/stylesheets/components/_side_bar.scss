@@ -3,7 +3,7 @@
   background-color: #5C0F1C;
   width: 300px;
   padding-left: 20px;
-  padding-top: 50px;
+  // padding-top: 50px;
   position: fixed;
   left: 0;
   top: 0;
@@ -11,12 +11,14 @@
 
   h3{
     color: white;
+    font-size: 1.3rem;
 
   }
 
   p{
     color: white;
     margin-bottom: 0;
+    font-size: .75rem;
   }
 
   i{
@@ -29,6 +31,9 @@
     align-items: center;
     // padding-left: 10px;
     justify-content: start;
+    margin-top: 8px;
+    // margin-bottom: 8px;
+
 
     .icon{
       margin-right: 15px;
@@ -41,7 +46,7 @@
     padding-left: 30px;
     align-items: center;
     justify-content: start;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
 
     .icon{
       margin-right: 10px;
@@ -59,4 +64,18 @@
     font-weight: bold;
   }
 
+  img{
+    width: 50px;
+  }
+
+  #logo{
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .search-bar{
+    margin-right: 12px;
+    // margin-bottom: 8px;
+  }
 }
