@@ -4,6 +4,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Setting the emails not to be sent to users from the configured smtp (# being opened by letter_opener)
+  config.action_mailer.delivery_method = :smtp # :letter_opener
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
