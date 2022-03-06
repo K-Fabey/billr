@@ -5,7 +5,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Setting the emails not to be sent to users but being opened by letter_opener
-  config.action_mailer.delivery_method = :smtp # :letter_opener
+  config.action_mailer.delivery_method = :smtp #:letter_opener
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
