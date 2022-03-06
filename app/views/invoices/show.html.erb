@@ -56,6 +56,7 @@
             <!--c est une facture emise -->
             <% if @invoice.status =='created' %>
             <%= link_to "Envoyer", send_to_partner_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
+            <%# <%= link_to "Envoyer", send_to_partner_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>
             <% else %>
               <% unless @invoice.status == 'paid' %>
               <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat", method: :patch %>

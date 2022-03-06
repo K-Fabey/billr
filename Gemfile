@@ -43,6 +43,11 @@ gem 'simple_form'
 gem 'pg_search', '~> 2.3.0'
 
 gem 'bootstrap-datepicker-rails'
+
+# Backgroun jobs gems
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

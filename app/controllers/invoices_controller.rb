@@ -130,7 +130,7 @@ class InvoicesController < ApplicationController
   def send_to_partner
     @invoice.update(status: 'sent')
     authorize @invoice
-    # CompanyMa
+    CompanyMailer.send_invoice(@invoice, current_user).deliver_later
     redirect_to invoice_path(@invoice)
     flash[:notice] = "Facture envoyée !"
   end

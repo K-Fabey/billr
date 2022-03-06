@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   # resources :pages, only: [ :dashboard ]
   get "dashboard", to: "pages#dashboard"
 
+
+  # Task manager setup : Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :user, ->(user) { user.admin_config? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   resources :invoices, only: [ :new, :create, :show ] do
     collection do
       get :received
