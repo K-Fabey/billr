@@ -137,8 +137,6 @@ GEM
     mini_mime (1.1.2)
     minitest (5.15.0)
     msgpack (1.4.5)
-    mustermann (1.1.1)
-      ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
     nio4r (2.5.8)
     nokogiri (1.13.3-arm64-darwin)
@@ -166,8 +164,6 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
-    rack-protection (2.1.0)
-      rack
     rack-proxy (0.7.2)
       rack
     rack-test (1.1.0)
@@ -216,7 +212,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -236,11 +231,6 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    sinatra (2.1.0)
-      mustermann (~> 1.0)
-      rack (~> 2.2)
-      rack-protection (= 2.1.0)
-      tilt (~> 2.0)
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -250,6 +240,9 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     stripe (5.45.0)
+    stripe_event (2.3.2)
+      activesupport (>= 3.1)
+      stripe (>= 2.8, < 6)
     thor (1.2.1)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -314,9 +307,9 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   simple_form
-  sinatra
   spring
   stripe
+  stripe_event
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

@@ -105,28 +105,23 @@ class InvoicesController < ApplicationController
   end
 
   def pay
-    # Set your secret key. Remember to switch to your live secret key in production.
-    # See your keys here: https://dashboard.stripe.com/apikeys
-    Stripe.api_key = 'sk_test_51H0uNZEc5PZh9FFtRZ3r4pzbgOVz28REe5CczC3EBJprqojlXLwIOg93wzQT94RiIE0ibBXoLysW4UoBC1reinIO00aL0Buqkq'
-    Stripe::Customer.create(description: 'My First Test Customer')
-
-    # Set your secret key. Remember to switch to your live secret key in production.
-    # See your keys here: https://dashboard.stripe.com/apikeys
-    Stripe.api_key = 'sk_test_51H0uNZEc5PZh9FFtRZ3r4pzbgOVz28REe5CczC3EBJprqojlXLwIOg93wzQT94RiIE0ibBXoLysW4UoBC1reinIO00aL0Buqkq'
-    Stripe::PaymentIntent.create(
-      customer: '{{CUSTOMER_ID}}',
-      currency: 'usd',
-      amount: 2000,
-      payment_method_types: ['card'],
-      setup_future_usage: 'on_session',
-)
-
-    @invoice.update(status: 'payment in process')
     authorize @invoice
-    redirect_to invoice_path(@invoice)
-    flash[:notice] = "Facture mise en paiement !"
-
-
+    session = Stripe::Checkout::Session.create(
+    payment_method_types: ['card'],
+    line_items: [{
+      name: @invoice.po_number,
+      images: [@invoice.invoice_file],
+      amount: (@invoice.total_w_tax*100).to_i,
+      currency: 'eur',
+      quantity: 1
+    }],
+    success_url: invoice_url(@invoice),
+    cancel_url: invoice_url(@invoice)
+  )
+    @invoice.update(checkout_session_id: session.id, status: 'payment in process')
+    redirect_to session[:url]
+    # redirect_to invoice_path(@invoice)
+    # flash[:notice] = "Facture mise en paiement !"
   end
 
   def mark_as_paid
