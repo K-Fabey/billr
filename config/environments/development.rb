@@ -4,8 +4,14 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Setting the emails not to be sent to users but being opened by letter_opener
-  config.action_mailer.delivery_method = :smtp #:letter_opener
+
+  # Setting the emails to be sent to users from postmark (# neither from the configured smtp nor being opened by letter_opener)
+
+  # config.action_mailer.delivery_method = :smtp #:letter_opener
+
+  config.action_mailer.delivery_method     = :postmark # :smtp  :letter_opener
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
+  config.action_mailer.default_url_options = { host: "www.billr.eu" }
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
