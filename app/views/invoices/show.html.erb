@@ -1,6 +1,10 @@
 
 <%= render 'shared/side_bar' %>
 
+<%# HTML setup - Views %>
+<% content_for :meta_title, "#{@invoice.status} is on #{DEFAULT_META["meta_product_name"]}" %>
+<%# <% content_for :meta_description, @invoice.description %>
+<%# <% content_for :meta_image, cl_image_path(@invoice.photo.path) %>
 
 <div class="content-wrapper">
 
