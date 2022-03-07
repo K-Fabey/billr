@@ -7,14 +7,11 @@
     </div>
 <%# log in button %>
   <div class="btn-login">
-
-
     <% if current_user %>
       <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat"  %>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
     <% end %>
-
   </div>
   <%# sig up %>
   <div class="btn-signup">Créer un compte</div>

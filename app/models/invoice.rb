@@ -18,9 +18,23 @@ class Invoice < ApplicationRecord
   validates :total_w_tax, presence: true
   validates :payment_deadline, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :search_by_company_client_and_date,
+    against: [ :status, :issue_date ],
+
+    associated_against: {
+      sender: [ :name ]
+    },
+      associated_against: {
+      recipient: [ :name ]
+    },
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  }
 
   def received?(user)
     recipient == user.company
   end
+
 
 end

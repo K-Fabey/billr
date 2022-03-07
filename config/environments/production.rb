@@ -4,6 +4,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Setting the emails to be sent to users from postmark (# neither from the configured smtp nor being opened by letter_opener)
+
+  config.action_mailer.delivery_method     = :postmark # :smtp  :letter_opener
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
+  config.action_mailer.default_url_options = { host: "billr.herokuapp.com" }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
