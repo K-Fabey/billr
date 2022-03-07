@@ -50,10 +50,10 @@
             <% else %>
             <% unless @invoice.status == 'declined' %>
               <% unless @invoice.status == 'paid' %>
-              <%= link_to "Mettre en paiement", pay_invoice_path(@invoice), class: "btn btn-flat btn-orange", method: :patch %>
+              <%= link_to "Mettre en paiement", pay_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
               <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
               <% end %>
-              <%= link_to "Générer écritures comptable", "#", class: "btn btn-ghost" %>
+              <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat btn-orange" %>
               <% end %>
             <% end %>
       <% else %>
