@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
-# require 'faker'
+require 'faker'
 
 puts "Destroying all companies !"
 Company.destroy_all
