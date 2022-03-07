@@ -28,7 +28,7 @@
 }
 
 .btn-green:hover {
-  background: $dark-blue;
+  background: $light-green;
 }
 
 .btn-orange {
@@ -43,14 +43,13 @@
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  font-weight: bold;
   background: linear-gradient(#5C0F1C, #0E0000);
   transition: background 0.3s ease;
   border: 1px solid #0E0000;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(#5C0F1C, #0E0000);
+  background: linear-gradient(#792331, #0E0000);
   color: white;
 }
 
