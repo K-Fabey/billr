@@ -1,14 +1,21 @@
 .index-invoices{
     flex-grow: 1;
-    padding: 20px;
+    padding: 40px;
 
   .index-invoices-title{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 8px;
   }
 
   a{
     padding-bottom: 0;
+    // align-content: center;
+    // padding-top: 0;
+  }
+
+  h2{
+    margin: 0;
   }
 
 }
