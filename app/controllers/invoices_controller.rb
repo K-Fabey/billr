@@ -39,6 +39,13 @@ class InvoicesController < ApplicationController
     if @invoice.save
       redirect_to invoice_path(@invoice)
     else
+      if current_user.company_id == @invoice.recipient_id
+        @invoice.recipient = current_user.company
+        @companies = current_user.company.suppliers.order(:name)
+      else
+        @invoice.sender = current_user.company
+        @companies = current_user.company.clients.order(:name)
+      end
       render :new
     end
   end
