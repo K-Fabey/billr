@@ -25,9 +25,10 @@
 
 .btn-signup {
   color: white;
-  position: absolute;
-  top: 30px;
-  right: 250px;
+}
+
+.btn-signup:hover {
+  color: $gray;
 }
 
 .title {
