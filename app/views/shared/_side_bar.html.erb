@@ -134,7 +134,7 @@
           placeholder: "Statut"
         %>
 
-        <%= select_tag :query_status, options_for_select(["", "Reçue", "En attente de paiement", "Validée", "Refusée", "Payée", "Envoyée", "En attente", "Créée"]) %>
+        <%= select_tag :query_status, options_for_select(["", "Reçue", "En attente de paiement", "Validée", "Refusée", "Payée", "Envoyée", "En attente", "Créée"]), style: "width: 265px" %>
         <%# <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid"]) %>
         <br>
         <br>
