@@ -8,7 +8,6 @@
 <%# log in button %>
   <div class="btn-login">
 
-
     <% if current_user %>
       <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat"  %>
     <% else %>
@@ -19,18 +18,22 @@
   <%# sig up %>
   <div class="btn-signup">Créer un compte</div>
 
-  <%# text + demo button %>
-  <div class="container">
+  <%# text + demo button + hand image%>
+  <div class="container banner-container">
 
-    <div class="title">
-      <h1 class="bold-title">Une<div class="apart-bold-title">gestion facilitée</div> de vos factures</h1>
+    <div class="banner-left-block">
+      <div class="title">
+        <h1> Une <span class="apart-title">gestion facilitée</span><br/>de vos factures</h1>
+      </div>
+      <p>100% adapté aux besoins de votre entreprise.</p>
+      <a class="btn btn-flat btn-demo" href="#">Démander une démo</a>
+      <a class="btn btn-flat btn-trial" href="#">Essai gratuit</a>
     </div>
-    <p>100% adapté aux besoins de votre entreprise.</p>
-    <a class="btn btn-flat btn-demo" href="#">Démonstration</a>
-    <div class="image-main"> <%= image_tag "main.jpg" %> </div>
+
+    <%= image_tag "main.png", class: "image-main" %>
   </div>
-  </div>
-</div>
+ </div>
+</div> <%# closing banner tag %>
 
 <%# container central %>
 <div class="container">
