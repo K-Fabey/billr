@@ -1,5 +1,9 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :validate, :decline_reason, :pay, :mark_as_paid, :follow_up, :send_to_partner]
+
+  RECEIVED_STATUSES = ["received", "payment in process", "validated", "declined", "paid"]
+  SENT_STATUSES = ["created", "sent", "paid", "follow_uped"]
+
   def new
     @invoice = Invoice.new
     @type = params[:type]
@@ -58,6 +62,8 @@ class InvoicesController < ApplicationController
     @current_company = current_user.company
     @received_invoices = @current_company.received_invoices
     @partners = @current_company.partners
+    @status = RECEIVED_STATUSES
+    # raise
     @invoices = @received_invoices
     @status = params[:status]
 
@@ -84,7 +90,8 @@ class InvoicesController < ApplicationController
     @user = current_user
     @current_company = current_user.company
     @sent_invoices = @current_company.sent_invoices
-    @companies = @current_company.partners
+    @partners = @current_company.partners
+    @status = SENT_STATUSES
     @invoices = @sent_invoices
     @status = params[:status]
     if params[:status].present?

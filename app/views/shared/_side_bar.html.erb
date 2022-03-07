@@ -129,13 +129,14 @@
         <br>
         <%# <%= select_tag :query_company, options_from_collection_for_select(@partners, "id", "name") %>
 
-        <%= text_field_tag :query_status,
+        <%# <%= text_field_tag :query_status,
           params[:query_status],
           class: "form-control",
           placeholder: "Statut"
         %>
 
-        <%# <%= select_tag :query_status, options_from_collection_for_select(@partners, "id", "name") %> %>
+        <%= select_tag :query_status, options_for_select(["", "Reçue", "En attente de paiement", "Validée", "Refusée", "Payée", "Envoyée", "En attente", "Créée"]) %>
+        <%# <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid"]) %>
 
         <br>
         <%= text_field_tag :query_date,
