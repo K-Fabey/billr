@@ -116,9 +116,10 @@ class InvoicesController < ApplicationController
     session = Stripe::Checkout::Session.create(
     payment_method_types: ['card'],
     line_items: [{
+      description: "OFFICE DEPOT",
       name: @invoice.po_number,
-      images: [@invoice.invoice_file],
-      amount: (@invoice.total_w_tax*100).to_i,
+      amount: 66000,
+      # amount: (@invoice.total_w_tax*100).to_i,
       currency: 'eur',
       quantity: 1
     }],
