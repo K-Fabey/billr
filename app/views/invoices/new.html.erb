@@ -1,9 +1,8 @@
 <%= render 'shared/side_bar.html.erb' %>
 
 <div class="content-wrapper">
-  <div class="container">
 
-    <h1 class="h1-form">Ajouter une facture</h1>
+    <h2 class="h2-form">Ajouter une facture</h1>
 
     <!-- Formulaire pour upload une facture que je sois client ou fournisseur -->
     <div class="invoice-form">
@@ -18,7 +17,7 @@
           <%= f.association :recipient, collection: @companies, prompt: "Clients" %>
         <% end %>
         <div class="inline-block">
-          <%= f.submit "Valider", class: "btn btn-flat" %>
+          <%= f.submit "Valider", class: "btn btn-flat btn-orange" %>
       <% end %>
 
       <% if @invoice.received?(current_user) %>
@@ -28,5 +27,4 @@
       <% end %>
         </div>
     </div>
-  </div>
 </div>
