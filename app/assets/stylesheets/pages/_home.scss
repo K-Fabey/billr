@@ -17,13 +17,36 @@
 .btn-login {
   position: absolute;
   top: 20px;
-  right: 20px;
-  background-color: $orange;
+  right: 80px;
+}
+
+.btn-signup {
+  color: white;
+  position: absolute;
+  top: 30px;
+  right: 250px;
+}
+
+.title {
+  display: flex;
+}
+.bold-title {
+  font-style: bold;
+}
+
+.apart-bold-title {
+  background-color: #FFFFFF;
+  color: $bordeaux;
 }
 
 .btn-demo {
   background-color: $orange;
   font-size: 21px;
+}
+
+.image-main {
+  width: 50px;
+  height: 60px;
 }
 .homepage-div-bg-card {
   display: flex;

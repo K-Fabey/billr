@@ -13,11 +13,18 @@
       <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
     <% end %>
   </div>
+  <%# sig up %>
+  <div class="btn-signup">Créer un compte</div>
+
   <%# text + demo button %>
   <div class="container">
-    <h1>Une gestion facilitée de vos factures</h1>
+
+    <div class="title">
+      <h1 class="bold-title">Une<div class="apart-bold-title">gestion facilitée</div> de vos factures</h1>
+    </div>
     <p>100% adapté aux besoins de votre entreprise.</p>
     <a class="btn btn-flat btn-demo" href="#">Démonstration</a>
+    <div class="image-main"> <%= image_tag "main.jpg" %> </div>
   </div>
   </div>
 </div>
