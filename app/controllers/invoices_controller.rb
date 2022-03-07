@@ -35,10 +35,10 @@ class InvoicesController < ApplicationController
     @invoice.payment_deadline = "2022.03.16"
     @invoice.po_number = "106"
     @invoice.vat_rate = 20
-    @invoice.total_wo_tax = 550,00
+    @invoice.total_wo_tax = 550.00
     @invoice.payment_method = "Virement"
-    @invoice.tax_amount = 110,000
-    @invoice.total_w_tax = 660,00
+    @invoice.tax_amount = 110.00
+    @invoice.total_w_tax = 660.00
 
     if @invoice.save
       redirect_to invoice_path(@invoice)
