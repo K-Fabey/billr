@@ -103,18 +103,31 @@
 .subscription {
   // display: flex;
   // flex-direction: row;
-  background-color: #7816264d;
-  padding: 50px 0px;
-  margin-top: 240px;
-  text-align: center;
+  // justify-content: space-between;
+  background-color: #FFFFFF;
+  padding: 100px 0px;
 }
 
-.div-option-card {
+.title-year{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin-left: 200px;
+}
+.btn-yearly {
+  color: white;
+  background-color: $bordeaux;
+  margin-left: 100px;
+}
+
+.btn-monthly {
+  color: black;
+  background-color: #F7F7FB;
+}
+.div-option-card {
+  display: flex;
   margin-top: 50px;
-  padding: 1em;
+  justify-content: center;
 }
 
 .option-card {
