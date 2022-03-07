@@ -40,6 +40,7 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
 
+# using pg search to run the search
 gem 'pg_search', '~> 2.3.0'
 
 gem 'bootstrap-datepicker-rails'
@@ -47,6 +48,9 @@ gem 'bootstrap-datepicker-rails'
 # Backgroun jobs gems
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+
+# Using Postmark to send email to user
+gem 'postmark-rails'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
