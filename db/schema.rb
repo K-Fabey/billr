@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_145835) do
+ActiveRecord::Schema.define(version: 2022_03_07_112442) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_145835) do
     t.float "vat_rate"
     t.float "total_w_tax"
     t.float "tax_amount"
+    t.string "checkout_session_id"
     t.index ["recipient_id"], name: "index_invoices_on_recipient_id"
     t.index ["sender_id"], name: "index_invoices_on_sender_id"
   end

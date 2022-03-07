@@ -6,14 +6,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item">
+          <%# <li class="nav-item">
             <div class="nav-link">
-              <i class="far fa-comment"> <% link_to root_path %> </i>
+              <a href="#" class="a-form">
+              <i class="far fa-comment"></i></a>
             </div>
-          </li>
+          </li> %>
           <li class="nav-item">
             <div class="nav-link">
-              <i class="fas fa-cog"> <% link_to root_path %> </i>
+              <a href=../dashboard class="a-form">
+              <i class="fas fa-house-user"></i></a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -23,7 +25,7 @@
 
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Profil", "#" , class: "dropdown-item" %>
-                <%= link_to "Tableau de bord", dashboard_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Réglages", "#", class: "dropdown-item" %>
                 <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </div>
             </div>
