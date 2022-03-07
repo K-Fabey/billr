@@ -32,38 +32,27 @@
  </div>
 </div> <%# closing banner tag %>
 
-<%# container central %>
-<div class="container">
-<%# div pour centrer la div homepage-bg-card %>
-  <div class="homepage-div-bg-card">
-<%# big card with infographics %>
-    <div class="homepage-bg-card">
-      <div class="homepage-second-title">
-        <h1>Un outil formidable de gestion de vos factures</h1>
-      </div>
-
-      <div>
-        <%= image_tag "https://img.freepik.com/vecteurs-libre/design-plat-etapes-colorees-infographie_52683-16783.jpg?size=626&ext=jpg&ga=GA1.2.862232893.1646226249", class: "infographics" %>
-      </div>
-    </div>
-  </div>
-<%# closing tag container central%>
-</div>
-
 <%# 3 cards %>
   <div class="three-cards">
-    <h2>Un outil performant</h2>
+    <h1>Un outil formidable de <br/>gestion de vos factures</h1>
 
     <div class="d-flex">
+
       <div class="text-little-card">
+      <%= image_tag "icon-cb.png", class: "icons" %>
+        <h4> Gestion des flux </h4>
         <p>Optimiser la gestion de votre flux de factures entrantes et sortantes</p>
       </div>
 
       <div class="text-little-card">
+      <%= image_tag "icon-calculate.png", class: "icons"%>
+        <h4>Pré-compatibilité</h4>
         <p>Accélérer votre pré-comptabilité</p>
       </div>
 
       <div class="text-little-card">
+      <%= image_tag "icon-msg.png", class: "icons" %>
+        <h4>Fluidifier vos échanges</h4>
         <p>Fluidifier vos échanges avec votre expert-comptage et faciliter la cloture de vos comptes</p>
       </div>
     </div>

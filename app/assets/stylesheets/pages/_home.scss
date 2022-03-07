@@ -57,31 +57,21 @@
   height: 390px;
   align-self: self-end;
 }
-.homepage-div-bg-card {
-  display: flex;
-  justify-content: center;
-  margin: 80px;
-  padding: 10px;
-}
-
-.homepage-bg-card {
-  margin: 10px;
-  padding: 20px;
-}
-
-.homepage-second-title {
-  margin: 40px;
-}
-
-.infographics {
-  margin-left: 140px;
-}
 
 .three-cards {
+
+  h1 {
+
+    margin-bottom: 100px;
+    font-weight: bold;
+    font-size: 47px;
+
+  }
+
   text-align: center;
-  color: white;
+  color: black;
   padding: 100px 0px;
-  background-color: $bordeaux;
+  background-color: #FFEEE8;
 }
 
 .d-flex {
@@ -91,17 +81,23 @@
 
 .text-little-card {
     background: linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.07) 78.65%);
-    color: white;
+    color: black;
     border-radius: 5px;
-    width: 251px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 390px;
 
     p {
       font-size: 22px;
     }
+
+    h4 {
+    font-weight: 1000;
+    margin-bottom: 40px;
+  }
+}
+
+.icons {
+  height: 90px;
+  margin-bottom: 15px;
 }
 
 .subscription {
