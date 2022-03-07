@@ -105,10 +105,28 @@ class InvoicesController < ApplicationController
   end
 
   def pay
+    # Set your secret key. Remember to switch to your live secret key in production.
+    # See your keys here: https://dashboard.stripe.com/apikeys
+    Stripe.api_key = 'sk_test_51H0uNZEc5PZh9FFtRZ3r4pzbgOVz28REe5CczC3EBJprqojlXLwIOg93wzQT94RiIE0ibBXoLysW4UoBC1reinIO00aL0Buqkq'
+    Stripe::Customer.create(description: 'My First Test Customer')
+
+    # Set your secret key. Remember to switch to your live secret key in production.
+    # See your keys here: https://dashboard.stripe.com/apikeys
+    Stripe.api_key = 'sk_test_51H0uNZEc5PZh9FFtRZ3r4pzbgOVz28REe5CczC3EBJprqojlXLwIOg93wzQT94RiIE0ibBXoLysW4UoBC1reinIO00aL0Buqkq'
+    Stripe::PaymentIntent.create(
+      customer: '{{CUSTOMER_ID}}',
+      currency: 'usd',
+      amount: 2000,
+      payment_method_types: ['card'],
+      setup_future_usage: 'on_session',
+)
+
     @invoice.update(status: 'payment in process')
     authorize @invoice
     redirect_to invoice_path(@invoice)
     flash[:notice] = "Facture mise en paiement !"
+
+
   end
 
   def mark_as_paid
