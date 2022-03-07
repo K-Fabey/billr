@@ -16,6 +16,34 @@
       </h4>
     </div>
 
+    <table>
+       <thead>
+        <tr class='table-header'>
+          <td>Client</td>
+          <td>N° de facture</td>
+          <td>Montant</td>
+          <td>Date</td>
+          <td>Echéance</td>
+          <td>Statut</td>
+        </tr>
+       </thead>
+      <% @invoices.each do |invoice| %>
+        <% if policy(invoice).index? %>
+          <tr class='table-line'>
+            <td><%= invoice.recipient.name %> </td>
+            <td><%= invoice.po_number %></td>
+            <td><%= invoice.total_w_tax.round(2) %>€ </td>
+            <td><%= localize(invoice.issue_date, format: '%d/%m/%Y') %></td>
+            <td><%= localize(invoice.payment_deadline, format: '%d/%m/%Y') %></td>
+            <td><%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize%></td>
+          </tr>
+        <% end %>
+      <% end %>
+</table>
+
+
+
+
     <div class="invoice-cards">
       <% @invoices.each do |invoice| %>
         <% if policy(invoice).index? %>
