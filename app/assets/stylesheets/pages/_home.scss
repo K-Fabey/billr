@@ -47,7 +47,7 @@
   text-align: center;
   color: white;
   padding: 100px 0px;
-  background-color: $bordeaux;
+  background-color: #156064;
 }
 
 .d-flex {
@@ -56,8 +56,8 @@
 }
 
 .text-little-card {
-    background: linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.07) 78.65%);
-    color: white;
+    background: linear-gradient(180deg,rgb(21, 96, 100),rgb(58, 123, 127) 78.65%);
+    color: black;
     border-radius: 5px;
     width: 251px;
     height: 200px;
@@ -73,7 +73,7 @@
 .subscription {
   // display: flex;
   // flex-direction: row;
-  background-color: #7816264d;
+  background-color: #9ecbcd;
   padding: 50px 0px;
   margin-top: 240px;
   text-align: center;
@@ -89,9 +89,9 @@
 
 .option-card {
 
-    background: linear-gradient(180deg,rgba(214, 200, 200, 0.697),rgba(179, 133, 133, 0.56) 78.65%);
+    background-color: #e3ebeb;
     color: #02110f;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 270px;
     height: 500px;
     padding: 25px;
