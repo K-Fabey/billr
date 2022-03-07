@@ -8,13 +8,13 @@
 <%# log in button %>
   <div class="btn-login">
     <% if current_user %>
-      <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat"  %>
+      <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
     <% else %>
-      <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat"  %>
+    <%# sig up %>
+      <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-flat btn-ghost", style: "margin-right: 3px" %>
+      <%= link_to "Se connecter", new_user_session_path, class: "btn btn-flat btn-orange"  %>
     <% end %>
   </div>
-  <%# sig up %>
-  <div class="btn-signup">Créer un compte</div>
 
   <%# text + demo button + hand image%>
   <div class="container banner-container">
@@ -27,7 +27,6 @@
       <a class="btn btn-flat btn-demo" href="#">Démander une démo</a>
       <a class="btn btn-flat btn-trial" href="#">Essai gratuit</a>
     </div>
-
     <%= image_tag "main.png", class: "image-main" %>
   </div>
  </div>
@@ -92,7 +91,7 @@
             <li>Réconciliation automatisée</li>
           </ul>
         </div>
-        <a class="btn btn-flat" href="#">Souscrire</a>
+        <a class="btn btn-flat btn-orange" href="#">Souscrire</a>
 
       </div>
 
@@ -109,7 +108,7 @@
             <li>Archivage légale des factures</li>
           </ul>
         </div>
-        <a class="btn btn-flat center-block" href="#">Souscrire</a>
+        <a class="btn btn-ghost btn-flat center-block" href="#">Souscrire</a>
       </div>
 
       <div class="option-card">
@@ -124,7 +123,7 @@
             <li>Intégration à votre outil de comptabilité</li>
           </ul>
       </div>
-          <a class="btn btn-flat" href="#">Souscrire</a>
+          <a class="btn btn-flat btn-orange" href="#">Souscrire</a>
 
       </div>
 
