@@ -112,10 +112,23 @@ class InvoicesController < ApplicationController
   end
 
   def pay
-    @invoice.update(status: 'payment in process')
     authorize @invoice
-    redirect_to invoice_path(@invoice)
-    flash[:notice] = "Facture mise en paiement !"
+    session = Stripe::Checkout::Session.create(
+    payment_method_types: ['card'],
+    line_items: [{
+      name: @invoice.po_number,
+      images: [@invoice.invoice_file],
+      amount: (@invoice.total_w_tax*100).to_i,
+      currency: 'eur',
+      quantity: 1
+    }],
+    success_url: invoice_url(@invoice),
+    cancel_url: invoice_url(@invoice)
+  )
+    @invoice.update(checkout_session_id: session.id, status: 'payment in process')
+    redirect_to session[:url]
+    # redirect_to invoice_path(@invoice)
+    # flash[:notice] = "Facture mise en paiement !"
   end
 
   def mark_as_paid
