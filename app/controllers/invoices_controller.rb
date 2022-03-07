@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  include CloudinaryHelper
   before_action :set_invoice, only: [:show, :validate, :decline_reason, :pay, :mark_as_paid, :follow_up, :send_to_partner]
 
   RECEIVED_STATUSES = ["received", "payment in process", "validated", "declined", "paid"]
@@ -131,11 +132,16 @@ class InvoicesController < ApplicationController
   end
 
   def pay
+    images = []
+    if @invoice.invoice_file.attached?
+      images << cl_image_path(@invoice.invoice_file.key, format: :png, width:'600px')
+    end
     authorize @invoice
     session = Stripe::Checkout::Session.create(
     payment_method_types: ['card'],
     line_items: [{
       description: "OFFICE DEPOT",
+      images: images,
       name: @invoice.po_number,
       amount: 66000,
       # amount: (@invoice.total_w_tax*100).to_i,
