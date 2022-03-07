@@ -57,16 +57,19 @@ class InvoicesController < ApplicationController
     @user = current_user
     @current_company = current_user.company
     @received_invoices = @current_company.received_invoices
-    @companies = @current_company.partners
+    @partners = @current_company.partners
     @invoices = @received_invoices
     @status = params[:status]
+
+    # Setting the list to display by default (no search)
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
-     if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+
+    # Setting the list to display when a search is done
+    if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
       search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
-      # @sent_invoices = @current_company.sent_invoices
-      # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
+
       @invoices = Invoice.search_by_company_client_and_date(search_query)
 
     end

@@ -127,13 +127,16 @@
           placeholder: "Nom du client/fournisseur"
         %>
         <br>
-        <%# <%= select_tag :query_company, options_from_collection_for_select(@companies, "id", "name") %>
+        <%# <%= select_tag :query_company, options_from_collection_for_select(@partners, "id", "name") %>
 
         <%= text_field_tag :query_status,
           params[:query_status],
           class: "form-control",
           placeholder: "Statut"
         %>
+
+        <%# <%= select_tag :query_status, options_from_collection_for_select(@partners, "id", "name") %> %>
+
         <br>
         <%= text_field_tag :query_date,
           params[:query_date],
