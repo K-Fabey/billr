@@ -9,7 +9,7 @@
       <h2>Factures <%= translate(@type, scope: 'invoice.type') %></h2>
       <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat"%>
     </div>
-
+    <br>
     <div class="invoices-title-details">
       <h4>
           <%= @invoices.count %> factures <%= translate(@status, scope: 'invoice.status', count: @invoices.count) %>

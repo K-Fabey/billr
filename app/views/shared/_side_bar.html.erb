@@ -121,18 +121,23 @@
 
       <div class="search-bar">
       <%= form_tag sent_invoices_path, method: :get do %>
-        <%= text_field_tag :query_client,
-          params[:query_client],
+        <%= text_field_tag :query_company,
+          params[:query_company],
           class: "form-control",
-          placeholder: "Find a client"
+          placeholder: "Nom du client/fournisseur"
         %>
         <br>
+        <%# <%= select_tag :query_company, options_from_collection_for_select(@partners, "id", "name") %>
 
-        <%= text_field_tag :query_status,
+        <%# <%= text_field_tag :query_status,
           params[:query_status],
           class: "form-control",
-          placeholder: "Status"
+          placeholder: "Statut"
         %>
+
+        <%= select_tag :query_status, options_for_select(["", "Reçue", "En attente de paiement", "Validée", "Refusée", "Payée", "Envoyée", "En attente", "Créée"]) %>
+        <%# <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid"]) %>
+
         <br>
         <%= text_field_tag :query_date,
           params[:query_date],
@@ -141,7 +146,7 @@
           # data-provide :'datepicker'
         %>
         <br>
-        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+        <%= submit_tag "Rechercher", class: "btn btn-flat" %>
       <% end %>
   </div>
 

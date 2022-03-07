@@ -1,0 +1,12 @@
+Bonjour <%= @company.name %>,
+<br>
+
+Sauf erreur de notre part, la facture N° <%= @invoice.po_number %>, en pièce jointe, d'un montant de <%= @invoice.total_w_tax.round(2) %>€, reste impayée à ce jour.
+<br>
+L'échéance de paiement étant prévue le <%= localize(@invoice.issue_date, format: '%d/%m/%Y') %>, nous vous prions de bien vouloir la règler dans les prochains jours en suivant ce lien de paiement rapide.
+<br>
+
+N'hésitez pas à contacter <%= @user.first_name.capitalize %> à l'adresse <%= @user.email%> pour toute information supplémentaire sur la facture.
+
+
+Bien à vous

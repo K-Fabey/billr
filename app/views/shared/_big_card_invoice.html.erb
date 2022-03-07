@@ -5,7 +5,7 @@
     <div class="invoice-card-infos">
       <h2><%= invoice.recipient.name %> </h2>
       <p><strong><%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
-      <p><%= localize(invoice.issue_date, format: '%d/%m/%Y') %></p>
+      <p>Date : <%= localize(invoice.issue_date, format: '%d/%m/%Y') %> Facture N° <%= invoice.po_number %></p>
       <% if invoice.status == 'declined' %>
       <p>Motif du rejet :<%= invoice.decline_reason%></p>
       <% end %>
