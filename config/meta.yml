@@ -1,0 +1,5 @@
+meta_product_name: "Billr"
+meta_title: "Billr - Gestion de factures"
+meta_description: "Un outil formidable de gestion de factures"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
