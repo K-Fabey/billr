@@ -1,45 +1,36 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-    <% end %>
+    <div id="logo-navbar">
+      <%= link_to root_path do %>
+        <%= image_tag "Billr3.png" %>
+      <% end %>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <%# <li class="nav-item">
-            <div class="nav-link">
-              <a href="#" class="a-form">
-              <i class="far fa-comment"></i></a>
-            </div>
-          </li> %>
-          <li class="nav-item">
-            <div class="nav-link">
-              <a href=../dashboard class="a-form">
-              <i class="fas fa-house-user"></i></a>
-            </div>
+          <li class="nav-item active hello-user">
+            <span>Hello <%= current_user.first_name  %> 👋</span>
           </li>
           <li class="nav-item dropdown">
-            <div class="nav-link" >
-              <i class="fas fa-caret-down" id="navbarDropdown"
-              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <% if current_user.photo.key %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <%= image_tag "https://images.pexels.com/photos/10724233/pexels-photo-10724233.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
 
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Profil", "#" , class: "dropdown-item" %>
-                <%= link_to "Réglages", "#", class: "dropdown-item" %>
-                <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </div>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
-
-            <% if current_user.photo.key %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-            <% else %>
-            <%= image_tag "https://images.pexels.com/photos/10724233/pexels-photo-10724233.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500", class: "avatar"%>
-            <% end %>
         <% else %>
-          <li>
-            <%= link_to "Connexion", new_user_session_path, class: "nav-item btn btn-flat btn-orange" %>
-          </li>
+          <!--li class="nav-item"-->
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <!--/li-->
         <% end %>
       </ul>
     </div>
