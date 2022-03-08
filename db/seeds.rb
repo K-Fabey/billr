@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
-# require 'faker'
+require 'faker'
 
 puts "Destroying all companies !"
 Company.destroy_all
 puts "creating new companies and invoices..."
 
-total = Company.create!(name: "Office Depot",
+total = Company.create!(name: "Total",
                         siren: "442 395 448",
                         siret: "442 395 448 00057",
                         address: "2 BIS RUE LOUIS ARMAND",
@@ -21,10 +21,25 @@ total = Company.create!(name: "Office Depot",
                         country: "France",
                         phone_number: "+33 01 23 45 67 89",
                         vat_number: "FR55442395448",
-                        email: "magasin-paris11@officedepot.com",
+                        email: "contact@total.fr",
                         bank_account: "FR12 1234 5678 1234 5678 1234 567",
                         legal_status: "SA",
                         capital: "5 164 558 €")
+
+office_depot = Company.create!(name: "Office Depot",
+                        siren: "466 388 448",
+                        siret: "466 388 448 00055",
+                        address: "24 RUE DE VAUGIRARD",
+                        city: "Paris",
+                        country: "France",
+                        phone_number: "+33 01 23 45 67 89",
+                        vat_number: "FR55442396648",
+                        email: "magasin-paris11@officedepot.com",
+                        bank_account: "FR12 4444 5678 1234 5678 1234 567",
+                        legal_status: "SA",
+                        capital: "164558 €")
+
+CompanyPartnership.create!(company: total, partner: office_depot, supplier: true)
 
 10.times do
   partner = Company.new(
@@ -113,8 +128,24 @@ Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_ty
     )
   end
 end
+invoicefixe = Invoice.create!(
+      sender: office_depot,
+      recipient: total,
+      issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
+      po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
+      vat_rate: 20,
+      total_wo_tax: 550,
+      status: 'received',
+      payment_deadline: Faker::Date.between(from: '2022-03-15', to: '2022-03-22'),
+      payment_date: '2022-03-11',
+      archived: false,
+      decline_reason: "",
+      payment_method: "virement SEPA",
+      total_w_tax: 660,
+      tax_amount: 110
+    )
 file2 = File.open('app/assets/images/lewagon.pdf')
-Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
+invoicefixe.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
 
 puts "companies and invoices created !"
 
