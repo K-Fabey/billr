@@ -190,7 +190,6 @@
   ul {
     font-size: 13px;
     list-style-type: none;
-
   }
 
   .option-card-details{
@@ -224,7 +223,7 @@
   p {
     text-align: center;
     margin-top: 15px;
-
+    margin-bottom: 25px;
   }
 
   ul {
@@ -238,8 +237,12 @@
 }
 
   .list-subscription {
+    font-size: 16px;
+    padding-left: inherit;
     li {
     margin-bottom: 7px;
+    // padding-left: 10px;
+    padding-left: 5px;
     }
   }
 
