@@ -5,7 +5,7 @@
   <td> <strong> <%= invoice.total_w_tax.round(2) %>€ </strong> </td>
   <td><%= localize(invoice.issue_date, format: '%d/%m/%Y') %></td>
   <td><%= localize(invoice.payment_deadline, format: '%d/%m/%Y') %></td>
-  <td>
+  <td class="table-row-status">
     <div class="tag <%= invoice.status.gsub(' ', '-') %>">
       <%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize%>
     </div>
