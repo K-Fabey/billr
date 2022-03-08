@@ -10,10 +10,10 @@
             <div data-controller='invoice'>
             <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
             <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-orange", data: {action: 'click->invoice#decline'} %>
-                  <div>
-                    <%= simple_form_for invoice, url: decline_reason_invoice_path(invoice.id), method: :patch, html: {class: 'd-none', data:{invoice_target:'form'}}  do |f| %>
+                  <div class='d-none' data-invoice-target='form'>
+                    <%= simple_form_for invoice, url: decline_reason_invoice_path(invoice.id), method: :patch do |f| %>
                      <%= f.input :decline_reason, label:'Details du rejet' %>
-                     <%= f.submit "Rejeter", class: "btn btn-warning" %>
+                     <%= f.submit "Refuser", class: "btn btn-warning" %>
                      <% end %>
                   </div>
             </div>

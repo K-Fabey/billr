@@ -8,7 +8,8 @@ export default class extends Controller {
     console.log(this.formTarget);
 
   }
-  decline (event) {
+  decline(event) {
+    console.log('super decline')
     event.preventDefault();
     this.formTarget.classList.toggle('d-none');
   }
