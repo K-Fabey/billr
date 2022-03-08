@@ -14,10 +14,10 @@ CompanyPartnership.destroy_all
 Company.destroy_all
 puts "creating new companies and invoices..."
 
-total = Company.create!(name: "Total",
+le_wagon = Company.create!(name: "Le Wagon",
                         siren: "442 395 448",
                         siret: "442 395 448 00057",
-                        address: "2 BIS RUE LOUIS ARMAND",
+                        address: "16 villa gaudelet",
                         city: "Paris",
                         country: "France",
                         phone_number: "+33 01 23 45 67 89",
@@ -40,7 +40,20 @@ office_depot = Company.create!(name: "Office Depot",
                         legal_status: "SA",
                         capital: "164558 €")
 
-CompanyPartnership.create!(company: total, partner: office_depot, supplier: true)
+orange = Company.create!(name: "Orange",
+                        siren: "466 666 448",
+                        siret: "466 444 448 00055",
+                        address: "33 RUE PONCELET",
+                        city: "Paris",
+                        country: "France",
+                        phone_number: "+33 01 65 48 87 80",
+                        vat_number: "FR55442396778",
+                        email: "factures-recues@orange.com",
+                        bank_account: "FR12 5555 5678 1234 5678 1234 567",
+                        legal_status: "SA",
+                        capital: "1 124 558 €")
+
+CompanyPartnership.create!(company: le_wagon, partner: office_depot, supplier: true)
 
 10.times do
   partner = Company.new(
@@ -58,7 +71,7 @@ CompanyPartnership.create!(company: total, partner: office_depot, supplier: true
     capital: "#{Faker::Number.number(digits: 6)} €"
   )
   partner.save!
-  CompanyPartnership.create!(company: total, partner: partner, client: true)
+  CompanyPartnership.create!(company: le_wagon, partner: partner, client: true)
   3.times do
     total_without_tax = Faker::Number.decimal(l_digits: 4)
     tax_amount = 0.2 * total_without_tax
@@ -67,7 +80,7 @@ CompanyPartnership.create!(company: total, partner: office_depot, supplier: true
     declined_reasons = ["pas de tva", "pas de total HT", "adresse manquante"]
     declined_reason = declined_reasons.sample if status == "declined"
     invoice = Invoice.create!(
-      sender: total,
+      sender: le_wagon,
       recipient: partner,
       issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-10'),
       po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
@@ -84,8 +97,24 @@ CompanyPartnership.create!(company: total, partner: office_depot, supplier: true
     )
   end
 end
+invoicefixe1 = Invoice.create!(
+      sender: le_wagon,
+      recipient: orange,
+      issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
+      po_number: 'ORANGE2349',
+      vat_rate: 20,
+      total_wo_tax: 70000,
+      status: 'created',
+      payment_deadline: '2022-03-05',
+      payment_date: '2022-03-03',
+      archived: false,
+      decline_reason: "",
+      payment_method: "virement SEPA",
+      total_w_tax: 84000,
+      tax_amount: 14000
+    )
 file2 = File.open('app/assets/images/INV-004863-Orange.pdf')
-Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
+invoicefixe1.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
 
 10.times do
   partner = Company.new(
@@ -103,7 +132,7 @@ Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_ty
     capital: "#{Faker::Number.number(digits: 6)} €"
   )
   partner.save!
-  CompanyPartnership.create!(company: total, partner: partner, supplier: true)
+  CompanyPartnership.create!(company: le_wagon, partner: partner, supplier: true)
   3.times do
     total_without_tax = Faker::Number.decimal(l_digits: 4)
     tax_amount = 0.2 * total_without_tax
@@ -113,7 +142,7 @@ Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_ty
     declined_reason = declined_reasons.sample if status == "declined"
     invoice = Invoice.create!(
       sender: partner,
-      recipient: total,
+      recipient: le_wagon,
       issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
       po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
       vat_rate: 20,
@@ -131,9 +160,9 @@ Invoice.first.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_ty
 end
 invoicefixe = Invoice.create!(
       sender: office_depot,
-      recipient: total,
-      issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
-      po_number: Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3),
+      recipient: le_wagon,
+      issue_date: '2022-03-01',
+      po_number: '106',
       vat_rate: 20,
       total_wo_tax: 550,
       status: 'received',
@@ -155,15 +184,15 @@ User.destroy_all
 puts "creating new users..."
 
 file2 = URI.open('https://ca.slack-edge.com/T02NE0241-U02T2GDMEMC-ffb6e06fd496-512')
-user2 = User.create!(company: total, email: 'fabrice@lewagon.com', first_name: 'fabrice', last_name: 'Kana', password: '123456')
+user2 = User.create!(company: le_wagon, email: 'fabrice@lewagon.com', first_name: 'fabrice', last_name: 'Kana', password: '123456')
 user2.photo.attach(io: file2, filename: 'fabrice.png', content_type: 'image/png')
 
 file3 = URI.open('https://ca.slack-edge.com/T02NE0241-U02T1432ZNV-1f5224b774b8-512')
-user3 = User.create!(company: total, email: 'martin@lewagon.com', first_name: 'martin', last_name: 'Dubois', password: '123456')
+user3 = User.create!(company: le_wagon, email: 'martin@lewagon.com', first_name: 'martin', last_name: 'Dubois', password: '123456')
 user3.photo.attach(io: file3, filename: 'martin.png', content_type: 'image/png')
 
 file4 = URI.open('https://ca.slack-edge.com/T02NE0241-U02S4915Q8P-d896b97128d9-512')
-user4 = User.create!(company: total, email: 'celine@wagon.com', first_name: 'celine', last_name: 'condoris', password: '123456')
+user4 = User.create!(company: le_wagon, email: 'celine@lewagon.com', first_name: 'celine', last_name: 'condoris', password: '123456')
 user4.photo.attach(io: file4, filename: 'celine.png', content_type: 'image/png')
 
 puts "users created !"

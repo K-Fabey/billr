@@ -16,6 +16,7 @@
       </h4>
     </div>
 
+
     <table class='table-invoices'>
        <thead>
         <tr class="table-header">
@@ -30,6 +31,7 @@
       <% @invoices.each do |invoice| %>
         <% if policy(invoice).index? %>
           <%= render 'shared/big_card_invoice', {invoice: invoice} %>
+
         <% end %>
       <% end %>
     </table>
