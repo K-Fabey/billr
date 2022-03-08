@@ -65,7 +65,7 @@ class CompanyMailer < ApplicationMailer
 
       mail(
     subject: " #{@user.company.name}- Facture impayée",
-    to: @company.email,
+    to: 'contact@billr.eu', # @company.email,
     from: 'contact@billr.eu',
     html_body: '',
     track_opens: 'true',

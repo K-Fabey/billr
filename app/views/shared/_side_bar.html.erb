@@ -11,7 +11,7 @@
   <% end %>
 
   <%# <%= link_to received_invoices_path do %>
-    <div class="inv-type" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <div class="inv-type" data-bs-toggle="collapse" href="#collapsereceived" role="button" aria-expanded="false" aria-controls="collapsereceived">
       <div class="icon">
         <%= image_tag "euro-logo.png" %>
       </div>
@@ -22,7 +22,7 @@
     </div>
   <%# <% end %>
 
-  <div class="collapse" id="collapseExample">
+  <div class="collapse" id="collapsereceived">
     <%= link_to(received_invoices_path(status: "received")) do %>
       <div  class="small-box">
         <%# <i class="fas fa-arrow-alt-circle-down"></i> %>
@@ -74,7 +74,7 @@
 
   <div>
     <%# <%= link_to sent_invoices_path do %>
-    <div class="inv-type" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <div class="inv-type" data-bs-toggle="collapse" href="#collapseSent" role="button" aria-expanded="false" aria-controls="collapseSent">
       <div class="icon">
         <%= image_tag "euro-flying.png" %>
       </div>
@@ -84,7 +84,7 @@
       </div>
     </div>
     <%# <% end %>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="collapseSent">
       <%= link_to (sent_invoices_path(status: "created")) do %>
         <div class="small-box">
           <div class="icon">
