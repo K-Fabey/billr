@@ -1,23 +1,28 @@
 
+      <div class='mb-3 d-flex justify-content-evenly'>
       <p><strong>Statut : <%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
       <% if invoice.status == 'declined' %>
       <p>Motif du rejet : <%= invoice.decline_reason%></p>
       <% end %>
-      <% if invoice.received?(current_user) %>
-      <!--c'est une facture recue -->
+      </div>
 
+      <% if invoice.received?(current_user) %>
+            <!--c'est une facture recue -->
             <% if invoice.status == 'received' %>
             <div data-controller='invoice'>
-            <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
-            <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-orange", data: {action: 'click->invoice#decline'} %>
+              <div class='mb-3 d-flex justify-content-evenly'>
+              <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
+              <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-orange", data: {action: 'click->invoice#decline'} %>
+              </div>
                   <div class='d-none' data-invoice-target='form'>
                     <%= simple_form_for invoice, url: decline_reason_invoice_path(invoice.id), method: :patch do |f| %>
                      <%= f.input :decline_reason, label:'Details du rejet' %>
-                     <%= f.submit "Refuser", class: "btn btn-warning" %>
+                     <%= f.submit "Confirmer", class: "btn btn-orange" %>
                      <% end %>
                   </div>
             </div>
             <% end %>
+            <div class='mb-3 d-flex justify-content-evenly'>
             <% if invoice.status == 'validated' %>
                 <%= link_to "Payer", pay_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
             <% end %>
@@ -28,11 +33,13 @@
                 <%# <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
                 <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat btn-green" %>
             <% end %>
+            </div>
 
 
 
       <% else %>
             <!--c est une facture emise -->
+            <div class='mb-3 d-flex justify-content-evenly'>
             <% if invoice.status =='created' %>
               <%= link_to "Envoyer", send_to_partner_invoice_path(invoice), class: "btn btn-green", method: :patch %>
             <% else %>
@@ -41,6 +48,7 @@
               <%= link_to "Relancer",  follow_up_invoice_path(invoice), class: "btn btn-flat btn-orange", method: :patch %>
               <% end %>
             <% end %>
+            </div>
       <% end %>
 
 
@@ -48,9 +56,9 @@
     <div>
       <% if policy(invoice).show? %>
           <% if invoice.invoice_file.attached? %>
-            <%= cl_image_tag(invoice.invoice_file.key, format: :png, width:'400px') %>
+            <%= cl_image_tag(invoice.invoice_file.key, format: :png, width:'550px') %>
           <% else %>
-            <object data="<%= image_path "lewagon.pdf" %>" style="width:400px ; height:900px"></object>
+            <object data="<%= image_path "lewagon.pdf" %>" style="width:550px ; height:820px"></object>
           <% end %>
       <% end %>
     </div>
