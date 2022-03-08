@@ -10,6 +10,7 @@ require 'open-uri'
 require 'faker'
 
 puts "Destroying all companies !"
+CompanyPartnership.destroy_all
 Company.destroy_all
 puts "creating new companies and invoices..."
 

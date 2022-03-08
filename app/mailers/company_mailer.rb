@@ -33,6 +33,7 @@ class CompanyMailer < ApplicationMailer
     end
 
     # mail to: @company.email, subject: "Nouvelle facture"
+
     mail(
       subject: "#{@user.company.name}- Nouvelle facture",
       to: @company.email,
@@ -53,6 +54,7 @@ class CompanyMailer < ApplicationMailer
     # attachments['invoice_test.pdf'] = File.read('app/assets/images/INV-004863-Orange.pdf')
     # mail to: @company.email, subject: "Nouvelle facture"
 
+
     # mail to: @company.email, subject: "#{@user.company.name} - Facture impayée"
 
     if @invoice.invoice_file.attached?
@@ -61,7 +63,6 @@ class CompanyMailer < ApplicationMailer
       attachments['invoice.pdf'] = File.read('app/assets/images/INV-004863-Orange.pdf')
     end
 
-
       mail(
     subject: " #{@user.company.name}- Facture impayée",
     to: @company.email,
@@ -69,6 +70,7 @@ class CompanyMailer < ApplicationMailer
     html_body: '',
     track_opens: 'true',
     message_stream: 'outbound')
+
   end
 
 end
