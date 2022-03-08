@@ -3,7 +3,7 @@
 <%# logo %>
   <div class="banner-logo">
     <div id="logo">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "Billr2.png" %>
     </div>
 <%# log in button %>
   <div class="btn-login">
@@ -61,58 +61,65 @@
 
 <%# Subscription cards %>
 <div class="subscription">
-  <h2>Choisissez votre formule</h2>
 
+  <div class="title-year">
+    <h1>Choisissez la formule <br>qui vous convient</h1>
+    <div class="subscriptions-period">
+    <a class="btn btn-flat btn-yearly" href="#">Yearly</a>
+    <a class="btn btn-flat btn-monthly" href="#">Monthly</a>
+    </div>
+  </div>
   <div class="div-option-card">
     <div class="option-card">
-        <h4>Basique</h4><br>
-
+      <P>Starter</p>
+       <h2>Gratuit</h2>
         <div class="option-card-details">
-          <p>1 utilisateur (administrateur)</p><br>
 
           <ul class="list-subscription">
-            <li>Connexion à votre outil d’émission de facture</li>
+            <li>1 utilisateur (administrateur)</li>
             <li>Suivi des factures reçues</li>
-            <li>Connexion à vos boîtes email de reception de factures</li>
+            <li>Connexion à vos boîtes email</li>
             <li>Suivi des factures émises</li>
             <li>Export des écritures comptables</li>
-            <li>Connexion avec votre banque pour l’émission automatique des paiement</li>
             <li>Réconciliation automatisée</li>
           </ul>
+          <a class="btn btn-flat btn-started" href="#">Get Started</a>
         </div>
-        <a class="btn btn-flat btn-orange" href="#">Souscrire</a>
+
 
       </div>
 
-    <div class="option-card">
-        <h4>Essentielle</h4><br>
+    <div class="option-card-two">
+        <p>Premium</p>
+        <h2>29€/mois</h2>
 
         <div class="option-card-details">
-          <p>Jusqu'à 5 utilisateurs</p><br>
+
           <ul class="list-subscription">
-            <li>Fonctionnalités de la formule initiale</li>
+            <li>Jusqu'à 5 utilisateurs</li>
+            <li>Formule starter</li>
             <li>Intégration Slack</li>
-            <li>Emission des factures sous format factureX</li>
-            <li>Respect des obligations légales de digitalisation des factures (facturX) et transmission au Portail Public de Facturation (PPF)</li>
+            <li>Format factureX</li>
+            <li>Transmission au PPF</li>
             <li>Archivage légale des factures</li>
           </ul>
         </div>
-        <a class="btn btn-ghost btn-flat center-block" href="#">Souscrire</a>
+        <a class="btn btn-flat btn-orange" href="#">Get Started</a>
       </div>
 
       <div class="option-card">
-        <h4>Optimale</h4><br>
-
+        <p>Entreprise</p>
+        <h2>49€/mois</h2>
         <div class="option-card-details">
-          <p>Nombre d'utilisateurs illimité</p><br>
 
           <ul class="list-subscription">
-            <li>Fonctionnalités des formules basique et essentielle</li>
+            <li>Nombre d'utilisateurs illimité</li>
+            <li>Formules starter et premium</li>
             <li>Tableau de bord personnalisé</li>
             <li>Intégration à votre outil de comptabilité</li>
           </ul>
+          <a class="btn btn-flat btn-started" href="#">Get Started</a>
       </div>
-          <a class="btn btn-flat btn-orange" href="#">Souscrire</a>
 
       </div>
 
