@@ -61,7 +61,14 @@ class InvoicesController < ApplicationController
 
   def index
     @user = current_user
-    @invoices = Invoice.all
+    @invoices = policy_scope(Invoice)
+
+    if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+      search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
+      # @received_invoices = @current_company.received_invoices
+      # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
+      @invoices = Invoice.search_by_company_client_and_date(search_query) # TODO : fixme
+    end
   end
 
   def received
@@ -103,16 +110,11 @@ class InvoicesController < ApplicationController
     @invoices = @sent_invoices
     authorize @invoices
     @status = params[:status]
+
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
-    if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
-      search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
-      # @received_invoices = @current_company.received_invoices
-      # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
-      @invoices = Invoice.search_by_company_client_and_date(search_query)
-    end
-    # raise
+
     render :index
   end
 

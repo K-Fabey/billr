@@ -130,7 +130,7 @@
   <div>
     <h3> Recherche  </h3>
       <div class="search-bar">
-      <%= form_tag sent_invoices_path, method: :get do %>
+      <%= form_tag invoices_path, method: :get do %>
         <%= text_field_tag :query_company,
           params[:query_company],
           class: "form-control",
@@ -145,8 +145,7 @@
           placeholder: "Statut"
         %>
 
-        <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid", "created", "sent", "paid", "follow_uped"]), style: "width: 265px" %>
-        <%# <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid", "created", "sent", "paid", "follow_uped"]) %>
+        <%= select_tag :query_status, options_for_select([["", nil]] + Invoice::STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }), style: "width: 265px" %>
         <br>
         <br>
         <%= text_field_tag :query_date,
