@@ -93,13 +93,22 @@
     padding-left: 10px;
   }
 
+  .table-row-status{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+  }
+
 
   .tag{
     border-radius: 2px;
     text-align: center;
     margin: 10px;
-    padding: 5px 0;
+    padding: 5px 5px;
     font-size: bold;
+    // height: 90%;
+    // width: fit-content;
+    display: inline-block;
   }
   .paid {
     color: #68E1A3;
@@ -107,45 +116,42 @@
   }
 
   .received {
-    color: #FF3C3C;
-    background-color: #FFF5F5;
+    color: #263B54;
+    background-color: #E9EBEE;
   }
 
   .payment-in-process {
-    color: #FF3C3C;
-    background-color: #FFF5F5;
+    color: #263B54;
+    background-color: #E9EBEE;
 
     // color: #263B54;
     // background-color: #E9EBEE;
   }
 
   .validated {
-    color: #FF3C3C;
-    background-color: #FFF5F5;
-  }
-
-  .declined{
     color: #263B54;
     background-color: #E9EBEE;
   }
 
-  .paid{
-    color: #68E1A3;
-    background-color: #F0FCF6;
+  .declined{
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+    // color: #263B54;
+    // background-color: #E9EBEE;
   }
 
 
   .sent{
-    color: #FF3C3C;
-    background-color: #FFF5F5;
+    color: #263B54;
+    background-color: #E9EBEE;
 
     // color: #263B54;
     // background-color: #E9EBEE;
   }
 
   .follow_uped{
-    color: #FF3C3C;
-    background-color: #FFF5F5;
+    color: #263B54;
+    background-color: #E9EBEE;
 
     // color: #263B54;
     // background-color: #E9EBEE;
@@ -153,8 +159,8 @@
 
 
   .created{
-    color: #FF3C3C;
-    background-color: #FFF5F5;
+    color: #263B54;
+    background-color: #E9EBEE;
   }
 
   tr{

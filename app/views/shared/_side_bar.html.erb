@@ -1,22 +1,28 @@
 
 <div class='side-bar'>
-  <div id="logo-sidebar">
-    <%= link_to root_path do %>
-      <%= image_tag "logo.png" %>
-    <% end %>
-  </div>
+  <%# <div id="logo-sidebar"> %>
+    <%# <%= link_to root_path do %>
+      <%# <%= image_tag "logo.png" %>
+    <%# <% end %>
+  <%# </div> %>
 
-
-  <%= link_to received_invoices_path do %>
-    <div class="inv-type">
-      <div class="icon">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
-      </div>
-      <h3>Factures entrantes</h3>
-    </div>
+  <%= link_to dashboard_path do %>
+    <h3>Dashboard</h3>
   <% end %>
 
-  <div>
+  <%# <%= link_to received_invoices_path do %>
+    <div class="inv-type" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <div class="icon">
+        <%= image_tag "euro-logo.png" %>
+      </div>
+      <h3>Factures entrantes</h3>
+      <div class="icon">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  <%# <% end %>
+
+  <div class="collapse" id="collapseExample">
     <%= link_to(received_invoices_path(status: "received")) do %>
       <div  class="small-box">
         <%# <i class="fas fa-arrow-alt-circle-down"></i> %>
@@ -67,57 +73,60 @@
   </div>
 
   <div>
-    <%= link_to sent_invoices_path do %>
-      <div class="inv-type">
-        <div class="icon">
-          <i class="fas fa-share-square"></i>
-        </div>
-        <h3>Factures sortantes</h3>
+    <%# <%= link_to sent_invoices_path do %>
+    <div class="inv-type" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <div class="icon">
+        <%= image_tag "euro-flying.png" %>
       </div>
-    <% end %>
-
-    <%= link_to (sent_invoices_path(status: "created")) do %>
-      <div class="small-box">
-        <div class="icon">
-          <i class="fas fa-file-invoice-dollar"></i>
-        </div>
-        <p>Créées</p>
+      <h3>Factures sortantes</h3>
+      <div class="icon">
+        <i class="fas fa-chevron-down"></i>
       </div>
-    <% end %>
-
-    <%= link_to (sent_invoices_path(status: "sent")) do %>
-      <div class="small-box">
-        <div class="icon">
-          <i class="far fa-paper-plane"></i>
+    </div>
+    <%# <% end %>
+    <div class="collapse" id="collapseExample">
+      <%= link_to (sent_invoices_path(status: "created")) do %>
+        <div class="small-box">
+          <div class="icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <p>Créées</p>
         </div>
-        <p>Envoyées</p>
-      </div>
-    <% end %>
+      <% end %>
 
-    <%= link_to (sent_invoices_path(status: "paid")) do %>
-      <div class="small-box">
-        <div class="icon">
-          <i class="fas fa-dollar-sign"></i>
+      <%= link_to (sent_invoices_path(status: "sent")) do %>
+        <div class="small-box">
+          <div class="icon">
+            <i class="far fa-paper-plane"></i>
+          </div>
+          <p>Envoyées</p>
         </div>
-        <p>Payées</p>
-      </div>
-    <% end %>
+      <% end %>
 
-    <%= link_to (sent_invoices_path(status: "follow_uped")) do %>
-      <div class="small-box">
-        <div class="icon">
-          <i class="far fa-clock"></i>
+      <%= link_to (sent_invoices_path(status: "paid")) do %>
+        <div class="small-box">
+          <div class="icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <p>Payées</p>
         </div>
-        <p>En retard de paiement</p>
-      </div>
-    <% end %>
+      <% end %>
 
+      <%= link_to (sent_invoices_path(status: "follow_uped")) do %>
+        <div class="small-box">
+          <div class="icon">
+            <i class="far fa-clock"></i>
+          </div>
+          <p>En retard de paiement</p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
+  <br>
 
-
-    <br>
-    <h3> Recherche </h3>
+  <div>
+    <h3> Recherche  </h3>
       <div class="search-bar">
       <%= form_tag sent_invoices_path, method: :get do %>
         <%= text_field_tag :query_company,
@@ -147,6 +156,7 @@
         <br>
         <%= submit_tag "Rechercher", class: "btn btn-flat btn-orange" %>
       <% end %>
+    </div>
   </div>
 
 </div>
