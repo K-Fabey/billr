@@ -55,3 +55,113 @@
     font-weight: bold;
   }
 }
+
+// Below you can see the style for teh new index table
+.table-invoices{
+  width: 100%;
+  font-size: 0.7rem;
+
+  a{
+    color: black;
+    text-decoration: none;
+  }
+
+
+  a:hover{
+    color: black;
+    font-size: bold;
+    font-weight: bold;
+  }
+
+
+  .table-header{
+    background-color: #F2F3F5;
+    font-size: bold;
+    height: 2.5rem;
+    text-align: center;
+  }
+
+  .table-line{
+    background-color: white;
+    height: 2.5rem;
+    text-align: center;
+  }
+
+  .table-row-client{
+    width: 25%;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+
+  .tag{
+    border-radius: 2px;
+    text-align: center;
+    margin: 10px;
+    padding: 5px 0;
+    font-size: bold;
+  }
+  .paid {
+    color: #68E1A3;
+    background-color: #F0FCF6;
+  }
+
+  .received {
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+  }
+
+  .payment-in-process {
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+  .validated {
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+  }
+
+  .declined{
+    color: #263B54;
+    background-color: #E9EBEE;
+  }
+
+  .paid{
+    color: #68E1A3;
+    background-color: #F0FCF6;
+  }
+
+
+  .sent{
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+  .follow_uped{
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+
+  .created{
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+  }
+
+  tr{
+    border: 1px solid #F0FCF6;
+  }
+
+  tr:hover{
+    background-color: #FFF1EC;
+  }
+}

@@ -1,6 +1,6 @@
 .index-invoices{
     flex-grow: 1;
-    padding: 40px;
+    padding: 10px;
 
   .index-invoices-title{
     display: flex;
@@ -14,8 +14,18 @@
     // padding-top: 0;
   }
 
-  h2{
+  h3{
     margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .invoices-title-details{
+    // background-color: white;
+
+
+    h4{
+      font-size: 1rem;
+    }
   }
 
 }

@@ -6,7 +6,7 @@
   <div class="index-invoices">
 
     <div class='index-invoices-title'>
-      <h2>Factures <%= translate(@type, scope: 'invoice.type') %></h2>
+      <h3>Mes factures <%= translate(@type, scope: 'invoice.type') %></h3>
       <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat btn-green"%>
     </div>
     <br>
@@ -16,12 +16,24 @@
       </h4>
     </div>
 
-    <div class="invoice-cards">
+    <table class='table-invoices'>
+       <thead>
+        <tr class="table-header">
+          <td class="table-row-client">Client</td>
+          <td style="width: 15%">N° de facture</td>
+          <td style="width: 19%%">Montant</td>
+          <td style="width: 19%">Date</td>
+          <td style="width: 19%">Echéance</td>
+          <td style="width: 23%">Statut</td>
+        </tr>
+       </thead>
       <% @invoices.each do |invoice| %>
         <% if policy(invoice).index? %>
-          <%= link_to (render 'shared/big_card_invoice', {invoice: invoice}), invoice_path(invoice) %>
+          <%= render 'shared/big_card_invoice', {invoice: invoice} %>
         <% end %>
       <% end %>
-    </div>
+    </table>
+
   </div>
+  <%# <%= link_to (render 'shared/big_card_invoice', {invoice: invoice}), invoice_path(invoice) %>
 </div>
