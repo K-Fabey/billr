@@ -15,8 +15,5 @@ ActiveStorage.start()
 import "controllers"
 import "bootstrap"
 import "chartkick"
-import "Chart.bundle"
+// import "Chart.bundle"
 import "chartkick/chart.js"
-
-//= require chartkick
-//= require Chart.bundle
