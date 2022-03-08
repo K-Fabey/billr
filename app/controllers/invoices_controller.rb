@@ -95,7 +95,10 @@ class InvoicesController < ApplicationController
       @invoices = Invoice.search_by_company_client_and_date(search_query)
 
     end
-
+    @total_amount = 0
+    @invoices.each do |i|
+      @total_amount = @total_amount + i.total_w_tax
+    end
     # raise
     render :index
   end
@@ -114,7 +117,10 @@ class InvoicesController < ApplicationController
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
-
+    @total_amount = 0
+    @invoices.each do |i|
+      @total_amount = @total_amount + i.total_w_tax
+    end
     render :index
   end
 

@@ -3,16 +3,42 @@
 
 <%# liste de toutes les factures %>
 <div class="content-wrapper">
+
   <div class="index-invoices">
+    <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat btn-orange"%>
+    <br>
+    <br>
 
     <div class='index-invoices-title'>
       <h3>Mes factures <%= translate(@type, scope: 'invoice.type') %></h3>
-      <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat btn-orange"%>
+      <br>
+
+      <%= form_tag invoices_path, class:"search-bar", method: :get do %>
+        <%= text_field_tag :query_company,
+          params[:query_company],
+          class: "form-control",
+          placeholder: "Nom du client/fournisseur"
+        %>
+        <br>
+        <%= select_tag :query_status, options_for_select([["", nil]] + Invoice::STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }), style: "width: 265px" %>
+        <br>
+
+        <%= text_field_tag :query_date,
+          params[:query_date],
+          class: "form-control",
+          placeholder: "Date"
+          # data-provide :'datepicker'
+        %>
+        <br>
+
+        <%= submit_tag "Rechercher", class: "btn btn-flat btn-orange" %>
+      <% end %>
     </div>
+
     <br>
     <div class="invoices-title-details">
       <h4>
-          <%= @invoices.count %> factures <%= translate(@status, scope: 'invoice.status', count: @invoices.count) %>
+          <%= @invoices.count %> factures <%= translate(@status, scope: 'invoice.status', count: @invoices.count) %> pour un total de <%= @total_amount.round(2) %>€
       </h4>
     </div>
 
