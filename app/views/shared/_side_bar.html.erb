@@ -143,8 +143,8 @@
           placeholder: "Statut"
         %>
 
-        <%= select_tag :query_status, options_for_select(["", "Reçue", "En attente de paiement", "Validée", "Refusée", "Payée", "Envoyée", "En attente", "Créée"]), style: "width: 265px" %>
-        <%# <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid"]) %>
+        <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid", "created", "sent", "paid", "follow_uped"]), style: "width: 265px" %>
+        <%# <%= select_tag :query_status, options_for_select(["", "received", "payment in process", "validated", "declined", "paid", "created", "sent", "paid", "follow_uped"]) %>
         <br>
         <br>
         <%= text_field_tag :query_date,
