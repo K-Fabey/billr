@@ -4,13 +4,17 @@
   display: flex;
 }
 
+// .banner-container {
+//   height: 300px;
+// }
+
 #logo {
     text-align: left;
     margin-bottom: 30px;
     position: absolute;
-    top: 20px;
+    top: 40px;
     margin-top: 0px;
-    left: 16px;
+    left: 300px;
   }
 
 .btn-login {
@@ -31,6 +35,19 @@
   color: $gray;
 }
 
+.btn-demo:hover {
+  background: $light-orange;
+}
+
+.btn-trial:hover {
+  background-color: white;
+  color: black;
+
+}
+
+.banner-left-block {
+  margin-top: 50px;
+}
 .title {
   display: flex;
 }
@@ -54,8 +71,8 @@
 }
 
 .image-main {
-  height: 390px;
-  align-self: self-end;
+  height: 460px;
+  // align-self: self-end;
 }
 
 .three-cards {
@@ -109,10 +126,20 @@
 }
 
 .title-year{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-left: 540px;
+    h1 {
+      font-weight: 800;
+  }
+}
+
+.subscriptions-period {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  margin-left: 200px;
+  align-items: flex-start;
+  margin-right: 470px;
+
 }
 .btn-yearly {
   color: white;
@@ -124,6 +151,11 @@
   color: black;
   background-color: #F7F7FB;
 }
+
+.btn-monthly:hover {
+  color: black;
+  }
+
 .div-option-card {
   display: flex;
   margin-top: 50px;
@@ -131,28 +163,34 @@
 }
 
 .option-card {
-
-    background: linear-gradient(180deg,rgba(214, 200, 200, 0.697),rgba(179, 133, 133, 0.56) 78.65%);
-    color: #02110f;
+    background: $very-light-grey;
+    color: $grey-writing;;
     border-radius: 5px;
-    width: 270px;
+    width: 330px;
     height: 500px;
     padding: 25px;
-    text-align: start;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 32px;
 
-  h4 {
-    text-align: center;
+  h2 {
+    margin-bottom: 40px;
+    font-weight: 800;
+    color: black;
   }
 
   p {
     text-align: center;
+    padding: 5px;
+    margin-top: 15px;
   }
 
   ul {
     font-size: 13px;
+    list-style-type: none;
+
   }
 
   .option-card-details{
@@ -160,12 +198,71 @@
   }
 }
 
+  .option-card-two {
+    background-color: $orange;
+    color: #FFFFFF;
+    border-radius: 5px;
+    width: 330px;
+    height: 500px;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 32px;
+    position: relative;
+    bottom: 20px;
+
+    h2 {
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: black;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 15px;
+
+  }
+
+  ul {
+    font-size: 13px;
+    list-style-type: none;
+  }
+
+  .option-card-details{
+    height: 100%;
+  }
+}
+
+  .list-subscription {
+    li {
+    margin-bottom: 7px;
+    }
+  }
+
+  .btn-orange {
+    background-color: $brown;
+    color: white;
+  }
+
+  .btn-started {
+    background-color: white;
+    color: $bordeaux;
+    border: 1px $light-gray;
+  }
+
+  .btn-started:hover {
+    background-color: $brown;
+  }
+
 // .btn-subscribe {
 //   display: flex;
 //   align-items: flex-end;
 //   align-content: flex-end;
 // }
-.btn-large {
-
-  margin-left: 55px;
-}
+// .btn-large {
+//   margin-left: 55px;
+// }
