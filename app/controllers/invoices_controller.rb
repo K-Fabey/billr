@@ -167,7 +167,7 @@ class InvoicesController < ApplicationController
   def send_to_partner
     @invoice.update(status: 'sent')
     authorize @invoice
-    CompanyMailer.send_invoice(@invoice, current_user).deliver_later
+    CompanyMailer.send_invoice(@invoice, current_user).deliver_now
     redirect_to sent_invoices_path
     flash[:notice] = "Facture envoyée !"
   end
@@ -175,6 +175,7 @@ class InvoicesController < ApplicationController
   def follow_up
     @invoice.update(status: 'follow_uped')
     authorize @invoice
+    CompanyMailer.send_followup(@invoice, current_user).deliver_now
     redirect_to sent_invoices_path
     flash[:notice] = "Facture relancée !"
   end
