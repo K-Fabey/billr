@@ -1,13 +1,19 @@
 Bonjour <%= @company.name %>,
 <br>
+<br>
 
 Vous retrouverez ci-joint la facture N° <%= @invoice.po_number %> d'un montant de <%= @invoice.total_w_tax.round(2) %>€.
 <br>
+<br>
 Nous vous prions de bien vouloir la règler avant le <%= localize(@invoice.issue_date, format: '%d/%m/%Y') %> en suivant ce lien de paiement rapide.
+<br>
 <br>
 
 <%# N'hésitez pas à contacter Gary à l'adresse @billr.com pour toute information supplémentaire. %>
 N'hésitez pas à contacter <%= @user.first_name.capitalize %> à l'adresse <%= @user.email%> pour toute information supplémentaire sur la facture.
+
+<br>
+<br>
 
 
 Bien à vous
