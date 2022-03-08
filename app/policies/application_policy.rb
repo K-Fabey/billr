@@ -12,6 +12,14 @@ class ApplicationPolicy
     false
   end
 
+  def sent?
+    true
+  end
+
+  def received?
+    true
+  end
+
   def show?
     false
   end

@@ -16,10 +16,12 @@
       </h4>
     </div>
 
+
+
     <div class="invoice-cards">
       <% @invoices.each do |invoice| %>
         <% if policy(invoice).index? %>
-          <%= link_to (render 'shared/big_card_invoice', {invoice: invoice}), invoice_path(invoice) %>
+          <%= render 'shared/big_card_invoice', invoice: invoice %>
         <% end %>
       <% end %>
     </div>

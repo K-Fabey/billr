@@ -33,9 +33,6 @@ class CompanyMailer < ApplicationMailer
     end
 
     # mail to: @company.email, subject: "Nouvelle facture"
-<<<<<<< HEAD
-    mail to: @company.email, subject: "#{@user.company.name} - Nouvelle facture"
-=======
     mail(
       subject: "#{@user.company.name}- Nouvelle facture",
       to: @company.email,
@@ -43,7 +40,6 @@ class CompanyMailer < ApplicationMailer
       html_body: '',
       track_opens: 'true',
       message_stream: 'outbound')
->>>>>>> ce77c3437fdf7ec9d6446e1209ea1aca74abc7ea
   end
 
   def send_followup(invoice, user)
@@ -56,9 +52,7 @@ class CompanyMailer < ApplicationMailer
 
     # attachments['invoice_test.pdf'] = File.read('app/assets/images/INV-004863-Orange.pdf')
     # mail to: @company.email, subject: "Nouvelle facture"
-<<<<<<< HEAD
-    mail to: @company.email, subject: "#{@user.company.name} - Facture impayée"
-=======
+
     # mail to: @company.email, subject: "#{@user.company.name} - Facture impayée"
 
     if @invoice.invoice_file.attached?
@@ -75,7 +69,6 @@ class CompanyMailer < ApplicationMailer
     html_body: '',
     track_opens: 'true',
     message_stream: 'outbound')
->>>>>>> ce77c3437fdf7ec9d6446e1209ea1aca74abc7ea
   end
 
 end

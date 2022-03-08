@@ -1,9 +1,9 @@
 
 <div class="card-container">
 
-  <div class="invoice-card">
+  <div class="invoice-card" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight-<%= invoice.id %>">
     <div class="invoice-card-infos">
-      <h2><%= invoice.recipient.name %> </h2>
+      <h2><%= invoice.recipient.name %></h2>
       <p><strong><%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
       <p>Date : <%= localize(invoice.issue_date, format: '%d/%m/%Y') %> Facture N° <%= invoice.po_number %></p>
       <% if invoice.status == 'declined' %>
@@ -14,5 +14,16 @@
     <div class="invoice-card-price">
       <h3> <%= invoice.total_w_tax.round(2) %>€ </p>
     </div>
+  </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end"; tabindex="-1" id="offcanvasRight-<%= invoice.id %>" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel"><%= invoice.recipient.name %></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <%= render 'shared/show_invoice', invoice: invoice %>
   </div>
 </div>
