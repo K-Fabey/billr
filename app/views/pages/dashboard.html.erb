@@ -6,10 +6,10 @@
   </div>
   <div class="cards" style="padding-top: 15px">
     <div class="card-category">
-      <%= pie_chart current_user.company.received_invoices.group(:status).count %>
+      <%= pie_chart current_user.company.received_invoices.group(:status).sum(:total_w_tax).transform_values{ |value| value.fdiv(1000).round(1)}, donut: true, library: { pieSliceText: "value" }  %>
     </div>
     <div class="card-category">
-      <%= pie_chart current_user.company.sent_invoices.group(:status).count %>
+      <%= pie_chart current_user.company.sent_invoices.group(:status).count, donut: true %>
     </div>
 
   </div>
