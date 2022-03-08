@@ -10,6 +10,14 @@ class CompanyPolicy < ApplicationPolicy
     true
   end
 
+  def sent?
+    true
+  end
+
+  def received?
+    true
+  end
+
   def show?
     true
   end

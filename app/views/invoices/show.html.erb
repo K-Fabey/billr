@@ -48,13 +48,13 @@
 
          <!-- fin de la modale -->
             <% else %>
-            <% unless @invoice.status == 'declined' %>
-              <% unless @invoice.status == 'paid' %>
-              <%= link_to "Mettre en paiement", pay_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
-              <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
+              <% unless @invoice.status == 'declined' %>
+                <% unless @invoice.status == 'paid' %>
+                  <%= link_to "Payer", pay_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
+                  <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
+                <% end %>
               <% end %>
               <%= link_to "Générer écritures comptable", "#", class: "btn btn-flat btn-orange" %>
-              <% end %>
             <% end %>
       <% else %>
             <!--c est une facture emise -->
@@ -69,11 +69,7 @@
             <% end %>
       <% end %>
 
-      <% if @invoice.received?(current_user) %>
-      <%= link_to "Retour", received_invoices_path, class: "btn btn-gradient" %>
-      <% else %>
-      <%= link_to "Retour", sent_invoices_path, class: "btn btn-gradient" %>
-      <% end %>
+
     </div>
   </div>
 </div>

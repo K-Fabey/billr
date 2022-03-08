@@ -73,6 +73,7 @@ class InvoicesController < ApplicationController
     @status = RECEIVED_STATUSES
     # raise
     @invoices = @received_invoices
+    authorize @invoices
     @status = params[:status]
 
     # Setting the list to display by default (no search)
@@ -89,7 +90,6 @@ class InvoicesController < ApplicationController
     end
 
     # raise
-    authorize @invoices
     render :index
   end
 
@@ -101,6 +101,7 @@ class InvoicesController < ApplicationController
     @partners = @current_company.partners
     @status = SENT_STATUSES
     @invoices = @sent_invoices
+    authorize @invoices
     @status = params[:status]
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
@@ -112,14 +113,13 @@ class InvoicesController < ApplicationController
       @invoices = Invoice.search_by_company_client_and_date(search_query)
     end
     # raise
-    authorize @invoices
     render :index
   end
 
   def validate
     @invoice.update(status: 'validated')
     authorize @invoice
-    redirect_to invoice_path(@invoice)
+    redirect_to received_invoices_path
     flash[:notice] = "Facture validée !"
   end
 
@@ -127,7 +127,7 @@ class InvoicesController < ApplicationController
     @invoice.update(invoice_params)
     @invoice.update(status: 'declined')
     authorize @invoice
-    redirect_to invoice_path(@invoice)
+    redirect_to received_invoices_path
     flash[:notice] = "Facture rejetée : #{@invoice.decline_reason}"
   end
 
@@ -153,14 +153,14 @@ class InvoicesController < ApplicationController
   )
     @invoice.update(checkout_session_id: session.id, status: 'payment in process')
     redirect_to session[:url]
-    # redirect_to invoice_path(@invoice)
+    # redirect_to received_invoices_path
     # flash[:notice] = "Facture mise en paiement !"
   end
 
   def mark_as_paid
     @invoice.update(status: 'paid')
     authorize @invoice
-    redirect_to invoice_path(@invoice)
+    redirect_to received_invoices_path
     flash[:notice] = "Facture payée !"
   end
 
@@ -168,14 +168,14 @@ class InvoicesController < ApplicationController
     @invoice.update(status: 'sent')
     authorize @invoice
     CompanyMailer.send_invoice(@invoice, current_user).deliver_later
-    redirect_to invoice_path(@invoice)
+    redirect_to sent_invoices_path
     flash[:notice] = "Facture envoyée !"
   end
 
   def follow_up
     @invoice.update(status: 'follow_uped')
     authorize @invoice
-    redirect_to invoice_path(@invoice)
+    redirect_to sent_invoices_path
     flash[:notice] = "Facture relancée !"
   end
 

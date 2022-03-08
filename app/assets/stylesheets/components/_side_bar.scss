@@ -3,6 +3,7 @@
   background-color: #5C0F1C;
   width: 300px;
   padding-left: 20px;
+  padding-top: 100px;
   z-index: 1;
   // padding-top: 50px;
   position: fixed;
@@ -10,20 +11,28 @@
   top: 0;
   height: 100vh;
 
+  img{
+    width: 25px;
+  }
+
   h3{
     color: white;
     font-size: 1.3rem;
-
   }
 
   p{
-    color: white;
+    color: #9D6F77;
+    // color: white;
     margin-bottom: 0;
     font-size: .75rem;
+
   }
 
+
   i{
-    color: white;
+    color: #9D6F77;
+    // color: white;
+
   }
 
 
@@ -37,7 +46,12 @@
 
 
     .icon{
-      margin-right: 15px;
+      margin-right: 0px;
+      margin-bottom: 9px;
+      margin-left: 10px;
+    }
+    i{
+      color: white;
     }
 
   }
@@ -54,7 +68,7 @@
     }
   }
 
-    a{
+  a{
     color: white;
     text-decoration: none;
   }
@@ -65,12 +79,13 @@
     font-weight: bold;
   }
 
-  img{
-    width: 50px;
-  }
 
   .search-bar{
     margin-right: 12px;
     // margin-bottom: 8px;
+  }
+
+  .small-box :hover{
+  color: white;
   }
 }

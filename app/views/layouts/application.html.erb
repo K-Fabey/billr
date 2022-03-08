@@ -31,20 +31,22 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= favicon_link_tag %>
+    <%= javascript_include_tag "//www.google.com/jsapi" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
   </head>
 
   <body>
     <%# Ne pas montrer la navbar et la sidebar sur la homepage et la page de login %>
-      <%= render 'shared/side_bar' unless current_page?(root_path) || current_page?(new_user_session_path) %>
+      <%= render 'shared/side_bar' unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path)%>
       <%= render 'shared/navbar' unless current_page?(root_path) || current_page?(new_user_session_path)%>
       <%= render 'shared/flashes' %>
-      <div class="<% unless current_page?(root_path) || current_page?(new_user_session_path) %>ml-300px<% end %>" style="min-height: 75vh;">
+      <div class="<% unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path) %>ml-300px<% end %>" style="min-height: 75vh;">
         <%= yield %>
       </div>
 
-      <%= render 'shared/footer' if current_page?(root_path) || current_page?(new_user_session_path) %>
-      <%= render 'shared/footer_small' unless current_page?(root_path) || current_page?(new_user_session_path) %>
+      <%= render 'shared/footer' if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path)%>
+      <%= render 'shared/footer_small' unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path) %>
   </body>
 </html>
