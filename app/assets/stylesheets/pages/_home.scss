@@ -28,7 +28,7 @@
 }
 
 .btn-signup:hover {
-  color: $gray;
+  color: $orange;
 }
 
 .btn-demo:hover {
@@ -56,12 +56,13 @@
 .btn-demo {
   background-color: $orange;
   font-size: 21px;
+  border: none;
 }
 
 .btn-trial {
   background-color: $bordeaux;
   color: white;
-  border-color: #FFFFFF;
+  border-color: white;
   margin-left: 40px;
   font-size: 21px;
 }
@@ -242,9 +243,10 @@
     }
   }
 
-  .btn-orange {
+  .btn-brown {
     background-color: $brown;
     color: white;
+    border: none;
   }
 
   .btn-started {

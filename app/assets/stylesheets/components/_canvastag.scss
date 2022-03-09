@@ -1,0 +1,78 @@
+.offcanvas {
+
+
+
+.tag{
+    border-radius: 2px;
+    text-align: center;
+    // margin: 10px;
+    padding: 5px 5px;
+    font-size: bold;
+    // height: 90%;
+    // width: fit-content;
+    display: inline-block;
+  }
+  .paid {
+    color: #68E1A3;
+    background-color: #F0FCF6;
+  }
+
+  .received {
+    color: #263B54;
+    background-color: #E9EBEE;
+  }
+
+  .payment-in-process {
+    color: #263B54;
+    background-color: #E9EBEE;
+
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+  .validated {
+    color: #263B54;
+    background-color: #E9EBEE;
+  }
+
+  .declined{
+    color: #FF3C3C;
+    background-color: #FFF5F5;
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+
+  .sent{
+    color: #263B54;
+    background-color: #E9EBEE;
+
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+  .follow_uped{
+    color: #263B54;
+    background-color: #E9EBEE;
+
+    // color: #263B54;
+    // background-color: #E9EBEE;
+  }
+
+
+  .created{
+    color: #263B54;
+    background-color: #E9EBEE;
+  }
+
+}
+
+.statut-content {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+    padding-left: 1em;
+    font-size: 0.9em;
+  }
+}
