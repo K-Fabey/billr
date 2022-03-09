@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe-webhooks'
 
 
-  resources :invoices, only: [ :new, :create, :show ] do
+  resources :invoices, only: [:index, :new, :create, :show ] do
     collection do
       get :received
       get :sent

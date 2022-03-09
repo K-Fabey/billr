@@ -17,11 +17,13 @@
 
   h3{
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+
+
   }
 
   p{
-    color: #9D6F77;
+    color: #e1d2d5;
     // color: white;
     margin-bottom: 0;
     font-size: .75rem;
@@ -30,11 +32,15 @@
 
 
   i{
-    color: #9D6F77;
+    color: #e1d2d5;
+    // color: #9D6F77;
     // color: white;
-
   }
 
+  .activ{
+
+    background-color: #702C37;
+  }
 
   .inv-type{
     display: flex;
@@ -87,5 +93,9 @@
 
   .small-box :hover{
   color: white;
+  }
+
+  .active{
+    background-color: #702C37;
   }
 }

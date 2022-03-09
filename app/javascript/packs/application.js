@@ -17,3 +17,9 @@ import "bootstrap"
 import "chartkick"
 // import "Chart.bundle"
 import "chartkick/chart.js"
+
+import { initFlatpickr } from "../plugins/flatpickr";
+
+document.addEventListener('turbolinks:load', () => {
+  initFlatpickr();
+});
