@@ -78,7 +78,7 @@
       <div class="card-chart">
       <%# current_user.company.received_invoices.each do |invoice| %>
         <%#= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %>
-      <%# end %>
+      <%# end  %>
 
         <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#0D6EFD", "#17A398", "#E68A00", "#E45D60", "#8A008A"], label: "Value" %>
       </div>
