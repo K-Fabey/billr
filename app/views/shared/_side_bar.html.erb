@@ -1,19 +1,21 @@
 
 <div class='side-bar'>
-  <%# <div id="logo-sidebar"> %>
-    <%# <%= link_to root_path do %>
-      <%# <%= image_tag "logo.png" %>
-    <%# <% end %>
-  <%# </div> %>
 
+<%# logo %>
+  <div class="div-logo">
+    <div id="logo-side-bar">
+      <%= link_to root_path do %>
+        <%= image_tag "Billr2.png", class:"logo-size"%>
+      <% end %>
+    </div>
+  </div>
 
   <%= link_to dashboard_path do %>
-    <h3>Dashboard</h3>
+    <h3>Tableau de bord</h3>
   <% end %>
 
-
   <%# <%= link_to received_invoices_path do %>
-    <div class="inv-type" data-bs-toggle="collapse" href="#collapsereceived" role="button" aria-expanded="false" aria-controls="collapsereceived">
+    <div class="inv-type" data-bs-toggle="collapse" href="#collapsereceived" role="button" aria-expanded="true" aria-controls="collapsereceived">
       <div class="icon">
         <%= image_tag "euro-logo.png" %>
       </div>
@@ -24,7 +26,7 @@
     </div>
   <%# <% end %>
 
-  <div class="collapse  <%= "show" if @type == "received" %>" id="collapsereceived">
+  <div class="collapse  show" id="collapsereceived">
     <%= link_to received_invoices_path do %>
       <div  class="small-box <%= "show active" if @status == "" %>">
         <%# <i class="fas fa-arrow-alt-circle-down"></i> %>
@@ -86,7 +88,7 @@
 
   <div>
     <%# <%= link_to sent_invoices_path do %>
-    <div class="inv-type" data-bs-toggle="collapse" href="#collapseSent" role="button" aria-expanded="false" aria-controls="collapseSent">
+    <div class="inv-type" data-bs-toggle="collapse" href="#collapseSent" role="button" aria-expanded="true" aria-controls="collapseSent">
       <div class="icon">
         <%= image_tag "euro-flying.png" %>
       </div>
@@ -96,7 +98,7 @@
       </div>
     </div>
     <%# <% end %>
-    <div class="collapse <%= "show" if @type == "sent" %>" id="collapseSent">
+    <div class="collapse show" id="collapseSent">
       <%= link_to sent_invoices_path do %>
         <div class="small-box <%= "show active" if @status == "" %>">
           <div class="icon">
