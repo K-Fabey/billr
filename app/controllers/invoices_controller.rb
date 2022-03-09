@@ -2,9 +2,6 @@ class InvoicesController < ApplicationController
   include CloudinaryHelper
   before_action :set_invoice, only: [:show, :validate, :decline_reason, :pay, :mark_as_paid, :follow_up, :send_to_partner]
 
-  RECEIVED_STATUSES = ["received", "payment in process", "validated", "declined", "paid"]
-  SENT_STATUSES = ["created", "sent", "paid", "follow_uped"]
-
   def new
     @invoice = Invoice.new
     @type = params[:type]
@@ -79,12 +76,12 @@ class InvoicesController < ApplicationController
       @invoices = @current_company.sent_invoices
     end
 
-    if params[:company].present? || params[:status].present?
-      search_query = params[:company] + " " + params[:status]
-      # @received_invoices = @current_company.received_invoices
-      # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
-      @invoices = @invoices.search_by_company_client_and_date(search_query) # TODO : fixme
-      # @invoices = @invoices.where("sender = ? AND recipient = ?", start_date, end_date)
+    if params[:company].present?
+      @invoices = @invoices.search_by_company_client_and_date(params[:company])
+    end
+
+    if params[:status].present?
+      @invoices = @invoices.where(status: params[:status])
     end
 
     if params[:date].present?
@@ -113,7 +110,7 @@ class InvoicesController < ApplicationController
     @current_company = current_user.company
     @received_invoices = @current_company.received_invoices
     @partners = @current_company.partners
-    @status = RECEIVED_STATUSES
+    @status = Invoice::RECEIVED_STATUSES
     # raise
     @invoices = @received_invoices.order(created_at: :desc)
     authorize @invoices
@@ -123,24 +120,6 @@ class InvoicesController < ApplicationController
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
-
-    # Setting the list to display when a search is done
-    # if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
-    #   search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
-
-    #   @invoices = Invoice.search_by_company_client_and_date(search_query)
-
-    # end
-
-    # if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
-    #   search_query = params[:query_company] + " " + params[:query_status]
-    #   # @received_invoices = @current_company.received_invoices
-    #   # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
-    #   start_date = params["query_date"].split(" to ").first.to_date
-    #   end_date = params["query_date"].split(" to ").second.to_date
-    #   @invoices = Invoice.search_by_company_client_and_date(search_query) # TODO : fixme
-    #   @invoices = @invoices.where("issue_date >= ? AND issue_date <= ?", start_date, end_date)
-    # end
 
     @total_amount = 0
     @invoices.each do |i|
@@ -156,7 +135,7 @@ class InvoicesController < ApplicationController
     @current_company = current_user.company
     @sent_invoices = @current_company.sent_invoices
     @partners = @current_company.partners
-    @status = SENT_STATUSES
+    @status = Invoice::SENT_STATUSES
     @invoices = @sent_invoices.order(created_at: :desc)
     authorize @invoices
     @status = params[:status]

@@ -23,12 +23,9 @@ class Invoice < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search_by_company_client_and_date,
     against: [ :status ],
-
     associated_against: {
-      sender: [ :name ]
-    },
-      associated_against: {
-      recipient: [ :name ]
+      recipient: [:name],
+      sender: [:name]
     },
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!

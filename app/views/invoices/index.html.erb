@@ -14,43 +14,41 @@
     </div>
     <br>
 
-    <div class="search-bar">
-      <%= form_tag invoices_path, class:"search-bar", method: :get do %>
-        <%= hidden_field_tag :type, @type %>
+    <%= form_tag invoices_path, class:"search-bar d-flex align-items-center", method: :get do %>
+      <%= hidden_field_tag :type, @type %>
 
-        <%= text_field_tag :company,
-          params[:company],
-          class: "form-control",
-          placeholder: "client",
-          placeholder: (@type == "sent" ? "Client" : "Fournisseur")
-        %>
-        <br>
+      <%= text_field_tag :company,
+        params[:company],
+        class: "form-control",
+        placeholder: "client",
+        placeholder: (@type == "sent" ? "Client" : "Fournisseur")
+      %>
 
-        <% if @type == "received" %>
-          <%= select_tag :status, options_for_select([["Statut", nil]] + Invoice::RECEIVED_STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }, params[:status]), class: "form-control" %>
-         <%# style: "width: 265px" %>
-        <% else %>
-          <%= select_tag :status, options_for_select([["Statut", nil]] + Invoice::SENT_STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }, params[:status]), class: "form-control" %>
-        <% end %>
-        <br>
-        <%# <% raise %>
-        <%= date_field_tag :date,
-          params[:date],
-          as: :string, required: true,
-          # input_html: {class: "datepicker"},
-          class: "form-control",
-          placeholder: "Date",
-          id: "range_start"
-          # data-provide :'datepicker'
-        %>
-        <%# just so that flatpickr range plugin is happy %>
-        <%= hidden_field_tag :range_end %>
-        <br>
-
-        <%= submit_tag "Rechercher", class: "btn btn-flat" %>
+      <% if @type == "received" %>
+        <%= select_tag :status, options_for_select([["Statut", nil]] + Invoice::RECEIVED_STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }, params[:status]), class: "form-control" %>
+      <% else %>
+        <%= select_tag :status, options_for_select([["Statut", nil]] + Invoice::SENT_STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }, params[:status]), class: "form-control" %>
       <% end %>
-    </div>
-    <br>
+
+      <%= text_field_tag :date,
+        params[:date],
+        as: :string, required: true,
+        class: "form-control",
+        placeholder: "Date Début",
+        id: "range_start"
+      %>
+
+      <i class="fas fa-long-arrow-alt-right mx-1 text-secondary"></i>
+
+      <%# just so that flatpickr range plugin is happy %>
+      <%= text_field_tag :range_end,
+        nil,
+        class: "form-control",
+        placeholder: "Date Fin"
+      %>
+
+      <%= submit_tag "Rechercher", class: "btn btn-flat" %>
+    <% end %>
 
     <div class="invoices-title-details">
       <h4>
