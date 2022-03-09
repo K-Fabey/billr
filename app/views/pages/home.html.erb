@@ -8,7 +8,7 @@
 <%# log in button %>
   <div class="btn-login">
     <% if current_user %>
-      <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
+      <%# <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
     <% else %>
     <%# sig up %>
       <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-signup", style: "margin-right: 3px" %>
@@ -24,8 +24,13 @@
         <h1> Une <span class="apart-title">gestion facilitée</span><br/>de vos factures</h1>
       </div>
       <p>100% adapté aux besoins de votre entreprise.</p>
-      <a class="btn btn-flat btn-demo" href="#">Démander une démo</a>
+
+      <% if current_user %>
+        <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
+      <% else %>
+      <a class="btn btn-flat btn-demo" href="#">Démonstration</a>
       <a class="btn btn-flat btn-trial" href="#">Essai gratuit</a>
+      <% end %>
     </div>
     <%= image_tag "main.png", class: "image-main" %>
   </div>
@@ -85,7 +90,6 @@
           </ul>
           <a class="btn btn-flat btn-started btn-lg" href="#">Get Started</a>
         </div>
-
 
       </div>
 
