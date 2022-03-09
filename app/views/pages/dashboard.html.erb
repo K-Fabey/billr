@@ -1,102 +1,103 @@
-<div class="container-fluid" style="padding: 10px">
+<div class="container-dashboard">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4>Bonjour <%= current_user.first_name.capitalize %> ! Bienvenue sur ton tableau de bord. </h4>
-    <a href="invoices/new" class="d-none d-sm-inline-block btn btn-sm btn-flat btn-green shadow-sm"><i
-    class="fas fa-download fa-sm text-white-50"></i> Ajouter une facture </a>
-  </div>
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <div class="col-xl-3 col-md-6 mb-4" id="dashboard-card">
-  <div class="card border-left-primary shadow h-100 py-2">
-      <div class="card-body">
-          <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Factures reçues</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4" id="dashboard-card">
-  <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-          <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Factures payées</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-
-  <!-- Earnings (Monthly) Card Example -->
-  <div class="col-xl-3 col-md-6 mb-4" id="dashboard-card">
-  <div class="card border-left-info shadow h-100 py-2">
-      <div class="card-body">
-          <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Factures en attente
-                  </div>
-                  <div class="row no-gutters align-items-center">
-                      <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                      </div>
-                      <div class="col">
-                          <div class="progress progress-sm mr-2">
-                              <div class="progress-bar bg-info" role="progressbar"
-                                  style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                  aria-valuemax="100"></div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-
-  <!-- Pending Requests Card Example -->
-  <div class="col-xl-3 col-md-6 mb-4" id="dashboard-card">
-  <div class="card border-left-warning shadow h-100 py-2">
-      <div class="card-body">
-          <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                      Factures suivies</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-comments fa-2x text-gray-300"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-  </div>
-
-  <div class="cards" style="padding: 15px 0">
-    <div class="card-category">
-      <%= pie_chart current_user.company.received_invoices.group(:status).sum(:total_w_tax).transform_values{ |value| value.fdiv(1000).round(1)}, donut: true, library: { pieSliceText: "value" }, colors: ["#0C50DA", "#109618", "#E68A00", "#D73C00", "#8A008A"] %>
-    </div>
-    <div class="card-category">
-      <%= pie_chart current_user.company.sent_invoices.group(:status).count, donut: true, colors: ["#109618", "#0C50DA", "#8A008A", "#E68A00"] %>
-    </div>
-
-  </div>
-
-  <div style="text-align: center">
+    <h3>Bienvenue sur ton tableau de bord </h3>
     <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
   </div>
+  <h4 class="h4-dashboard">Factures entrantes</h4>
+    <div class="d-sm-flex align-items-center justify-content-center">
+    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Factures en attente</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
+    <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Factures payées</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+      <div class="card-chart">
+      <%# current_user.company.received_invoices.each do |invoice| %>
+        <%#= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %>
+      <%# end %>
+
+        <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#0D6EFD", "#17A398", "#E68A00", "#E45D60", "#8A008A"], label: "Value" %>
+      </div>
+
+    <hr>
+
+    <h4 class="h4-dashboard">Factures sortantes</h4>
+    <div class="d-sm-flex align-items-center justify-content-center">
+    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
+    <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Factures envoyées
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-info" role="progressbar"
+                                    style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                        Factures suivies</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="card-chart">
+      <%= pie_chart @pie_data2, donut: true, colors: ["#109618", "#0C50DA", "#FFC65A", "#FF7143"] %>
+    </div>
 </div>
