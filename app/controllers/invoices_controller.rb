@@ -21,13 +21,14 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
-    @type = params[:type]
 
     authorize @invoice
     if current_user.company_id == @invoice.recipient_id
       @invoice.status = "received"
+      @type = "received"
     else
       @invoice.status = "created"
+      @type = "sent"
     end
 
     # Changer les valeurs ci-dessous pour les faire correspondre à la facture de la démo
@@ -42,7 +43,12 @@ class InvoicesController < ApplicationController
     @invoice.total_w_tax = 24000
 
     if @invoice.save
-      redirect_to invoice_path(@invoice)
+      flash[:notice] = "Facture créée"
+      if @type == "received"
+        redirect_to received_invoices_path
+      else
+        redirect_to sent_invoices_path
+      end
     else
       if current_user.company_id == @invoice.recipient_id
         @invoice.recipient = current_user.company
@@ -65,7 +71,7 @@ class InvoicesController < ApplicationController
     @user = current_user
     @current_company = current_user.company
 
-    @invoices = policy_scope(Invoice)
+    @invoices = policy_scope(Invoice).order(created_at: :desc)
 
     if @type == "received"
       @invoices = @current_company.received_invoices
@@ -82,12 +88,16 @@ class InvoicesController < ApplicationController
     end
 
     if params[:date].present?
-      start_date = params[:date].split(" to ").first.to_date
-      end_date = params[:date].split(" to ").second.to_date
+      if params[:date].include?("to")
+        start_date = params[:date].split(" to ").first.to_date
+        end_date   = params[:date].split(" to ").second.to_date
 
-      # start_date, end_date = params[:date].split(" to ")
+        # start_date, end_date = params[:date].split(" to ")
 
-      @invoices = @invoices.where("issue_date >= ? AND issue_date <= ?", start_date, end_date)
+        @invoices = @invoices.where("issue_date >= ? AND issue_date <= ?", start_date, end_date)
+      else
+        @invoices = @invoices.where(issue_date: params[:date])
+      end
     end
 
     @total_amount = 0
@@ -105,7 +115,7 @@ class InvoicesController < ApplicationController
     @partners = @current_company.partners
     @status = RECEIVED_STATUSES
     # raise
-    @invoices = @received_invoices
+    @invoices = @received_invoices.order(created_at: :desc)
     authorize @invoices
     @status = params[:status]
 
@@ -147,7 +157,7 @@ class InvoicesController < ApplicationController
     @sent_invoices = @current_company.sent_invoices
     @partners = @current_company.partners
     @status = SENT_STATUSES
-    @invoices = @sent_invoices
+    @invoices = @sent_invoices.order(created_at: :desc)
     authorize @invoices
     @status = params[:status]
 
