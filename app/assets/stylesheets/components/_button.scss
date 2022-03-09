@@ -13,30 +13,35 @@
 }
 
 .btn-flat {
-  color: white;
+  // color: white;
   padding: 8px 24px;
   border-radius: 4px;
   transition: background 0.3s ease;
+  color: $bordeaux;
+  border: 2px solid $light-gray;
 }
 
 .btn-flat:hover {
   color: white;
+  background-color: $brown;
 }
 
-.btn-green {
-  background: $green;
-}
+// .btn-green {
+//   background: $green;
+// }
 
-.btn-green:hover {
-  background: $light-green;
-}
+// .btn-green:hover {
+//   background: $light-green;
+// }
 
 .btn-orange {
   background-color: $orange;
+  border: none;
 }
 
 .btn-orange:hover {
  background: $light-orange;
+  border: none;
 }
 
 .btn-gradient {

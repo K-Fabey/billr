@@ -1,6 +1,6 @@
 <%= render 'shared/side_bar.html.erb' %>
 
-<div class="content-wrapper">
+<div class="content-wrapper content-form-new">
 
     <h2 class="h2-form">Ajouter une facture</h1>
 
@@ -21,9 +21,9 @@
       <% end %>
 
       <% if @invoice.received?(current_user) %>
-        <%= link_to "Retour", received_invoices_path(status: @status), class: "btn btn-gradient" %>
+        <%= link_to "Retour", received_invoices_path(status: @status), class: "btn btn-flat" %>
       <% else %>
-        <%= link_to "Retour", sent_invoices_path(status: @status), class: "btn btn-gradient" %>
+        <%= link_to "Retour", sent_invoices_path(status: @status), class: "btn btn-flat" %>
       <% end %>
         </div>
     </div>

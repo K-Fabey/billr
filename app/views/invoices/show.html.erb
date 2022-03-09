@@ -26,8 +26,8 @@
       <% if @invoice.received?(current_user) %>
       <!--c'est une facture recue -->
             <% unless @invoice.status == 'validated' || @invoice.status == 'declined' || @invoice.status == 'paid' || @invoice.status == 'mark_as_paid' %>
-            <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat btn-green", method: :patch %>
-            <button type="button" class="btn btn-flat btn-orange" data-bs-toggle="modal" data-bs-target="#exampleModal">Refuser</button>
+            <%= link_to "Valider", validate_invoice_path(@invoice), class: "btn btn-flat btn-orange", method: :patch %>
+            <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">Refuser</button>
             <!-- debut de la modale -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
