@@ -1,28 +1,31 @@
+<div class="statut-content">
+  <div class="tag <%= invoice.status.gsub(' ', '-') %>">
+    <%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize%>
+  </div>
+  <% if invoice.status == 'declined' %>
+    <p>Motif du rejet : <%= invoice.decline_reason%></p>
+  <% end %>
+</div>
 
-      <div class='mb-3 d-flex justify-content-evenly'>
-      <p><strong>Statut : <%= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %> </strong></p>
-      <% if invoice.status == 'declined' %>
-      <p>Motif du rejet : <%= invoice.decline_reason%></p>
-      <% end %>
-      </div>
+
 
       <% if invoice.received?(current_user) %>
             <!--c'est une facture recue -->
             <% if invoice.status == 'received' %>
             <div data-controller='invoice'>
-              <div class='mb-3 d-flex justify-content-evenly'>
+              <div class='my-3 mr-4'>
               <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
-              <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-orange", data: {action: 'click->invoice#decline'} %>
+              <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-red", data: {action: 'click->invoice#decline'} %>
               </div>
                   <div class='d-none' data-invoice-target='form'>
                     <%= simple_form_for invoice, url: decline_reason_invoice_path(invoice.id), method: :patch do |f| %>
                      <%= f.input :decline_reason, label:'Details du rejet' %>
-                     <%= f.submit "Confirmer", class: "btn btn-orange" %>
+                     <%= f.submit "Refuser", class: "btn btn-flat btn-red" %>
                      <% end %>
                   </div>
             </div>
             <% end %>
-            <div class='mb-3 d-flex justify-content-evenly'>
+            <div class='my-3 mr-4'>
             <% if invoice.status == 'validated' %>
                 <%= link_to "Payer", pay_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
             <% end %>
@@ -39,13 +42,13 @@
 
       <% else %>
             <!--c est une facture emise -->
-            <div class='mb-3 d-flex justify-content-evenly'>
+            <div class='my-3 mr-4'>
             <% if invoice.status =='created' %>
               <%= link_to "Envoyer", send_to_partner_invoice_path(invoice), class: "btn btn-green", method: :patch %>
             <% else %>
               <% unless invoice.status == 'paid' %>
               <%# <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
-              <%= link_to "Relancer",  follow_up_invoice_path(invoice), class: "btn btn-flat btn-orange", method: :patch %>
+              <%= link_to "Relancer",  follow_up_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
               <% end %>
             <% end %>
             </div>

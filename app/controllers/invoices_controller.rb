@@ -32,14 +32,14 @@ class InvoicesController < ApplicationController
 
     # Changer les valeurs ci-dessous pour les faire correspondre à la facture de la démo
 
-    @invoice.issue_date = "2022-03-01"
-    @invoice.payment_deadline = "2022.03.16"
-    @invoice.po_number = "106"
+    @invoice.issue_date = "2022-03-05"
+    @invoice.payment_deadline = "2022-03-18"
+    @invoice.po_number = "INV0048666"
     @invoice.vat_rate = 20
-    @invoice.total_wo_tax = 550.00
+    @invoice.total_wo_tax = 20000
     @invoice.payment_method = "Virement"
-    @invoice.tax_amount = 110.00
-    @invoice.total_w_tax = 660.00
+    @invoice.tax_amount = 4000
+    @invoice.total_w_tax = 24000
 
     if @invoice.save
       redirect_to invoice_path(@invoice)

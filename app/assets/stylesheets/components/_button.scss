@@ -35,6 +35,14 @@
   background: $orange;
 }
 
+.btn-red {
+  background: red;
+}
+
+.btn-red:hover {
+  background: $orange;
+}
+
 .btn-orange:hover {
  background: $light-orange;
 }
