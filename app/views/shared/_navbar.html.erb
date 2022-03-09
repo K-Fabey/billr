@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div id="logo-navbar">
       <%= link_to root_path do %>
-        <%= image_tag "Billr3.png" %>
+        <%= image_tag "Billr3.png", class:"logo-size"%>
       <% end %>
     </div>
 
@@ -14,7 +14,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active hello-user">
-            <span>Hello <%= current_user.first_name  %> 👋</span>
+            <span> Bonjour <%= current_user.first_name.capitalize %> 👋</span>
           </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.key %>
