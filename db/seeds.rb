@@ -80,7 +80,7 @@ CompanyPartnership.create!(company: le_wagon, partner: orange, client: true)
     payment_date = Faker::Date.between(from: '2022-03-08', to: '2022-03-22') if status == "paid"
     declined_reasons = ["pas de tva", "pas de total HT", "adresse manquante"]
     declined_reason = declined_reasons.sample if status == "declined"
-    invoice = Invoice.create!(
+    Invoice.create!(
       sender: le_wagon,
       recipient: partner,
       issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-10'),
@@ -141,7 +141,7 @@ invoicefixe1.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_typ
     payment_date = Faker::Date.between(from: '2022-03-08', to: '2022-03-22') if status == "paid"
     declined_reasons = ["pas de tva", "pas de total HT", "adresse manquante"]
     declined_reason = declined_reasons.sample if status == "declined"
-    invoice = Invoice.create!(
+    Invoice.create!(
       sender: partner,
       recipient: le_wagon,
       issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-03'),
@@ -163,7 +163,7 @@ invoicefixe = Invoice.create!(
       sender: office_depot,
       recipient: le_wagon,
       issue_date: '2022-03-01',
-      po_number: '106',
+      po_number: 'INV00106',
       vat_rate: 20,
       total_wo_tax: 550,
       status: 'received',
