@@ -20,4 +20,6 @@ import "chartkick/chart.js"
 
 import { initFlatpickr } from "../plugins/flatpickr";
 
-initFlatpickr();
+document.addEventListener('turbolinks:load', () => {
+  initFlatpickr();
+});

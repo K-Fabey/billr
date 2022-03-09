@@ -60,15 +60,41 @@ class InvoicesController < ApplicationController
   end
 
   def index
+    @type = params[:type]
+
     @user = current_user
+    @current_company = current_user.company
+
     @invoices = policy_scope(Invoice)
 
-    if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
-      search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
+    if @type == "received"
+      @invoices = @current_company.received_invoices
+    else
+      @invoices = @current_company.sent_invoices
+    end
+
+    if params[:company].present? || params[:status].present?
+      search_query = params[:company] + " " + params[:status]
       # @received_invoices = @current_company.received_invoices
       # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
-      @invoices = Invoice.search_by_company_client_and_date(search_query) # TODO : fixme
+      @invoices = @invoices.search_by_company_client_and_date(search_query) # TODO : fixme
+      # @invoices = @invoices.where("sender = ? AND recipient = ?", start_date, end_date)
     end
+
+    if params[:date].present?
+      start_date = params[:date].split(" to ").first.to_date
+      end_date = params[:date].split(" to ").second.to_date
+
+      # start_date, end_date = params[:date].split(" to ")
+
+      @invoices = @invoices.where("issue_date >= ? AND issue_date <= ?", start_date, end_date)
+    end
+
+    @total_amount = 0
+    @invoices.each do |i|
+      @total_amount = @total_amount + i.total_w_tax
+    end
+    # raise
   end
 
   def received
@@ -89,12 +115,23 @@ class InvoicesController < ApplicationController
     end
 
     # Setting the list to display when a search is done
-    if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
-      search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
+    # if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+    #   search_query = params[:query_company] + " " + params[:query_status] + " " + params[:query_date]
 
-      @invoices = Invoice.search_by_company_client_and_date(search_query)
+    #   @invoices = Invoice.search_by_company_client_and_date(search_query)
 
-    end
+    # end
+
+    # if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+    #   search_query = params[:query_company] + " " + params[:query_status]
+    #   # @received_invoices = @current_company.received_invoices
+    #   # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
+    #   start_date = params["query_date"].split(" to ").first.to_date
+    #   end_date = params["query_date"].split(" to ").second.to_date
+    #   @invoices = Invoice.search_by_company_client_and_date(search_query) # TODO : fixme
+    #   @invoices = @invoices.where("issue_date >= ? AND issue_date <= ?", start_date, end_date)
+    # end
+
     @total_amount = 0
     @invoices.each do |i|
       @total_amount = @total_amount + i.total_w_tax
@@ -117,6 +154,17 @@ class InvoicesController < ApplicationController
     if params[:status].present?
       @invoices = @invoices.where(status: params[:status])
     end
+
+    # if params[:query_company].present? || params[:query_status].present? || params[:query_date].present?
+    #   search_query = params[:query_company] + " " + params[:query_status]
+    #   # @received_invoices = @current_company.received_invoices
+    #   # @invoices = (@received_invoices + @sent_invoices).search_by_company_client_and_date(search_query)
+    #   start_date = params["query_date"].split(" to ").first.to_date
+    #   end_date = params["query_date"].split(" to ").second.to_date
+    #   @invoices = Invoice.search_by_company_client_and_date(search_query) # TODO : fixme
+    #   @invoices = @invoices.where("issue_date >= ? AND issue_date <= ?", start_date, end_date)
+    # end
+
     @total_amount = 0
     @invoices.each do |i|
       @total_amount = @total_amount + i.total_w_tax

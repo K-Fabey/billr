@@ -1,10 +1,12 @@
 .index-invoices{
     flex-grow: 1;
     padding: 10px;
+    padding: 0px 10px;
 
   .index-invoices-title{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 8px;
   }
 
@@ -16,11 +18,12 @@
 
   h3{
     margin: 0;
-    font-size: 1.0rem;
+    font-size: 1.1rem;
   }
 
   .invoices-title-details{
     // background-color: white;
+    padding-bottom: 8px;
 
 
     h4{
@@ -32,8 +35,9 @@
   .search-bar{
     margin-right: 12px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     margin-bottom: 8px;
+    height: 35px;
     // margin-bottom: 8px;
 
 
@@ -41,9 +45,27 @@
       margin: 0px 2px;
       background-color: white;
       border: none;
-      font-size: 1rem;
+      font-size: 0.8rem;
+      width: 170px;
 
     }
   }
+
+  .invoices-title{
+
+  }
+
+  .btn-orange{
+    height: 35px;
+    font-size: 0.8rem;
+    align-items: center;
+  }
+
+  .btn-flat{
+    height: 35px;
+    font-size: 0.8rem;
+    align-items: center;
+  }
+
 
 }

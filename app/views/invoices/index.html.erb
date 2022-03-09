@@ -5,50 +5,62 @@
 <div class="content-wrapper">
 
   <div class="index-invoices">
-    <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat btn-orange"%>
-    <br>
+
+    <div class='index-invoices-title pt-3'>
+      <div class='invoices-title'>
+        <h3>Mes factures <%= translate(@type, scope: 'invoice.type') %></h3>
+      </div>
+      <%= link_to "Nouvelle facture", new_invoice_path(type: @type), class: "btn btn-flat btn-orange"%>
+    </div>
     <br>
 
-    <div class='index-invoices-title'>
-      <h3>Mes factures <%= translate(@type, scope: 'invoice.type') %></h3>
-      <br>
-
+    <div class="search-bar">
       <%= form_tag invoices_path, class:"search-bar", method: :get do %>
-        <%= text_field_tag :query_company,
-          params[:query_company],
+        <%= hidden_field_tag :type, @type %>
+
+        <%= text_field_tag :company,
+          params[:company],
           class: "form-control",
-          placeholder: "Nom du client/fournisseur"
+          placeholder: "client",
+          placeholder: (@type == "sent" ? "Client" : "Fournisseur")
         %>
         <br>
-        <%= select_tag :query_status, options_for_select([["", nil]] + Invoice::STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }), style: "width: 265px" %>
-        <br>
 
-        <%= text_field_tag :query_date,
-          params[:query_date],
+        <% if @type == "received" %>
+          <%= select_tag :status, options_for_select([["Statut", nil]] + Invoice::RECEIVED_STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }, params[:status]), class: "form-control" %>
+         <%# style: "width: 265px" %>
+        <% else %>
+          <%= select_tag :status, options_for_select([["Statut", nil]] + Invoice::SENT_STATUSES.map { |status| [translate(status, scope: 'invoice.status', count: 1).capitalize, status] }, params[:status]), class: "form-control" %>
+        <% end %>
+        <br>
+        <%# <% raise %>
+        <%= date_field_tag :date,
+          params[:date],
           as: :string, required: true,
-          input_html: {class: "datepicker"},
-          # class: "form-control",
-          placeholder: "Date"
+          # input_html: {class: "datepicker"},
+          class: "form-control",
+          placeholder: "Date",
+          id: "range_start"
           # data-provide :'datepicker'
         %>
         <br>
 
-        <%= submit_tag "Rechercher", class: "btn btn-flat btn-orange" %>
+        <%= submit_tag "Rechercher", class: "btn btn-flat" %>
       <% end %>
     </div>
-
     <br>
+
     <div class="invoices-title-details">
       <h4>
-          <%= @invoices.count %> factures <%= translate(@status, scope: 'invoice.status', count: @invoices.count) %> pour un total de <%= @total_amount.round(2) %>€
+        <strong> <%= @invoices.count %> factures </strong>  <%= translate(@status, scope: 'invoice.status', count: @invoices.count) %> pour un total de <strong> <%= @total_amount.round(2) %>€ </strong>
       </h4>
     </div>
-
-
     <table class='table-invoices'>
        <thead>
         <tr class="table-header">
-          <td class="table-row-client">Client</td>
+          <td class="table-row-client">
+            <%= @type == "sent" ? "Client" : "Fournisseur" %>
+          </td>
           <td style="width: 15%">N° de facture</td>
           <td style="width: 19%%">Montant</td>
           <td style="width: 19%">Date</td>
