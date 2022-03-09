@@ -1,6 +1,6 @@
 
 <tr class="table-line" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight-<%= invoice.id %>">
-  <td class="table-row-client"><%= invoice.recipient.name %> </td>
+  <td class="table-row-client"><%= invoice.recipient.name %></td>
   <td><%= invoice.po_number %></td>
   <td> <strong> <%= invoice.total_w_tax.round(2) %>€ </strong> </td>
   <td><%= localize(invoice.issue_date, format: '%d/%m/%Y') %></td>
@@ -14,14 +14,15 @@
 
 <div class="offcanvas offcanvas-end"; tabindex="-1" id="offcanvasRight-<%= invoice.id %>" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
+
     <% if invoice.status == 'created' || invoice.status == "sent" || invoice.status == "paid" || invoice.status == "follow_uped" %>
-    <h5 id="offcanvasRightLabel"><%= invoice.recipient.name %></h5>
+        <h5 id="offcanvasRightLabel"><%= invoice.recipient.name %></h5>
     <% else %>
-    <h5 id="offcanvasRightLabel"></h5>
+       <h5 id="offcanvasRightLabel"><%= invoice.sender.name %></h5>
     <% end %>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
-    <%= render 'shared/show_invoice', invoice: invoice %>
-  </div>
+    <div class="offcanvas-body">
+      <%= render 'shared/show_invoice', invoice: invoice %>
+    </div>
 </div>
