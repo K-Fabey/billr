@@ -1,6 +1,8 @@
 
 <tr class="table-line" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight-<%= invoice.id %>">
-  <td class="table-row-client"><%= invoice.recipient.name %></td>
+  <td class="table-row-client">
+    <%= @type == "sent" ? <%= invoice.recipient.name %> : <%= invoice.sender.name %> %>
+  </td>
   <td><%= invoice.po_number %></td>
   <td> <strong> <%= invoice.total_w_tax.round(2) %>€ </strong> </td>
   <td><%= localize(invoice.issue_date, format: '%d/%m/%Y') %></td>
