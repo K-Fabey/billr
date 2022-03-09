@@ -163,7 +163,7 @@ invoicefixe = Invoice.create!(
       sender: office_depot,
       recipient: le_wagon,
       issue_date: '2022-03-01',
-      po_number: '106',
+      po_number: 'INV00106',
       vat_rate: 20,
       total_wo_tax: 550,
       status: 'received',

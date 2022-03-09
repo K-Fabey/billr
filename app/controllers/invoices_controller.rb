@@ -188,36 +188,38 @@ class InvoicesController < ApplicationController
   end
 
   def pay
-    images = []
-    if @invoice.invoice_file.attached?
-      images << cl_image_path(@invoice.invoice_file.key, format: :png, width:'600px')
-    end
+    # images = []
+    # if @invoice.invoice_file.attached?
+    #   images << cl_image_path(@invoice.invoice_file.key, format: :png, width:'600px')
+    # end
     authorize @invoice
-    session = Stripe::Checkout::Session.create(
-    payment_method_types: ['card'],
-    line_items: [{
-      description: "OFFICE DEPOT",
-      images: images,
-      name: @invoice.po_number,
-      amount: 66000,
-      # amount: (@invoice.total_w_tax*100).to_i,
-      currency: 'eur',
-      quantity: 1
-    }],
-    success_url: invoice_url(@invoice),
-    cancel_url: invoice_url(@invoice)
-  )
-    @invoice.update(checkout_session_id: session.id, status: 'payment in process')
-    redirect_to session[:url]
-    # redirect_to received_invoices_path
-    # flash[:notice] = "Facture mise en paiement !"
+  #   session = Stripe::Checkout::Session.create(
+  #   payment_method_types: ['card'],
+  #   line_items: [{
+  #     description: "OFFICE DEPOT",
+  #     images: images,
+  #     name: @invoice.po_number,
+  #     amount: 66000,
+  #     # amount: (@invoice.total_w_tax*100).to_i,
+  #     currency: 'eur',
+  #     quantity: 1
+  #   }],
+  #   success_url: invoice_url(@invoice),
+  #   cancel_url: invoice_url(@invoice)
+  # )
+  #  @invoice.update(checkout_session_id: session.id, status: 'payment in process')
+  #  redirect_to session[:url]
+  #  @invoice.update(invoice_params)
+    @invoice.update(status: 'paid')
+    redirect_to received_invoices_path
+    flash[:notice] = "Paiement transmis à votre banque. Il sera executé sous 3 jours."
   end
 
   def mark_as_paid
     @invoice.update(status: 'paid')
     authorize @invoice
     redirect_to received_invoices_path
-    flash[:notice] = "Facture payée !"
+    flash[:notice] = "Paiement transmis à votre banque. Il sera executé sous 3 jours."
   end
 
   def send_to_partner
