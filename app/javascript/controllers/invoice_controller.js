@@ -8,6 +8,7 @@ export default class extends Controller {
     // console.log(this.formTarget);
 
   }
+
   decline(event) {
     console.log('click bouton refuser')
     event.preventDefault();
