@@ -1,6 +1,6 @@
 .navbar-lewagon {
-  justify-content: space-between;
   background: white;
+  padding: 0;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -12,17 +12,21 @@
 }
 
 #logo-navbar {
-  text-align: left;
-  margin-bottom: 30px;
-  text-align: left;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-top: 0px;
   margin-left: 320px;
+  height: 5px;
+
+}
+
+.logo-size {
+  width: 65px;
+  margin-top: 11px;
 }
 
 .hello-user {
   display: flex;
   align-items: center;
-  font-size: 30px;
+      font-size: 17px;
   margin: 15px;
 }
