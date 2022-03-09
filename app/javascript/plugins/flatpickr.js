@@ -13,8 +13,6 @@ const initFlatpickr = () => {
     altInput: true,
     plugins: [new rangePlugin({ input: "#range_end" })]
   });
-
-
 }
 
 export { initFlatpickr };

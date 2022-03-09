@@ -4,12 +4,12 @@ export default class extends Controller {
   static targets = ['form']
 
   connect() {
-    console.log('Hello, Stimulus!');
-    console.log(this.formTarget);
+    // console.log('Hello, Stimulus!');
+    // console.log(this.formTarget);
 
   }
   decline(event) {
-    console.log('super decline')
+    // console.log('super decline')
     event.preventDefault();
     this.formTarget.classList.toggle('d-none');
   }

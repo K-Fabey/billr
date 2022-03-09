@@ -43,6 +43,8 @@
           id: "range_start"
           # data-provide :'datepicker'
         %>
+        <%# just so that flatpickr range plugin is happy %>
+        <%= hidden_field_tag :range_end %>
         <br>
 
         <%= submit_tag "Rechercher", class: "btn btn-flat" %>
