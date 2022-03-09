@@ -1,43 +1,7 @@
 <div class="container-dashboard">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-    <h4><%= Bienvenue sur votre tableau de bord. </h4>
-    <a href="invoices/new" class="d-none d-sm-inline-block btn btn-sm btn-flat btn-orange shadow-sm"><i
-    class="fas fa-download fa-sm text-white-50"></i> Ajouter une facture </a>
-  </div>
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <div class="col-xl-3 col-md-6 mb-4" id="dashboard-card">
-  <div class="card border-left-primary shadow h-100 py-2">
-      <div class="card-body">
-          <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Factures reçues</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4" id="dashboard-card">
-  <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-          <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Factures payées</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-
+    <h3>Bienvenue sur votre tableau de bord </h3>
+    <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
   </div>
   <h4 class="h4-dashboard">Factures entrantes</h4>
     <div class="d-sm-flex align-items-center justify-content-center">
@@ -78,7 +42,7 @@
       <div class="card-chart">
       <%# current_user.company.received_invoices.each do |invoice| %>
         <%#= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %>
-      <%# end  %>
+      <%#     end %>
 
         <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#0D6EFD", "#17A398", "#E68A00", "#E45D60", "#8A008A"], label: "Value" %>
       </div>
