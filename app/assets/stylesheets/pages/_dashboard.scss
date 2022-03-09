@@ -7,8 +7,36 @@
 .card-category {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
+  background-color: white;
 }
 
 #dashboard-card {
-  width: 23%;
+  width: 20%;
+}
+
+.container-dashboard {
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+.card-chart {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  width: 50%;
+  display: inline-block;
+  background-color: white;
+}
+
+.h4-dashboard {
+  margin: 20px;
+}
+
+hr {
+  width:65%;
+  margin:15px auto;
+  border-top: 1px solid grey ;
+  opacity: 0.25
 }
