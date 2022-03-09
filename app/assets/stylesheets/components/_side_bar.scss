@@ -35,6 +35,7 @@
 
   .div-logo {
     display: flex;
+    margin-bottom: 60px;
   }
 
   #logo-side-bar {
@@ -58,8 +59,21 @@
     // margin-left: 10px;
   }
 
-  .activ{
+  .menu-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
+  .dashboard-side-bar {
+    margin-bottom: 10px;
+  }
+
+  .icon-line {
+    margin-left: 5px;
+  }
+
+  .activ{
     background-color: #702C37;
   }
 
@@ -68,20 +82,18 @@
     align-items: center;
     // padding-left: 10px;
     justify-content: start;
-    margin-top: 8px;
+    margin-top: 35px;
     // margin-bottom: 8px;
 
-
-    .icon{
-      margin-right: 0px;
-      margin-bottom: 9px;
-      margin-left: 10px;
-    }
-    i{
-      color: white;
-    }
-
+  .icon{
+    margin-right: 0px;
+    margin-bottom: 9px;
+    margin-left: 10px;
   }
+  i{
+    color: white;
+  }
+}
 
   .small-box{
     display: flex;
@@ -90,9 +102,9 @@
     justify-content: start;
     margin-bottom: 0.2rem;
 
-    .icon{
-      margin-right: 10px;
-    }
+  .icon{
+    margin-right: 10px;
+   }
   }
 
   a{
@@ -105,7 +117,6 @@
     font-size: bold;
     font-weight: bold;
   }
-
 
   .search-bar{
     margin-right: 12px;

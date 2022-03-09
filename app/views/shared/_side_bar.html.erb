@@ -10,23 +10,30 @@
     </div>
   </div>
 
-  <%= link_to dashboard_path do %>
-    <h3>Tableau de bord</h3>
-  <% end %>
+
+  <div class="menu-side-bar">
+<%# div dashboard %>
+    <div class="dashboard-side-bar">
+      <%= link_to dashboard_path do %>
+        <h3> 📉 <span class="icon-line">Tableau de bord</span></h3>
+      <% end %>
+    </div>
 
   <%# <%= link_to received_invoices_path do %>
-    <div class="inv-type" data-bs-toggle="collapse" href="#collapsereceived" role="button" aria-expanded="true" aria-controls="collapsereceived">
-      <div class="icon">
-        <%= image_tag "euro-logo.png" %>
-      </div>
-      <h3>Factures entrantes</h3>
-      <div class="icon">
+    <div class="invoices-sidebar-list">
+
+    <div class="inv-type" <%#data-bs-toggle="collapse"%> href="#collapsereceived" role="button" aria-expanded="true" aria-controls="collapsereceived">
+      <%# <div class="icon"> %>
+        <%# <%= image_tag "euro-logo.png" %>
+      <%# </div> %>
+      <h3> 🗓 <span class="icon-line">Factures entrantes</h3></span>
+      <%# <div class="icon"> %>
         <%# <i class="fas fa-chevron-down"></i> %>
-      </div>
+      <%# </div> %>
     </div>
   <%# <% end %>
 
-  <div class="collapse  show" id="collapsereceived">
+  <div class="collapse show" id="collapsereceived">
     <%= link_to received_invoices_path do %>
       <div  class="small-box <%= "show active" if @status == "" %>">
         <%# <i class="fas fa-arrow-alt-circle-down"></i> %>
@@ -86,19 +93,20 @@
     <% end %>
   </div>
 
-  <div>
+
     <%# <%= link_to sent_invoices_path do %>
-    <div class="inv-type" data-bs-toggle="collapse" href="#collapseSent" role="button" aria-expanded="true" aria-controls="collapseSent">
-      <div class="icon">
-        <%= image_tag "euro-flying.png" %>
-      </div>
-      <h3>Factures sortantes</h3>
-      <div class="icon">
+    <div class="inv-type" <%# data-bs-toggle="collapse"%>href="#collapseSent" role="button" aria-expanded="true" aria-controls="collapseSent">
+      <%# <div class="icon"> %>
+        <%# <%= image_tag "euro-flying.png" %>
+      <%# </div> %>
+      <h3>🗒 <span class="icon-line">Factures sortantes</span></h3>
+      <%# <div class="icon"> %>
         <%# <i class="fas fa-chevron-down"></i> %>
-      </div>
+      <%# </div> %>
     </div>
     <%# <% end %>
     <div class="collapse show" id="collapseSent">
+
       <%= link_to sent_invoices_path do %>
         <div class="small-box <%= "show active" if @status == "" %>">
           <div class="icon">
@@ -143,7 +151,9 @@
           <p>En retard de paiement</p>
         </div>
       <% end %>
+
     </div>
+  </div>
   </div>
 
 </div>
