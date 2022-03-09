@@ -4,7 +4,7 @@
     <%= @type == "sent" ?  invoice.recipient.name : invoice.sender.name %>
   </td>
   <td><%= invoice.po_number %></td>
-  <td> <strong> <%= invoice.total_w_tax.round(2) %>€ </strong> </td>
+  <td> <strong> <%= number_with_delimiter(invoice.total_w_tax.round(2), locale: :fr) %>€ </strong> </td>
   <td><%= localize(invoice.issue_date, format: '%d/%m/%Y') %></td>
   <td><%= localize(invoice.payment_deadline, format: '%d/%m/%Y') %></td>
   <td class="table-row-status">

@@ -76,9 +76,12 @@
 
   .table-header{
     background-color: #F2F3F5;
-    font-size: bold;
     height: 2.5rem;
     text-align: center;
+
+    .tb{
+      font-size: bolder;
+    }
   }
 
   .table-line{
