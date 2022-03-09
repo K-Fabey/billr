@@ -15,45 +15,46 @@ Company.destroy_all
 puts "creating new companies and invoices..."
 
 le_wagon = Company.create!(name: "Le Wagon",
-                        siren: "442 395 448",
-                        siret: "442 395 448 00057",
-                        address: "16 villa gaudelet",
+                        siren: "794949917",
+                        siret: "79494991700023",
+                        address: "24 RUE LOUIS BLANC",
                         city: "Paris",
                         country: "France",
                         phone_number: "+33 01 23 45 67 89",
-                        vat_number: "FR55442395448",
-                        email: "contact@total.fr",
+                        vat_number: "FR03794949917",
+                        email: "contact@lewagon.fr",
                         bank_account: "FR12 1234 5678 1234 5678 1234 567",
-                        legal_status: "SA",
-                        capital: "5 164 558 €")
+                        legal_status: "SAS",
+                        capital: "1000 €")
 
 office_depot = Company.create!(name: "Office Depot",
-                        siren: "466 388 448",
-                        siret: "466 388 448 00055",
-                        address: "24 RUE DE VAUGIRARD",
-                        city: "Paris",
+                        siren: "402254437",
+                        siret: "40225443700690",
+                        address: "126 AVENUE DU POTEAU",
+                        city: "SENLIS",
                         country: "France",
                         phone_number: "+33 01 23 45 67 89",
-                        vat_number: "FR55442396648",
+                        vat_number: "FR00402254437",
                         email: "magasin-paris11@officedepot.com",
                         bank_account: "FR12 4444 5678 1234 5678 1234 567",
-                        legal_status: "SA",
-                        capital: "164558 €")
+                        legal_status: "SAS",
+                        capital: "70 668 261 €")
 
 orange = Company.create!(name: "Orange",
-                        siren: "466 666 448",
-                        siret: "466 444 448 00055",
-                        address: "33 RUE PONCELET",
-                        city: "Paris",
+                        siren: "380129866",
+                        siret: "38012986648625",
+                        address: "111 QUAI DU PRESIDENT ROOSEVELT",
+                        city: "ISSY-LES-MOULINEAUX",
                         country: "France",
                         phone_number: "+33 01 65 48 87 80",
-                        vat_number: "FR55442396778",
+                        vat_number: "FR89380129866",
                         email: "factures-recues@orange.com",
                         bank_account: "FR12 5555 5678 1234 5678 1234 567",
                         legal_status: "SA",
-                        capital: "1 124 558 €")
+                        capital: "10 640 226 396 €")
 
 CompanyPartnership.create!(company: le_wagon, partner: office_depot, supplier: true)
+CompanyPartnership.create!(company: le_wagon, partner: orange, client: true)
 
 10.times do
   partner = Company.new(
