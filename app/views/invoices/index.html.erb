@@ -25,7 +25,9 @@
 
         <%= text_field_tag :query_date,
           params[:query_date],
-          class: "form-control",
+          as: :string, required: true,
+          input_html: {class: "datepicker"},
+          # class: "form-control",
           placeholder: "Date"
           # data-provide :'datepicker'
         %>
