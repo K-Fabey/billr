@@ -16,7 +16,8 @@
 
               <div class='my-3 mr-4'>
               <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
-              <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-red", data: {action: 'click->invoice#decline'} %>
+              <%#= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-red", data: {action: 'click->invoice#decline'} %>
+              <%= button_tag "Refuser", class: "btn btn-flat btn-red", data: {action: 'click->invoice#decline'} %>
 
               </div>
                   <div class='d-none' data-invoice-target='form'>
