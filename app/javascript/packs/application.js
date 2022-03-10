@@ -19,6 +19,7 @@ import "chartkick"
 import "chartkick/chart.js"
 
 import { initFlatpickr } from "../plugins/flatpickr";
+// import { refuserToggle } from "../components/invoice";
 
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
