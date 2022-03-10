@@ -56,7 +56,7 @@ orange = Company.create!(name: "Orange",
 CompanyPartnership.create!(company: le_wagon, partner: office_depot, supplier: true)
 CompanyPartnership.create!(company: le_wagon, partner: orange, client: true)
 
-10.times do
+20.times do
   partner = Company.new(
     name: Faker::Company.name,
     siren: Faker::Number.number(digits: 9),
@@ -117,7 +117,7 @@ invoicefixe1 = Invoice.create!(
 file2 = File.open('app/assets/images/INV-004863-Orange.pdf')
 invoicefixe1.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
 
-10.times do
+20.times do
   partner = Company.new(
     name: Faker::Company.name,
     siren: Faker::Number.number(digits: 9),
