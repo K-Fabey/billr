@@ -46,7 +46,7 @@
         <%= yield %>
       </div>
 
-      <%= render 'shared/footer' if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path)%>
+      <%= render 'shared/footer' if current_page?(root_path) || current_page?(new_user_session_path)%>
       <%# <%= render 'shared/footer_small' unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path) %>
   </body>
 </html>
