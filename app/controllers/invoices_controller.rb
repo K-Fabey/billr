@@ -201,14 +201,14 @@ class InvoicesController < ApplicationController
   #  @invoice.update(invoice_params)
     @invoice.update(status: 'paid')
     redirect_to received_invoices_path
-    flash[:notice] = "Un virement de #{@invoice.total_w_tax} euros transmis à votre banque sera exécuté sous 3 jours."
+    flash[:notice] = "Un virement de #{@invoice.total_w_tax.round(2)} € transmis à votre banque sera exécuté sous 3 jours."
   end
 
   def mark_as_paid
     @invoice.update(status: 'paid')
     authorize @invoice
     redirect_to received_invoices_path
-    flash[:notice] = "Un virement de #{@invoice.total_w_tax} euros transmis à votre banque sera exécuté sous 3 jours."
+    flash[:notice] = "Un virement de #{@invoice.total_w_tax.round(2)} € transmis à votre banque sera exécuté sous 3 jours."
   end
 
   def send_to_partner
