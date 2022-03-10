@@ -2,7 +2,6 @@
 .side-bar{
   background-color: #5C0F1C;
   width: 300px;
-  padding-left: 20px;
   padding-top: 30px;
   z-index: 1;
   // padding-top: 50px;
@@ -39,6 +38,7 @@
   }
 
   #logo-side-bar {
+    padding-left: 20px;
     // margin-bottom: 50px;
     // margin-top: 0px;
     // margin-left: 320px;
@@ -54,7 +54,7 @@
   .logo-size {
     margin-bottom: 30px;
     width: 93px;
-    margin-left: 10px;
+    // margin-left: 10px;
     // width: 93px;
     // margin-left: 10px;
   }
@@ -67,6 +67,12 @@
 
   .dashboard-side-bar {
     margin-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 0.5em;
+  }
+
+  .invoices-sidebar-list {
+    padding-left: 20px;
   }
 
   .icon-line {

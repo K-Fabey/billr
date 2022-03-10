@@ -13,7 +13,7 @@
 
   <div class="menu-side-bar">
 <%# div dashboard %>
-    <div class="dashboard-side-bar">
+    <div class="dashboard-side-bar <%= "active" if action_name == "dashboard" %>">
       <%= link_to dashboard_path do %>
         <h3> <i class="fas fa-columns"></i> <span class="icon-line">Tableau de bord</span></h3>
       <% end %>
@@ -35,7 +35,7 @@
 
   <div class="collapse show" id="collapsereceived">
     <%= link_to received_invoices_path do %>
-      <div  class="small-box <%= "show active" if @status == "" %>">
+      <div  class="small-box <%= "show active" if @type == "received" && @status.blank? %>">
         <%# <i class="fas fa-arrow-alt-circle-down"></i> %>
         <div class="icon">
           <%# <i class="fas fa-thumbtack"></i> %>
@@ -109,7 +109,7 @@
     <div class="collapse show" id="collapseSent">
 
       <%= link_to sent_invoices_path do %>
-        <div class="small-box <%= "show active" if @status == "" %>">
+        <div class="small-box <%= "show active" if @type == "sent" && @status.blank? %>">
           <div class="icon">
             <%# <i class="fas fa-file-invoice-dollar"></i> %>
           </div>
