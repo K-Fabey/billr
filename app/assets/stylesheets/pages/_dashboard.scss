@@ -8,16 +8,37 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
   background-color: white;
+  margin-bottom: 1em;
+  padding: 1em;
 }
 
 #dashboard-card {
   width: 20%;
 }
 
-.container-dashboard {
-  margin: 15px;
-  padding: 10px;
-  text-align: center;
+.dashboard-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  display: flex;
+}
+
+.dashboard-column {
+  flex: 1;
+  &:first-child{
+    margin-right: 1rem;
+  }
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  flex-grow: 1;
 }
 
 .card-chart {
@@ -30,8 +51,18 @@
   background-color: white;
 }
 
+.h3-dashboard {
+  text-align: center;
+}
+
 .h4-dashboard {
-  margin: 20px;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.h5-dashboard {
+  text-align: center;
+  margin: 1em;
 }
 
 hr {
