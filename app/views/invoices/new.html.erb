@@ -15,7 +15,7 @@
           <%= f.association :sender, label:'Choisissez un fournisseur', collection: @companies, prompt: "Fournisseurs" %>
         <% else %>
           <%= f.association :sender, as: :hidden %>
-          <%= f.association :recipient, collection: @companies, prompt: "Clients" %>
+          <%= f.association :recipient, label:'Choisissez un fournisseur', collection: @companies, prompt: "Clients" %>
         <% end %>
         <div class="inline-block">
 
