@@ -1,14 +1,37 @@
 <%# banner %>
+<%# <% if current_user %>
+  <%# <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
+  <%# <%= render 'shared/navbar'%>
+<%# <% end %>
+
 <div class="banner">
-<%# logo %>
+  <%# logo %>
   <div class="banner-logo">
     <div id="logo">
       <%= image_tag "Billr2.png" %>
     </div>
-<%# log in button %>
-  <div class="btn-login">
+  <%# log in button %>
+    <div class="btn-login">
     <% if current_user %>
-      <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
+      <%# <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
+      <%# <%= render 'shared/navbar'%>
+      <ul class="active home-hello-user">
+        <% if user_signed_in? %>
+          <li class="hello-item">
+            <span> Bonjour <%= current_user.first_name.capitalize %> 👋</span>
+          </li>
+          <li class="hello-item">
+            <% if current_user.photo.key %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <%= image_tag "https://images.pexels.com/photos/10724233/pexels-photo-10724233.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
+            </div>
+          </li>
+        <% end %>
+
+      </ul>
+
     <% else %>
     <%# sig up %>
       <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-signup", style: "margin-right: 3px" %>
@@ -24,8 +47,12 @@
         <h1> Une <span class="apart-title">gestion facilitée</span><br/>de vos factures</h1>
       </div>
       <p>100% adapté aux besoins de votre entreprise.</p>
-      <a class="btn btn-flat btn-demo" href="#">Démander une démo</a>
-      <a class="btn btn-flat btn-trial" href="#">Essai gratuit</a>
+      <% if current_user %>
+        <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
+      <% else %>
+        <a class="btn btn-flat btn-demo" href="#">Démander une démo</a>
+        <a class="btn btn-flat btn-trial" href="#">Essai gratuit</a>
+      <% end %>
     </div>
     <%= image_tag "main.png", class: "image-main" %>
   </div>
@@ -83,7 +110,7 @@
             <li>Export des écritures comptables</li>
             <li>Réconciliation automatisée</li>
           </ul>
-          <a class="btn btn-flat btn-started btn-lg" href="#">Get Started</a>
+          <a class="btn btn-flat btn-started btn-lg" href="#">Demarrer</a>
         </div>
 
 
@@ -103,7 +130,7 @@
             <li>Transmission au PPF</li>
             <li>Archivage légale des factures</li>
           </ul>
-          <a class="btn btn-flat btn-brown btn-lg" href="#">Get Started</a>
+          <a class="btn btn-flat btn-brown btn-lg" href="#">Demarrer</a>
         </div>
       </div>
 
@@ -118,7 +145,7 @@
             <li>Tableau de bord personnalisé</li>
             <li>Intégration à votre outil de comptabilité</li>
           </ul>
-          <a class="btn btn-flat btn-started btn-lg" href="#">Get Started</a>
+          <a class="btn btn-flat btn-started btn-lg" href="#">Demarrer</a>
       </div>
     </div>
 
