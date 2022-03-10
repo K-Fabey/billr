@@ -259,6 +259,19 @@
     background-color: $brown;
   }
 
+
+  .home-hello-user {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    margin: 15px;
+    list-style: none;
+  }
+
+  .hello-item{
+    margin: 0px 10px;
+    color: white;
+  }
 // .btn-subscribe {
 //   display: flex;
 //   align-items: flex-end;

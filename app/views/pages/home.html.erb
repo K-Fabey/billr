@@ -5,22 +5,22 @@
 <%# <% end %>
 
 <div class="banner">
-<%# logo %>
+  <%# logo %>
   <div class="banner-logo">
     <div id="logo">
       <%= image_tag "Billr2.png" %>
     </div>
-<%# log in button %>
-  <div class="btn-login">
+  <%# log in button %>
+    <div class="btn-login">
     <% if current_user %>
       <%# <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
       <%# <%= render 'shared/navbar'%>
-      <ul class="navbar-nav me-auto">
+      <ul class="active home-hello-user">
         <% if user_signed_in? %>
-          <li class="nav-item active hello-user">
+          <li class="hello-item">
             <span> Bonjour <%= current_user.first_name.capitalize %> 👋</span>
           </li>
-          <li class="nav-item dropdown">
+          <li class="hello-item">
             <% if current_user.photo.key %>
               <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
