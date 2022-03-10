@@ -15,8 +15,8 @@
             <div data-controller='invoice'>
 
               <div class='my-3 mr-4'>
-              <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
-              <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat btn-red", data: {action: 'click->invoice#decline'} %>
+              <%= link_to "Valider", validate_invoice_path(invoice), class: "btn btn-flat btn-orange", method: :patch %>
+              <%= link_to "Refuser", decline_reason_invoice_path(invoice), class: "btn btn-flat", data: {action: 'click->invoice#decline'} %>
               <%#= button_tag "Refuser", class: "btn btn-flat btn-red", data: {action: 'click->invoice#decline'} %>
 
               </div>
@@ -48,12 +48,12 @@
             <div class='my-3 mr-4'>
             <% if invoice.status =='created' %>
 
-              <%= link_to "Envoyer", send_to_partner_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
+              <%= link_to "Envoyer", send_to_partner_invoice_path(invoice), class: "btn btn-flat btn-orange", method: :patch %>
 
             <% else %>
               <% unless invoice.status == 'paid' %>
               <%# <%= link_to "Marquer comme payée", mark_as_paid_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
-              <%= link_to "Relancer",  follow_up_invoice_path(invoice), class: "btn btn-flat btn-green", method: :patch %>
+              <%= link_to "Relancer",  follow_up_invoice_path(invoice), class: "btn btn-flat btn-orange", method: :patch %>
               <% end %>
             <% end %>
             </div>
