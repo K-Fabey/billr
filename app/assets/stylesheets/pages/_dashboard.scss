@@ -8,7 +8,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
   background-color: white;
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
   padding: 1em;
 }
 
@@ -17,7 +17,7 @@
 // }
 
 .dashboard-container {
-  height: 80vh;
+  height: calc(100vh - 55.5px);
   display: flex;
   flex-direction: column;
   // margin: 0 1em 0 1em;
@@ -26,34 +26,48 @@
 .dashboard-content {
   flex-grow: 1;
   display: flex;
+  padding: 2rem;
 }
 
 .dashboard-column {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   &:first-child{
-    margin-right: 1rem;
+    margin-right: 2rem;
   }
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
   flex-grow: 1;
 }
 
-.card-chart {
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 5px;
-  margin: 15px;
-  padding: 10px;
-  width: 50%;
-  display: inline-block;
-  background-color: white;
+.chart-card {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 4;
+  padding: 2rem;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // border-radius: 5px;
+  // margin: 15px;
+  // padding: 10px;
+  // width: 50%;
+  // display: inline-block;
+  // background-color: white;
+  h4 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 }
 
 .h3-dashboard {
-  text-align: center;
+  // text-align: center;
   margin-bottom: 1em;
   margin-top: 1em;
 }
@@ -61,6 +75,8 @@
 .h4-dashboard {
   text-align: center;
   margin-bottom: 1em;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .h5-dashboard {
@@ -74,3 +90,18 @@
 //   border-top: 1px solid grey ;
 //   opacity: 0.25
 // }
+.card-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  .card-stat-number {
+    font-size: 2rem;
+    font-weight: bolder;
+    line-height: 1.1;
+  }
+  .card-stat-text {
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}
