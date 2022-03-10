@@ -1,87 +1,66 @@
 <div class="container-fluid dashboard-container">
-  <h3 class="h3-dashboard">Bienvenue sur votre tableau de bord</h3>
     <div class="dashboard-content">
       <div class="dashboard-column">
         <h4 class="h4-dashboard">Factures entrantes</h4>
         <div class="dashboard-grid">
-          <div class="card-category">
-            <div class="row no-gutters align-items-center">
-              <div class="h5 mb-0 font-weight-bold text-gray-800">
+          <div class="card-category card-stat">
+            <div>
+              <div class="card-stat-number">
                 <%= current_user.company.received_invoices.where(status: "received").count %>
               </div>
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                  à valider
-                </div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
-              </div>
+              <div class="card-stat-text text-primary">à valider</div>
             </div>
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
           </div>
-          <div class="card-category">
-            <div class="row no-gutters align-items-center">
-              <div class="h5 mb-0 font-weight-bold text-gray-800">
+          <div class="card-category card-stat">
+            <div>
+              <div class="card-stat-number">
                 <%# Montant total des factures à payer (les reçues et validées) %>
                 <%= number_to_currency(current_user.company.received_invoices.where(status: "validated").sum(:total_w_tax) + current_user.company.received_invoices.where(status: "received").sum(:total_w_tax), precision: 0) %>
               </div>
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              <div class="card-stat-text text-success">
                   à payer
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
               </div>
             </div>
+            <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
           </div>
-        </div>
-        <div class="chart-card card-category">
-          <h4 class="h4-dashboard"> Statut (débit) </h4>
-          <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#8A008A", "#E68A00", "#0D6EFD", "#E45D60", "#17A398"], label: "Value", legend: :right %>
+          <div class="chart-card card-category">
+            <h4> Répartition par statut </h4>
+            <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#8A008A", "#E68A00", "#0D6EFD", "#E45D60", "#17A398"], label: "Value", legend: :bottom %>
+          </div>
         </div>
       </div>
       <div class="dashboard-column">
         <h4 class="h4-dashboard">Factures sortantes</h4>
         <div class="dashboard-grid">
-          <div class="card-category">
-            <div class="row no-gutters align-items-center">
-              <div class="col-mr-2">
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                  <%# nombre de factures à relancer (valeur en dur 6 ) %>
-                  6
-                </div>
+          <div class="card-category card-stat">
+            <div>
+              <div class="card-stat-number">
+                <%# nombre de factures à relancer (valeur en dur 6 ) %>
+                6
               </div>
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                  à relancer
-                </div>
-              </div>
-              <div class="col-auto">
-                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+              <div class="card-stat-text text-info">
+                à relancer
               </div>
             </div>
+            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
           </div>
-          <div class="card-category">
-            <div class="row no-gutters align-items-center">
-              <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  <%# Montant total des factures non encore payées (créées, envoyées, relancées ) %>
-                  <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0) %>
-                </div>
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                    à payer
-                </div>
+          <div class="card-category card-stat">
+            <div>
+              <div class="card-stat-number">
+                <%# Montant total des factures non encore payées (créées, envoyées, relancées ) %>
+                <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0) %>
               </div>
-              <div class="col-auto">
-                  <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+              <div class="card-stat-text text-warning">
+                à payer
               </div>
             </div>
+            <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
           </div>
-        </div>
-        <div class="chart-card card-category">
-          <h4 class="h4-dashboard"> Statut (créance)</h4>
-          <%= pie_chart @pie_data2, donut: true, library: { pieSliceText: "value" }, colors: ["#109618", "#0C50DA", "#FF7143", "#FFC65A"], label: "Value", legend: :right %>
+          <div class="chart-card card-category">
+            <h4> Répartition par statut</h4>
+            <%= pie_chart @pie_data2, donut: true, library: { pieSliceText: "value" }, colors: ["#109618", "#0C50DA", "#FF7143", "#FFC65A"], label: "Value", legend: :bottom %>
+          </div>
         </div>
       </div>
     </div>
