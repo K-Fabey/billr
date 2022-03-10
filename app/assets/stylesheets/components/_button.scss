@@ -1,3 +1,7 @@
+.btn:focus {
+  box-shadow: none;
+}
+
 .btn-ghost {
   color: $light-gray;
   border: 1px solid $light-gray;
