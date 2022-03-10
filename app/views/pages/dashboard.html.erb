@@ -16,7 +16,7 @@
             <div>
               <div class="card-stat-number">
                 <%# Montant total des factures à payer (les reçues et validées) %>
-                <%= number_to_currency(current_user.company.received_invoices.where(status: "validated").sum(:total_w_tax) + current_user.company.received_invoices.where(status: "received").sum(:total_w_tax), precision: 0) %>
+                <%= number_to_currency(current_user.company.received_invoices.where(status: "validated").sum(:total_w_tax) + current_user.company.received_invoices.where(status: "received").sum(:total_w_tax), precision: 0, unit: '') %>
               </div>
               <div class="card-stat-text" style="color: #68E1A3">
                   à payer
@@ -49,7 +49,7 @@
             <div>
               <div class="card-stat-number">
                 <%# Montant total des factures non encore payées (créées, envoyées, relancées ) %>
-                <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0) %>
+                <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0, unit: '') %>
               </div>
               <div class="card-stat-text" style="color: purple">
                 à recevoir
