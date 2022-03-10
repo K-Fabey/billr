@@ -18,12 +18,13 @@
 
 .btn-orange{
   background-color: $orange;
-  color: $bordeaux;
+  color: white;
   border: none;
 }
 
 .btn-orange:hover {
   background: $light-orange;
+  color: $bordeaux;
   border: none;
 }
 
