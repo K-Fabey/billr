@@ -37,7 +37,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
   </head>
 
-  <body>
+  <body data-turbolinks="false">
     <%# Ne pas montrer la navbar et la sidebar sur la homepage et la page de login %>
       <%= render 'shared/side_bar' unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(dashboard_path)%>
       <%= render 'shared/navbar' unless current_page?(root_path) || current_page?(new_user_session_path)%>
