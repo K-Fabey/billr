@@ -6,11 +6,11 @@
     border-radius: 2px;
     text-align: center;
     // margin: 10px;
-    padding: 5px 5px;
-    font-size: bold;
     // height: 90%;
     // width: fit-content;
     display: inline-block;
+    padding: 2px 2px;
+    font-size: smaller;
   }
   .paid {
     color: #68E1A3;
@@ -18,21 +18,21 @@
   }
 
   .received {
-    color: #263B54;
-    background-color: #E9EBEE;
+    color: #ffc900;
+    background-color: #ffe50026;
   }
 
   .payment-in-process {
-    color: #263B54;
-    background-color: #E9EBEE;
+    color: #f97100;
+    background-color: #f971001a;
 
     // color: #263B54;
     // background-color: #E9EBEE;
   }
 
   .validated {
-    color: #263B54;
-    background-color: #E9EBEE;
+    color: #008eff;
+    background-color: #008eff26;
   }
 
   .declined{
@@ -44,16 +44,16 @@
 
 
   .sent{
-    color: #263B54;
-    background-color: #E9EBEE;
+    color: #008eff;
+    background-color: #008eff26;
 
     // color: #263B54;
     // background-color: #E9EBEE;
   }
 
   .follow_uped{
-    color: #263B54;
-    background-color: #E9EBEE;
+    color: #f97100;
+    background-color: #f971001a;
 
     // color: #263B54;
     // background-color: #E9EBEE;
@@ -61,8 +61,8 @@
 
 
   .created{
-    color: #263B54;
-    background-color: #E9EBEE;
+    color: purple;
+    background-color: #8000801f;
   }
 
 }
