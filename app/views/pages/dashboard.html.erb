@@ -8,7 +8,7 @@
               <div class="card-stat-number">
                 <%= current_user.company.received_invoices.where(status: "received").count %>
               </div>
-              <div class="card-stat-text text-primary">à valider</div>
+              <div class="card-stat-text" style="color: #008eff">à valider</div>
             </div>
             <i class="fas fa-calendar fa-2x text-gray-300"></i>
           </div>
@@ -18,7 +18,7 @@
                 <%# Montant total des factures à payer (les reçues et validées) %>
                 <%= number_to_currency(current_user.company.received_invoices.where(status: "validated").sum(:total_w_tax) + current_user.company.received_invoices.where(status: "received").sum(:total_w_tax), precision: 0) %>
               </div>
-              <div class="card-stat-text text-success">
+              <div class="card-stat-text" style="color: #68E1A3">
                   à payer
               </div>
             </div>
@@ -26,7 +26,7 @@
           </div>
           <div class="chart-card card-category">
             <h4> Répartition par statut </h4>
-            <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#8A008A", "#E68A00", "#0D6EFD", "#E45D60", "#17A398"], label: "Value", legend: :bottom %>
+            <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["purple", "#008eff", "#FF3C3C", "#f97100", "#68E1A3"], label: "Value", legend: :bottom %>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
                 <%# nombre de factures à relancer (valeur en dur 6 ) %>
                 6
               </div>
-              <div class="card-stat-text text-info">
+              <div class="card-stat-text" style="color: #f97100">
                 à relancer
               </div>
             </div>
@@ -51,15 +51,15 @@
                 <%# Montant total des factures non encore payées (créées, envoyées, relancées ) %>
                 <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0) %>
               </div>
-              <div class="card-stat-text text-warning">
-                à payer
+              <div class="card-stat-text" style="color: purple">
+                à recevoir
               </div>
             </div>
             <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
           </div>
           <div class="chart-card card-category">
             <h4> Répartition par statut</h4>
-            <%= pie_chart @pie_data2, donut: true, library: { pieSliceText: "value" }, colors: ["#109618", "#0C50DA", "#FF7143", "#FFC65A"], label: "Value", legend: :bottom %>
+            <%= pie_chart @pie_data2, donut: true, library: { pieSliceText: "value" }, colors: ["purple", "#008eff", "#68E1A3", "#f97100"], label: "Value", legend: :bottom %>
           </div>
         </div>
       </div>
