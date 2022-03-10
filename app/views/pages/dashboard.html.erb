@@ -1,115 +1,90 @@
-<div class="container-dashboard">
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h3>Bienvenue sur votre tableau de bord </h3>
-    <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
-  </div>
-  <h4 class="h4-dashboard">Factures entrantes</h4>
-    <div class="d-sm-flex align-items-center justify-content-center">
-    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
-    <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
+<div class="container-fluid dashboard-container">
+  <h3 class="h3-dashboard">Bienvenue sur votre tableau de bord</h3>
+    <div class="dashboard-content">
+      <div class="dashboard-column">
+        <h4 class="h4-dashboard">Factures entrantes</h4>
+        <div class="dashboard-grid">
+          <div class="card-category">
             <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Factures à valider</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      <%# nombre de factures à valider (les reçues) %>
-                      <%= current_user.company.received_invoices.where(status: "received").count %>
-                    </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                <%= current_user.company.received_invoices.where(status: "received").count %>
+              </div>
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  à valider
                 </div>
-                <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                </div>
+              </div>
+              <div class="col-auto">
+                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              </div>
             </div>
-        </div>
-    </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
-    <div class="card border-left-success shadow h-100 py-2">
-        <div class="card-body">
+          </div>
+          <div class="card-category">
             <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Factures à payer</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      <%# Montant total des factures à payer (les reçues et validées) %>
-                      <%= number_to_currency(current_user.company.received_invoices.where(status: "validated").sum(:total_w_tax) + current_user.company.received_invoices.where(status: "received").sum(:total_w_tax), precision: 0) %>
-                    </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                <%# Montant total des factures à payer (les reçues et validées) %>
+                <%= number_to_currency(current_user.company.received_invoices.where(status: "validated").sum(:total_w_tax) + current_user.company.received_invoices.where(status: "received").sum(:total_w_tax), precision: 0) %>
+              </div>
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                  à payer
                 </div>
-                <div class="col-auto">
-                    <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
-                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    </div>
-    </div>
-
-      <div class="card-chart">
-      <%# current_user.company.received_invoices.each do |invoice| %>
-        <%#= translate(invoice.status, scope: 'invoice.status', count: 1).capitalize %>
-      <%#     end %>
-
-        <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#8A008A", "#E68A00", "#0D6EFD", "#E45D60", "#17A398"], label: "Value" %>
-      </div>
-
-    <hr>
-
-    <h4 class="h4-dashboard">Factures sortantes</h4>
-    <div class="d-sm-flex align-items-center justify-content-center">
-    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
-    <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Factures à relancer
-                    </div>
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                              <%# nombre de factures à relancer (valeur en dur 6 ) %>
-                              6
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="progress progress-sm mr-2">
-                                <div class="progress-bar bg-info" role="progressbar"
-                                    style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mx-4" id="dashboard-card">
-      <div class="card border-left-warning shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                        Factures non payées</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      <%# Montant total des factures non encore payées (créées, envoyées, relancées ) %>
-                      <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0) %>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
-                </div>
-            </div>
+        <div class="chart-card card-category">
+          <h4 class="h4-dashboard"> Statut (débit) </h4>
+          <%= pie_chart @pie_data1, donut: true, library: { pieSliceText: "value" }, colors: ["#8A008A", "#E68A00", "#0D6EFD", "#E45D60", "#17A398"], label: "Value", legend: :right %>
         </div>
       </div>
-    </div>
-    </div>
-
-
-    <div class="card-chart">
-      <%= pie_chart @pie_data2, donut: true, colors: ["#109618", "#0C50DA", "#FF7143", "#FFC65A"] %>
+      <div class="dashboard-column">
+        <h4 class="h4-dashboard">Factures sortantes</h4>
+        <div class="dashboard-grid">
+          <div class="card-category">
+            <div class="row no-gutters align-items-center">
+              <div class="col-mr-2">
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                  <%# nombre de factures à relancer (valeur en dur 6 ) %>
+                  6
+                </div>
+              </div>
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                  à relancer
+                </div>
+              </div>
+              <div class="col-auto">
+                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-category">
+            <div class="row no-gutters align-items-center">
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  <%# Montant total des factures non encore payées (créées, envoyées, relancées ) %>
+                  <%= number_to_currency(current_user.company.sent_invoices.where(status: "created").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "sent").sum(:total_w_tax) + current_user.company.sent_invoices.where(status: "follow_uped").sum(:total_w_tax), precision: 0) %>
+                </div>
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                    à payer
+                </div>
+              </div>
+              <div class="col-auto">
+                  <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card card-category">
+          <h4 class="h4-dashboard"> Statut (créance)</h4>
+          <%= pie_chart @pie_data2, donut: true, library: { pieSliceText: "value" }, colors: ["#109618", "#0C50DA", "#FF7143", "#FFC65A"], label: "Value", legend: :right %>
+        </div>
+      </div>
     </div>
 </div>
+
+<%# <%= link_to "Accéder à mes factures", received_invoices_path, class: "btn btn-flat btn-orange"  %>
