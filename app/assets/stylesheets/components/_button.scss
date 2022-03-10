@@ -13,10 +13,8 @@
 }
 
 .btn-flat {
-
   color: white;
   padding: 8px 24px !important;
-
   border-radius: 4px;
   transition: background 0.3s ease;
   color: $bordeaux;
@@ -36,12 +34,13 @@
 //   background: $light-green;
 // }
 
-.btn-orange {
+.btn-orange{
   background-color: $orange;
   border: none;
 }
 
 .btn-red {
+
   background: red;
 }
 
@@ -50,7 +49,7 @@
 }
 
 .btn-orange:hover {
- background: $light-orange;
+  background: $light-orange;
   border: none;
 }
 
