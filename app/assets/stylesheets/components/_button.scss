@@ -18,22 +18,23 @@
 
 .btn-orange{
   background-color: $orange;
-  color: $bordeaux;
+  color: white;
   border: none;
 }
 
 .btn-orange:hover {
   background: $light-orange;
+  color: $bordeaux;
   border: none;
 }
 
-.btn-red {
-  background: red;
-}
+// .btn-red {
+//   background: red;
+// }
 
-.btn-red:hover {
-  background: $orange;
-}
+// .btn-red:hover {
+//   background: $orange;
+// }
 
 // .spaced-buttons {
 //   display: flex;
