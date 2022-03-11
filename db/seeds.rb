@@ -118,6 +118,24 @@ invoicefixe1.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_typ
   end
 end
 
+invoicefixe = Invoice.create!(
+      sender: office_depot,
+      recipient: le_wagon,
+      issue_date: '2022-03-01',
+      po_number: 'INV00106',
+      vat_rate: 20,
+      total_wo_tax: 550,
+      status: 'received',
+      payment_deadline: Faker::Date.between(from: '2022-03-14', to: '2022-03-28'),
+      payment_date: '2022-03-11',
+      archived: false,
+      decline_reason: "",
+      payment_method: "virement SEPA",
+      total_w_tax: 660,
+      tax_amount: 110
+    )
+file2 = File.open('app/assets/images/INV00106-Le-Wagon.pdf')
+invoicefixe.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
 
 20.times do
   partner = Company.new(
@@ -161,24 +179,7 @@ end
     )
   end
 end
-invoicefixe = Invoice.create!(
-      sender: office_depot,
-      recipient: le_wagon,
-      issue_date: '2022-03-01',
-      po_number: 'INV00106',
-      vat_rate: 20,
-      total_wo_tax: 550,
-      status: 'received',
-      payment_deadline: Faker::Date.between(from: '2022-03-14', to: '2022-03-28'),
-      payment_date: '2022-03-11',
-      archived: false,
-      decline_reason: "",
-      payment_method: "virement SEPA",
-      total_w_tax: 660,
-      tax_amount: 110
-    )
-file2 = File.open('app/assets/images/INV00106-Le-Wagon.pdf')
-invoicefixe.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
+
 
 puts "companies and invoices created !"
 
