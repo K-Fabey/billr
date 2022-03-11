@@ -56,6 +56,25 @@ orange = Company.create!(name: "Orange",
 CompanyPartnership.create!(company: le_wagon, partner: office_depot, supplier: true)
 CompanyPartnership.create!(company: le_wagon, partner: orange, client: true)
 
+invoicefixe1 = Invoice.create!(
+      sender: le_wagon,
+      recipient: orange,
+      issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-10'),
+      po_number: 'ORANGE2349',
+      vat_rate: 20,
+      total_wo_tax: 70000,
+      status: 'created',
+      payment_deadline: '2022-03-05',
+      payment_date: '2022-03-03',
+      archived: false,
+      decline_reason: "",
+      payment_method: "virement SEPA",
+      total_w_tax: 84000,
+      tax_amount: 14000
+    )
+file2 = File.open('app/assets/images/INV-004863-Orange.pdf')
+invoicefixe1.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
+
 20.times do
   partner = Company.new(
     name: Faker::Company.name,
@@ -98,24 +117,7 @@ CompanyPartnership.create!(company: le_wagon, partner: orange, client: true)
     )
   end
 end
-invoicefixe1 = Invoice.create!(
-      sender: le_wagon,
-      recipient: orange,
-      issue_date: Faker::Date.between(from: '2022-03-01', to: '2022-03-10'),
-      po_number: 'ORANGE2349',
-      vat_rate: 20,
-      total_wo_tax: 70000,
-      status: 'created',
-      payment_deadline: '2022-03-05',
-      payment_date: '2022-03-03',
-      archived: false,
-      decline_reason: "",
-      payment_method: "virement SEPA",
-      total_w_tax: 84000,
-      tax_amount: 14000
-    )
-file2 = File.open('app/assets/images/INV-004863-Orange.pdf')
-invoicefixe1.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
+
 
 20.times do
   partner = Company.new(
@@ -175,7 +177,7 @@ invoicefixe = Invoice.create!(
       total_w_tax: 660,
       tax_amount: 110
     )
-file2 = File.open('app/assets/images/lewagon.pdf')
+file2 = File.open('app/assets/images/INV00106-Le-Wagon.pdf')
 invoicefixe.invoice_file.attach(io: file2, filename: 'invoice.pdf', content_type: 'application/pdf')
 
 puts "companies and invoices created !"
